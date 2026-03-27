@@ -1,6 +1,8 @@
 "use client";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { Link } from "react-router-dom";
+import Image from "next/image";
 
 interface MenuItem {
   label: string;
@@ -12,6 +14,8 @@ interface SocialItem {
   label: string;
   link: string;
 }
+
+const isExternalLink = (url: string) => /^https?:\/\//i.test(url);
 
 interface StaggeredMenuProps {
   position?: "left" | "right";
@@ -294,7 +298,7 @@ export const StaggeredMenu = ({
       <div ref={preLayersRef} className="sm-prelayers" aria-hidden="true">
         {(() => {
           const raw = colors && colors.length ? colors.slice(0, 4) : ["#1e1e22", "#35353c"];
-          let arr = [...raw];
+          const arr = [...raw];
           if (arr.length >= 3) arr.splice(Math.floor(arr.length / 2), 1);
           return arr.map((c, i) => <div key={i} className="sm-prelayer" style={{ background: c }} />);
         })()}
@@ -302,7 +306,7 @@ export const StaggeredMenu = ({
 
       <header className="staggered-menu-header" aria-label="Main navigation header">
         <div className="sm-logo" aria-label="Logo">
-          <img src={logoUrl} alt="Logo" className="sm-logo-img" draggable={false} width={110} height={24} />
+          <Image src={logoUrl} alt="Logo" className="sm-logo-img" draggable={false} width={110} height={24} priority />
         </div>
         <button ref={toggleBtnRef} className="sm-toggle" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="staggered-menu-panel" onClick={toggleMenu} type="button">
           <span ref={textWrapRef} className="sm-toggle-textWrap" aria-hidden="true">
@@ -323,9 +327,15 @@ export const StaggeredMenu = ({
             {items && items.length ? (
               items.map((it, idx) => (
                 <li className="sm-panel-itemWrap" key={it.label + idx}>
-                  <a className="sm-panel-item" href={it.link} aria-label={it.ariaLabel} data-index={idx + 1}>
-                    <span className="sm-panel-itemLabel">{it.label}</span>
-                  </a>
+                  {isExternalLink(it.link) ? (
+                    <a className="sm-panel-item" href={it.link} aria-label={it.ariaLabel} data-index={idx + 1}>
+                      <span className="sm-panel-itemLabel">{it.label}</span>
+                    </a>
+                  ) : (
+                    <Link className="sm-panel-item" to={it.link} aria-label={it.ariaLabel} data-index={idx + 1}>
+                      <span className="sm-panel-itemLabel">{it.label}</span>
+                    </Link>
+                  )}
                 </li>
               ))
             ) : (
