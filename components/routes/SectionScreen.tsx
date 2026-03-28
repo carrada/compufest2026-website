@@ -7,7 +7,13 @@
 
 import { CSSProperties, useEffect, useState } from 'react';
 import { COLORS, TYPOGRAPHY, LAYOUT } from "@/lib/constants/theme";
-import ASCIIText from "@/components/ui/ASCIIText";
+import dynamic from 'next/dynamic';
+
+// Dynamic import with ssr: false for component that accesses document/window
+const ASCIIText = dynamic(
+  () => import("@/components/ui/ASCIIText"),
+  { ssr: false, loading: () => <div style={{ minHeight: '200px' }} /> }
+);
 
 interface SectionScreenProps {
   title: string;
@@ -17,19 +23,29 @@ interface SectionScreenProps {
 export function SectionScreen({ title, subtitle }: SectionScreenProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+    let debounceTimer: NodeJS.Timeout;
+
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
-      setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        setIsMobile(window.innerWidth < 640);
+        setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
+      }, 150);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(debounceTimer);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  const showASCII = title === "Talleres" || title === "Charlas";
+  const showASCII = (title === "Talleres" || title === "Charlas") && isClient;
   const asciiFontSize = isMobile ? 4 : isTablet ? 6 : 8;
   const textFontSize = isMobile ? 40 : isTablet ? 100 : 180;
   const planeBaseHeight = isMobile ? 4 : isTablet ? 6 : 8;

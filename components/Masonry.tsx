@@ -124,9 +124,30 @@ const MasonryComponent: FC<MasonryProps> = ({
   }, [columns, items, width]);
 
   const hasMounted = useRef(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const observerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer para detectar cuando el elemento es visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
 
   useLayoutEffect(() => {
-    if (!grid || grid.length === 0) return;
+    if (!grid || grid.length === 0 || !isVisible) return;
 
     grid.forEach((item, index) => {
       const selector = `[data-key="${item.id}"]`;
@@ -168,7 +189,7 @@ const MasonryComponent: FC<MasonryProps> = ({
 
     hasMounted.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [grid, stagger, animateFrom, blurToFocus, duration, ease]);
+  }, [grid, stagger, animateFrom, blurToFocus, duration, ease, isVisible]);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>, item: any) => {
     const selector = `[data-key="${item.id}"]`;
@@ -215,7 +236,13 @@ const MasonryComponent: FC<MasonryProps> = ({
   };
 
   return (
-    <div ref={containerRef} className="list">
+    <div 
+      ref={(el) => {
+        containerRef.current = el as HTMLDivElement;
+        observerRef.current = el as HTMLDivElement;
+      }} 
+      className="list"
+    >
       {grid.map(item => {
         return (
           <div

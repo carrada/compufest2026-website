@@ -7,14 +7,23 @@
 
 import { CSSProperties } from 'react';
 import dynamic from 'next/dynamic';
-import ASCIIText from '@/components/ui/ASCIIText';
-import CanvasTextDemo from '@/components/canvas-text-demo';
 import { LAYOUT } from "@/lib/constants/theme";
+
+// Dynamic imports with ssr: false for components that access document/window
+const ASCIIText = dynamic(
+  () => import('@/components/ui/ASCIIText'),
+  { ssr: false, loading: () => <div style={{ ...LAYOUT.fullScreen, position: 'relative' }} /> }
+);
+
+const CanvasTextDemo = dynamic(
+  () => import('@/components/canvas-text-demo'),
+  { ssr: false, loading: () => <div style={{ minHeight: '500px' }} /> }
+);
 
 // Lazy load LoaderFourDemo to optimize initial page load
 const LoaderFourDemo = dynamic(
   () => import("@/components/ui/loader-four").then(mod => ({default: mod.LoaderFourDemo})),
-  { loading: () => null }
+  { ssr: false, loading: () => null }
 );
 
 export function HomeRoute() {

@@ -3,8 +3,21 @@
 import { cn } from "@/lib/utils";
 import { CanvasText } from "@/components/ui/canvas-text";
 import { useEffect, useState, memo } from "react";
-import Masonry from "./Masonry.tsx";
+import dynamic from "next/dynamic";
 import { masonryItems } from "./masonry-data";
+import Terminal from "@/components/ui/Terminal";
+import CountdownTimer from "@/components/ui/CountdownTimer";
+
+const Masonry = dynamic(() => import("./Masonry.tsx"), {
+  loading: () => <div style={{ minHeight: "600px", backgroundColor: "#0a0a0a", borderRadius: "12px" }} />,
+  ssr: false
+});
+
+// Lazy load LinkPreview component
+const LinkPreview = dynamic(() => import("@/components/ui/link-preview").then(mod => ({ default: mod.LinkPreview })), {
+  loading: () => <span className="underline cursor-pointer">loading...</span>,
+  ssr: true
+});
 
 const CanvasTextDemo = memo(function CanvasTextDemo() {
   const [isMobile, setIsMobile] = useState(false);
@@ -72,7 +85,16 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         />
         <br className="hidden md:block" />
         {" "}
-        en la UNAM
+        en la{" "}
+        <LinkPreview
+          url="https://www.unam.mx"
+          className="font-bold"
+          imageSrc="/unam(1).webp"
+          isStatic={true}
+          style={{ color: "#D59F0F" }}
+        >
+          UNAM
+        </LinkPreview>
       </h2>
 
       {/* Fecha con estilo CanvasText */}
@@ -110,7 +132,7 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
       </div>
 
       {/* Ubicación con texto normal */}
-      <p 
+      <div 
         className={cn(
           "text-center font-bold text-neutral-300",
           "text-xl leading-snug sm:text-2xl sm:leading-relaxed md:text-3xl md:leading-relaxed lg:text-4xl lg:leading-relaxed xl:text-5xl xl:leading-relaxed"
@@ -119,23 +141,114 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
           fontFamily: "'Red Hat Display', sans-serif",
         }}
       >
-        UNAM Facultad de Ciencias
-      </p>
+        <LinkPreview
+          url="https://www.fciencias.unam.mx"
+          className="font-bold"
+          imageSrc="/Facultad_de_Ciencias(1).webp"
+          isStatic={true}
+          style={{ color: "#063C61" }}
+        >
+          UNAM Facultad de Ciencias
+        </LinkPreview>
+      </div>
 
       {/* Galería Masonry */}
       <div 
         className="w-full mt-12 md:mt-16 lg:mt-20"
         style={{
           background: "radial-gradient(circle at 20% 50%, rgba(38, 217, 104, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.05) 0%, transparent 50%), #0a0a0a",
-          padding: "20px",
           borderRadius: "12px",
-          height: "100%",
-          minHeight: "900px",
-          display: "block"
+          display: "block",
+          overflow: "hidden"
         }}
       >
         <Masonry items={masonryItems} />
       </div>
+
+      {/* Terminal con información sobre Compufest */}
+      <div 
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0"
+      >
+        <Terminal
+          title="$ compufest --info"
+          content={`¿Qué es el compufest?
+
+El compufest es el evento estudiantil de computación y programación más grande de la UNAM. Este evento existe no solo para dar foco en las carreras de computación que existen en la UNAM sino también para que alumnxs, profesorxs, investigadorxs y comunidades tecnológicas puedan intercambiar conocimientos y conectar entre sí, en un espacio tanto físico como digital.
+
+En esta segunda edición, estilizada como compufest[1], se celebrará los próximos 23 y 24 de abril del 2026. Nuevamente se realizará en su lugar de origen, la Facultad de Ciencias, en Ciudad Universitaria.`}
+          speed={25}
+        />
+      </div>
+
+      {/* Countdown Timer */}
+      <div 
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0"
+      >
+        <CountdownTimer />
+      </div>
+
+      {/* Hackathon Weird-UI Title */}
+      <div 
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
+      >
+        <h3
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          style={{
+            fontFamily: "'Red Hat Display', sans-serif",
+            fontWeight: 700,
+            letterSpacing: "-1px",
+          }}
+        >
+          Hackathon WeirdUI[1]
+        </h3>
+      </div>
+
+      {/* Terminal con información sobre el Hackathon */}
+      <div 
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0"
+      >
+        <Terminal
+          title="$ cat hackathon-info.txt"
+          content={`¡PRIMERA VEZ EN LA FACULTAD DE CIENCIAS!
+En ésta edición tendremos una primicia en la Facultad de Ciencias: su primer hackathon.
+
+Mientras en los hackatones tradicionales se busca llegar a una solución de mercado general, el reto de este hackathon será más particular y orientado a la creatividad y aprendizaje de los equipos participantes.
+
+$ echo reto.md
+
+El reto será crear una interfaz para la gestión de una cava en un restaurante, con la particularidad de que la solución debe ser creada utilizando bibliotecas y lenguajes fuera de lo común: sin nada de diseño web tradicional.`}
+          speed={25}
+        />
+      </div>
+
+      {/* Patrocinadores Title */}
+      <div 
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
+      >
+        <h3
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          style={{
+            fontFamily: "'Red Hat Display', sans-serif",
+            fontWeight: 700,
+            letterSpacing: "-1px",
+          }}
+        >
+          Patrocinadores
+        </h3>
+      </div>
+
+      {/* Fondo grid debajo del Terminal */}
+      <div 
+        className="w-full mt-0 -mx-4 px-4"
+        style={{
+          backgroundColor: "#000",
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          minHeight: "400px",
+          marginTop: "-1px"
+        }}
+      />
     </div>
   );
 });
