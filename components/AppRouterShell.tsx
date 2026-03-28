@@ -9,7 +9,7 @@
  * Esta es la raíz de la aplicación que orquesta todos los componentes
  */
 
-"use client";
+'use client';
 
 import { BrowserRouter } from "react-router-dom";
 import StaggeredMenu from "@/components/ui/StaggeredMenu";
@@ -44,7 +44,7 @@ export default function AppRouterShell() {
           menuButtonColor={navigationConfig.menuConfig.menuButtonColor}
           openMenuButtonColor={navigationConfig.menuConfig.openMenuButtonColor}
           changeMenuColorOnOpen={navigationConfig.menuConfig.changeMenuColorOnOpen}
-          colors={navigationConfig.menuConfig.colors}
+          colors={[...navigationConfig.menuConfig.colors]}
           logoUrl={navigationConfig.menuConfig.logoUrl}
           accentColor={navigationConfig.menuConfig.accentColor}
           isFixed={navigationConfig.menuConfig.isFixed}

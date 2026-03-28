@@ -1,19 +1,9 @@
-"use client";
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+'use client';
+import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from "gsap";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Image from "next/image";
-
-interface MenuItem {
-  label: string;
-  ariaLabel?: string;
-  link: string;
-}
-
-interface SocialItem {
-  label: string;
-  link: string;
-}
+import type { MenuItem, SocialItem } from "@/lib/types";
 
 const isExternalLink = (url: string) => /^https?:\/\//i.test(url);
 
@@ -116,7 +106,6 @@ export const StaggeredMenu = ({
 
     const itemEls = Array.from(panel.querySelectorAll<HTMLElement>(".sm-panel-itemLabel"));
     const numberEls = Array.from(panel.querySelectorAll<HTMLElement>(".sm-panel-list[data-numbering] .sm-panel-item"));
-    const socialTitle = panel.querySelector<HTMLElement>(".sm-socials-title");
     const socialLinks = Array.from(panel.querySelectorAll<HTMLElement>(".sm-socials-link"));
 
     const layerStates = layers.map((el) => ({ el, start: Number(gsap.getProperty(el, "xPercent")) }));
@@ -124,7 +113,6 @@ export const StaggeredMenu = ({
 
     if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
     if (numberEls.length) gsap.set(numberEls, { "--sm-num-opacity": 0 } as gsap.TweenVars);
-    if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
     if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
@@ -145,12 +133,9 @@ export const StaggeredMenu = ({
       }
     }
 
-    if (socialTitle || socialLinks.length) {
+    if (socialLinks.length) {
       const socialsStart = panelInsertTime + panelDuration * 0.4;
-      if (socialTitle) tl.to(socialTitle, { opacity: 1, duration: 0.5, ease: "power2.out" }, socialsStart);
-      if (socialLinks.length) {
-        tl.to(socialLinks, { y: 0, opacity: 1, duration: 0.55, ease: "power3.out", stagger: { each: 0.08, from: "start" }, onComplete: () => { gsap.set(socialLinks, { clearProps: "opacity" }); } }, socialsStart + 0.04);
-      }
+      tl.to(socialLinks, { y: 0, opacity: 1, duration: 0.55, ease: "power3.out", stagger: { each: 0.08, from: "start" }, onComplete: () => { gsap.set(socialLinks, { clearProps: "opacity" }); } }, socialsStart);
     }
 
     openTlRef.current = tl;
@@ -191,9 +176,7 @@ export const StaggeredMenu = ({
         if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
         const numberEls = Array.from(panel.querySelectorAll<HTMLElement>(".sm-panel-list[data-numbering] .sm-panel-item"));
         if (numberEls.length) gsap.set(numberEls, { "--sm-num-opacity": 0 } as gsap.TweenVars);
-        const socialTitle = panel.querySelector<HTMLElement>(".sm-socials-title");
         const socialLinks = Array.from(panel.querySelectorAll<HTMLElement>(".sm-socials-link"));
-        if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
         if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
         busyRef.current = false;
       },
@@ -284,8 +267,10 @@ export const StaggeredMenu = ({
         closeMenu();
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    if (typeof document !== "undefined") {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
   }, [closeOnClickAway, open, closeMenu]);
 
   return (
@@ -332,7 +317,7 @@ export const StaggeredMenu = ({
                       <span className="sm-panel-itemLabel">{it.label}</span>
                     </a>
                   ) : (
-                    <Link className="sm-panel-item" to={it.link} aria-label={it.ariaLabel} data-index={idx + 1}>
+                    <Link className="sm-panel-item" href={it.link} aria-label={it.ariaLabel} data-index={idx + 1}>
                       <span className="sm-panel-itemLabel">{it.label}</span>
                     </Link>
                   )}
@@ -346,11 +331,16 @@ export const StaggeredMenu = ({
           </ul>
           {displaySocials && socialItems && socialItems.length > 0 && (
             <div className="sm-socials" aria-label="Social links">
-              <h3 className="sm-socials-title">¡Síguenos en nuestras redes sociales!</h3>
               <ul className="sm-socials-list" role="list">
                 {socialItems.map((s, i) => (
                   <li key={s.label + i} className="sm-socials-item">
-                    <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link">{s.label}</a>
+                    {s.logo ? (
+                      <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link" aria-label={s.label}>
+                        <Image src={s.logo} alt={s.label} width={72} height={72} className="sm-socials-logo" />
+                      </a>
+                    ) : (
+                      <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link">{s.label}</a>
+                    )}
                   </li>
                 ))}
               </ul>

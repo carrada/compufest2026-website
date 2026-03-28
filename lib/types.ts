@@ -12,6 +12,7 @@ export interface MenuItem {
 export interface SocialItem {
   label: string;
   link: string;
+  logo: string;
 }
 
 export interface SectionRoute {

@@ -49,7 +49,7 @@ function Band({ bandTexture, isMobile = false }: any) {
   useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.5, 0]]);
 
   useEffect(() => {
-    if (hovered) {
+    if (hovered && typeof document !== "undefined") {
       document.body.style.cursor = dragged ? 'grabbing' : 'grab';
       return () => {
         document.body.style.cursor = 'auto';
