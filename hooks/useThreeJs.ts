@@ -8,7 +8,7 @@ export const useThreeJs = () => {
   useEffect(() => {
     // Dynamically import Three.js only when component mounts
     import('three').then((module) => {
-      setTHREE(module.default || module);
+      setTHREE(module);
       setIsLoading(false);
     }).catch((err) => {
       console.error('Failed to load Three.js:', err);

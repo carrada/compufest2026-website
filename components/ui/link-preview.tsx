@@ -107,8 +107,8 @@ const LinkPreviewImpl = ({
           sideOffset={10}
         >
           <AnimatePresence>
-            {imageLoaded && isOpen && (
-              <motion.span
+            {imageLoaded && isOpen ? (
+              <motion.div
                 initial={{ opacity: 0, y: 20, scale: 0.6 }}
                 animate={{
                   opacity: 1,
@@ -121,7 +121,7 @@ const LinkPreviewImpl = ({
                   },
                 }}
                 exit={{ opacity: 0, y: 20, scale: 0.6 }}
-                className="shadow-xl rounded-xl inline-block"
+                className="shadow-xl rounded-xl"
                 style={{
                   x: translateX,
                 }}
@@ -139,8 +139,8 @@ const LinkPreviewImpl = ({
                     alt="preview image"
                   />
                 </a>
-              </motion.span>
-            )}
+              </motion.div>
+            ) : null}
           </AnimatePresence>
         </HoverCardPrimitive.Content>
       </HoverCardPrimitive.Root>

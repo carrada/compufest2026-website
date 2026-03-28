@@ -4,29 +4,27 @@ import { cn } from "@/lib/utils";
 import { CanvasText } from "@/components/ui/canvas-text";
 import { useEffect, useState, memo } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { masonryItems } from "./masonry-data";
 import Terminal from "@/components/ui/Terminal";
 import CountdownTimer from "@/components/ui/CountdownTimer";
+import { CometCard } from "@/components/ui/comet-card";
 
-const Masonry = dynamic(() => import("./Masonry.tsx"), {
+const Masonry = dynamic(() => import("./Masonry"), {
   loading: () => <div style={{ minHeight: "600px", backgroundColor: "#0a0a0a", borderRadius: "12px" }} />,
   ssr: false
-});
-
-// Lazy load LinkPreview component
-const LinkPreview = dynamic(() => import("@/components/ui/link-preview").then(mod => ({ default: mod.LinkPreview })), {
-  loading: () => <span className="underline cursor-pointer">loading...</span>,
-  ssr: true
 });
 
 const CanvasTextDemo = memo(function CanvasTextDemo() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
       setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
+      setIsDesktop(window.innerWidth >= 1024);
     };
 
     handleResize();
@@ -86,15 +84,7 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         <br className="hidden md:block" />
         {" "}
         en la{" "}
-        <LinkPreview
-          url="https://www.unam.mx"
-          className="font-bold"
-          imageSrc="/unam(1).webp"
-          isStatic={true}
-          style={{ color: "#D59F0F" }}
-        >
-          UNAM
-        </LinkPreview>
+        <span style={{ color: "#D59F0F" }}>UNAM</span>
       </h2>
 
       {/* Fecha con estilo CanvasText */}
@@ -139,17 +129,10 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         )}
         style={{
           fontFamily: "'Red Hat Display', sans-serif",
+          color: "#063C61",
         }}
       >
-        <LinkPreview
-          url="https://www.fciencias.unam.mx"
-          className="font-bold"
-          imageSrc="/Facultad_de_Ciencias(1).webp"
-          isStatic={true}
-          style={{ color: "#063C61" }}
-        >
-          UNAM Facultad de Ciencias
-        </LinkPreview>
+        UNAM Facultad de Ciencias
       </div>
 
       {/* Galería Masonry */}
@@ -237,18 +220,454 @@ El reto será crear una interfaz para la gestión de una cava en un restaurante,
         </h3>
       </div>
 
-      {/* Fondo grid debajo del Terminal */}
+      {/* Patrocinadores Cards */}
+      <div className="w-full mt-20 md:mt-24 px-4 md:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 md:gap-16 justify-items-center" style={{ marginTop: "40px" }}>
+          {[1, 2, 3, 4, 5, 6].map((num) => (
+            <CometCard key={`sponsor-${num}`}>
+              {num === 1 ? (
+                <a
+                  href="https://aws.amazon.com/es/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] bg-white object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/awslogosvg.svg"
+                          alt="AWS Logo"
+                          width={220}
+                          height={220}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">AWS</div>
+                    <div className="text-xs text-gray-300 opacity-50">Amazon Web Services</div>
+                  </div>
+                </a>
+              ) : num === 2 ? (
+                <a
+                  href="https://www.chiiko.design"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          backgroundColor: "#ce4676",
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/chiikologosvg.svg"
+                          alt="Chiikö Logo"
+                          width={280}
+                          height={280}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">Chiikö</div>
+                    <div className="text-xs text-gray-300 opacity-50">Chiikö</div>
+                  </div>
+                </a>
+              ) : num === 3 ? (
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          backgroundColor: "#ffffff",
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/github-icon.svg"
+                          alt="GitHub Logo"
+                          width={220}
+                          height={220}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">GitHub</div>
+                    <div className="text-xs text-gray-300 opacity-50">GitHub</div>
+                  </div>
+                </a>
+              ) : num === 4 ? (
+                <a
+                  href="https://interledger.org/es"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          backgroundColor: "#C9C6BD",
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/interleadgersvg.svg"
+                          alt="Interledger Logo"
+                          width={220}
+                          height={220}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">Interledger</div>
+                    <div className="text-xs text-gray-300 opacity-50">Interledger Foundation</div>
+                  </div>
+                </a>
+              ) : num === 5 ? (
+                <a
+                  href="https://www.notion.com/es"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          backgroundColor: "#ffffff",
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/notionsvg.svg"
+                          alt="Notion Logo"
+                          width={220}
+                          height={220}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">Notion</div>
+                    <div className="text-xs text-gray-300 opacity-50">Notion</div>
+                  </div>
+                </a>
+              ) : num === 6 ? (
+                <a
+                  href="https://www.ketherlabs.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          backgroundColor: "#00FF7E",
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/ketherlabssvg.svg"
+                          alt="Ketherlabs Logo"
+                          width={220}
+                          height={220}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">Ketherlabs</div>
+                    <div className="text-xs text-gray-300 opacity-50">Ketherlabs</div>
+                  </div>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform"
+                  aria-label={`Sponsor ${num}`}
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] bg-gradient-to-br from-blue-600 to-blue-900 object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <span className="text-white text-2xl font-bold opacity-50">Sponsor {num}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">Patrocinador</div>
+                    <div className="text-xs text-gray-300 opacity-50">#{num.toString().padStart(2, '0')}</div>
+                  </div>
+                </button>
+              )}
+            </CometCard>
+          ))}
+        </div>
+      </div>
+
+      {/* Comunidades Aliadas Title */}
       <div 
-        className="w-full mt-0 -mx-4 px-4"
-        style={{
-          backgroundColor: "#000",
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-          minHeight: "400px",
-          marginTop: "-1px"
-        }}
-      />
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex flex-col items-center justify-center gap-1"
+      >
+        <h3
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          style={{
+            fontFamily: "'Red Hat Display', sans-serif",
+            fontWeight: 700,
+            letterSpacing: "-1px",
+          }}
+        >
+          Comunidades Aliadas
+        </h3>
+        <p className="text-sm md:text-base text-white/60 font-light">
+          (Orden Alfabetico)
+        </p>
+      </div>
+
+      {/* Comunidades Aliadas Cards */}
+      <div className="w-full mt-20 md:mt-24 px-4 md:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 md:gap-16 justify-items-center" style={{ marginTop: "40px" }}>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((num) => (
+            <CometCard key={`community-${num}`}>
+              {num === 1 ? (
+                <a
+                  href="https://www.instagram.com/awsclub.ipn/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          backgroundColor: "#9333ea",
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/ipnawssvg.svg"
+                          alt="AWS IPN Logo"
+                          width={220}
+                          height={220}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">AWS IPN</div>
+                    <div className="text-xs text-gray-300 opacity-50">AWS Cloud Club IPN</div>
+                  </div>
+                </a>
+              ) : num === 2 ? (
+                <a
+                  href="https://www.instagram.com/aws.ajolotes/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          backgroundColor: "#9333ea",
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/awsAjolote.svg"
+                          alt="AWS Ajolotes Logo"
+                          width={220}
+                          height={220}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">AWS Ajolotes</div>
+                    <div className="text-xs text-gray-300 opacity-50">AWS UG Ajolotes en la nube</div>
+                  </div>
+                </a>
+              ) : num === 3 ? (
+                <a
+                  href="https://www.instagram.com/chidastech/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          backgroundColor: "#ffffff",
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <Image
+                          src="/chidastechsvg.svg"
+                          alt="Chidas Tech Logo"
+                          width={220}
+                          height={220}
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">Chidas Tech</div>
+                    <div className="text-xs text-gray-300 opacity-50">Chidas Tech</div>
+                  </div>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform"
+                  aria-label={`Comunidad ${num}`}
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <div className="mx-2 flex-1">
+                    <div className="relative mt-2 aspect-[3/4] w-full">
+                      <div
+                        className="absolute inset-0 h-full w-full rounded-[16px] bg-gradient-to-br from-cyan-600 to-cyan-900 object-cover contrast-75 flex items-center justify-center"
+                        style={{
+                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                        }}
+                      >
+                        <span className="text-white text-2xl font-bold opacity-50">Comunidad {num}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                    <div className="text-xs">Comunidad</div>
+                    <div className="text-xs text-gray-300 opacity-50">#{num.toString().padStart(2, '0')}</div>
+                  </div>
+                </button>
+              )}
+            </CometCard>
+          ))}
+        </div>
+      </div>
+
+      {/* Comunidades Organizadoras Title */}
+      <div 
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
+      >
+        <h3
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          style={{
+            fontFamily: "'Red Hat Display', sans-serif",
+            fontWeight: 700,
+            letterSpacing: "-1px",
+          }}
+        >
+          Comunidades Organizadoras
+        </h3>
+      </div>
+
+      {/* Comunidades Organizadoras Cards */}
+      <div className="w-full mt-20 md:mt-24 px-4 md:px-0 pb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 md:gap-16 justify-items-center" style={{ marginTop: "40px" }}>
+          {[1, 2, 3, 4, 5, 6].map((num) => (
+            <CometCard key={`organizer-${num}`}>
+              <button
+                type="button"
+                className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform"
+                aria-label={`Comunidad Organizadora ${num}`}
+                style={{
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                <div className="mx-2 flex-1">
+                  <div className="relative mt-2 aspect-[3/4] w-full">
+                    <div
+                      className="absolute inset-0 h-full w-full rounded-[16px] bg-gradient-to-br from-purple-600 to-purple-900 object-cover contrast-75 flex items-center justify-center"
+                      style={{
+                        boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
+                      }}
+                    >
+                      <span className="text-white text-2xl font-bold opacity-50">Organizadora {num}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
+                  <div className="text-xs">Organizadora</div>
+                  <div className="text-xs text-gray-300 opacity-50">#{num.toString().padStart(2, '0')}</div>
+                </div>
+              </button>
+            </CometCard>
+          ))}
+        </div>
+      </div>
     </div>
   );
 });

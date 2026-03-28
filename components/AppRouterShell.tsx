@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import StaggeredMenu from "@/components/ui/StaggeredMenu";
 import { RoutesRenderer } from "@/components/layout/RoutesRenderer";
+import { Footer } from "@/components/layout/Footer";
 import { useNavigationConfig } from "@/hooks/useNavigationConfig";
 import { CSSProperties } from "react";
 
@@ -65,6 +66,9 @@ export default function AppRouterShell() {
 
         {/* Rutas renderizadas dinámicamente */}
         <RoutesRenderer sectionRoutes={navigationConfig.sectionRoutes} />
+
+        {/* Footer */}
+        <Footer />
       </main>
     </BrowserRouter>
   );
