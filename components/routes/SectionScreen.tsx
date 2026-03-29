@@ -9,6 +9,7 @@ import { CSSProperties, useEffect, useState } from 'react';
 import { COLORS, TYPOGRAPHY, LAYOUT } from "@/lib/constants/theme";
 import dynamic from 'next/dynamic';
 import { Terminal } from "@/components/ui/terminal";
+import { StickyScrollRevealDemo } from "@/components/StickyScrollRevealDemo";
 
 // Dynamic import with ssr: false for component that accesses document/window
 const ASCIIText = dynamic(
@@ -197,6 +198,23 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             typingSpeed={30}
             delayBetweenCommands={800}
           />
+        </div>
+      ) : title === "Nosotros" ? (
+        <div className="w-full px-4 md:px-8 lg:px-16">
+          <div className="mb-12 text-center">
+            <h1
+              style={{
+                fontFamily: "'Red Hat Display', sans-serif",
+                fontSize: "3.5rem",
+                fontWeight: 700,
+                color: "#ffffff",
+                marginBottom: "1rem",
+              }}
+            >
+              ¿Quienes Somos?
+            </h1>
+          </div>
+          <StickyScrollRevealDemo />
         </div>
       ) : (
         <div style={containerStyle}>
