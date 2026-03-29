@@ -646,9 +646,65 @@ const ASCIIText: FC<ASCIITextProps> = ({
       style={{
         position: 'absolute',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transform: typeof window !== 'undefined' && window.innerWidth < 768 ? 'scale(0.6)' : 'scale(1)',
+        transition: 'transform 0.3s ease'
       }}
     >
+      {/* Left hand SVG - Desktop only */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '20px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          width: '580px',
+          height: '580px',
+          display: typeof window !== 'undefined' && window.innerWidth < 768 ? 'none' : 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 10
+        }}
+      >
+        <img
+          src="/manoizquierda.svg"
+          alt="Mano izquierda"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain'
+          }}
+        />
+      </div>
+
+      {/* Right hand SVG - Desktop only */}
+      <div
+        style={{
+          position: 'absolute',
+          right: '20px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          width: '580px',
+          height: '580px',
+          display: typeof window !== 'undefined' && window.innerWidth < 768 ? 'none' : 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 10
+        }}
+      >
+        <img
+          src="/manoderecha.svg"
+          alt="Mano derecha"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain'
+          }}
+        />
+      </div>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap');
 

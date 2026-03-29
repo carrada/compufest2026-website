@@ -7,6 +7,7 @@ export interface MenuItem {
   label: string;
   ariaLabel?: string;
   link: string;
+  openInNewTab?: boolean;
 }
 
 export interface SocialItem {

@@ -1,42 +1,36 @@
 'use client';
 
 import { cn } from "@/lib/utils";
-import { CanvasText } from "@/components/ui/canvas-text";
 import { useEffect, useState, memo } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { masonryItems } from "./masonry-data";
-import Terminal from "@/components/ui/Terminal";
+import { LinkPreview } from "@/components/ui/link-preview";
+import { Terminal } from "@/components/ui/terminal";
 import CountdownTimer from "@/components/ui/CountdownTimer";
 import { CometCard } from "@/components/ui/comet-card";
-
-const Masonry = dynamic(() => import("./Masonry"), {
-  loading: () => <div style={{ minHeight: "600px", backgroundColor: "#0a0a0a", borderRadius: "12px" }} />,
-  ssr: false
-});
+import { DraggableCardGallery } from "@/components/draggable-card-gallery";
 
 const CanvasTextDemo = memo(function CanvasTextDemo() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
       setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
       setIsDesktop(window.innerWidth >= 1024);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Valores responsivos para CanvasText
-  const lineWidth = isMobile ? 1 : isTablet ? 1.5 : 2;
-  const lineGap = isMobile ? 2 : isTablet ? 2.5 : 3;
-  const animationDuration = 15;
-  const curveIntensity = isMobile ? 30 : isTablet ? 40 : 50;
+  if (!isClient) {
+    return <div style={{ minHeight: "100vh" }} />;
+  }
 
   return (
     <div 
@@ -51,8 +45,8 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
       <h2
         className={cn(
           "group relative mx-auto text-center font-bold tracking-tight text-balance text-neutral-300 dark:text-neutral-200",
-          "text-3xl leading-snug sm:text-4xl sm:leading-relaxed md:text-5xl md:leading-relaxed lg:text-6xl lg:leading-relaxed xl:text-7xl xl:leading-relaxed",
-          "max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-6xl"
+          "text-3xl leading-tight xs:text-3xl sm:text-4xl sm:leading-snug md:text-5xl md:leading-relaxed lg:text-6xl lg:leading-relaxed xl:text-7xl xl:leading-relaxed",
+          "max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-4xl"
         )}
         style={{
           fontFamily: "'Red Hat Display', sans-serif",
@@ -61,30 +55,21 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         <span className="block md:inline">El evento estudiantil más grande de</span>
         <br className="hidden md:block" />
         {" "}
-        <CanvasText
-          text="computación y programación"
-          backgroundClassName="bg-black"
-          colors={[
-            "rgba(38, 217, 104, 1)",
-            "rgba(138, 43, 226, 1)",
-            "rgba(38, 217, 104, 0.9)",
-            "rgba(138, 43, 226, 0.9)",
-            "rgba(38, 217, 104, 0.8)",
-            "rgba(138, 43, 226, 0.8)",
-            "rgba(38, 217, 104, 0.7)",
-            "rgba(138, 43, 226, 0.7)",
-            "rgba(38, 217, 104, 0.6)",
-            "rgba(138, 43, 226, 0.6)",
-          ]}
-          lineWidth={lineWidth}
-          lineGap={lineGap}
-          animationDuration={animationDuration}
-          curveIntensity={curveIntensity}
-        />
+        <span style={{ color: "white" }}>computación y programación</span>
         <br className="hidden md:block" />
         {" "}
         en la{" "}
-        <span style={{ color: "#D59F0F" }}>UNAM</span>
+        <LinkPreview
+          isStatic={true}
+          imageSrc="/unam(1).jpg"
+          url="https://www.unam.mx/"
+          className="hover:underline"
+          style={{ color: "#26D968" }}
+          width={200}
+          height={150}
+        >
+          UNAM
+        </LinkPreview>
       </h2>
 
       {/* Fecha con estilo CanvasText */}
@@ -92,32 +77,13 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         <h3 
           className={cn(
             "group relative mx-auto text-center font-bold tracking-tight text-neutral-300 dark:text-neutral-200",
-            "text-2xl leading-snug sm:text-3xl sm:leading-relaxed md:text-4xl md:leading-relaxed lg:text-5xl lg:leading-relaxed xl:text-6xl xl:leading-relaxed"
+            "text-lg leading-tight xs:text-xl sm:text-2xl sm:leading-snug md:text-3xl md:leading-relaxed lg:text-4xl lg:leading-relaxed xl:text-5xl xl:leading-relaxed"
           )}
           style={{
             fontFamily: "'Red Hat Display', sans-serif",
           }}
         >
-          <CanvasText
-            text="23 y 24 de abril de 2026"
-            backgroundClassName="bg-black"
-            colors={[
-              "rgba(38, 217, 104, 1)",
-              "rgba(138, 43, 226, 1)",
-              "rgba(38, 217, 104, 0.9)",
-              "rgba(138, 43, 226, 0.9)",
-              "rgba(38, 217, 104, 0.8)",
-              "rgba(138, 43, 226, 0.8)",
-              "rgba(38, 217, 104, 0.7)",
-              "rgba(138, 43, 226, 0.7)",
-              "rgba(38, 217, 104, 0.6)",
-              "rgba(138, 43, 226, 0.6)",
-            ]}
-            lineWidth={lineWidth}
-            lineGap={lineGap}
-            animationDuration={animationDuration}
-            curveIntensity={curveIntensity}
-          />
+          <span style={{ color: "white" }}>23 y 24 de abril de 2026</span>
         </h3>
       </div>
 
@@ -129,38 +95,24 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         )}
         style={{
           fontFamily: "'Red Hat Display', sans-serif",
-          color: "#063C61",
         }}
       >
-        UNAM Facultad de Ciencias
+        <LinkPreview
+          isStatic={true}
+          imageSrc="/Facultad_de_Ciencias(1).webp"
+          url="https://share.google/mA4OiDb2h0jFh68JJ"
+          className="hover:underline"
+          style={{ color: "#26D968" }}
+          width={200}
+          height={150}
+        >
+          UNAM Facultad de Ciencias
+        </LinkPreview>
       </div>
 
-      {/* Galería Masonry */}
-      <div 
-        className="w-full mt-12 md:mt-16 lg:mt-20"
-        style={{
-          background: "radial-gradient(circle at 20% 50%, rgba(38, 217, 104, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.05) 0%, transparent 50%), #0a0a0a",
-          borderRadius: "12px",
-          display: "block",
-          overflow: "hidden"
-        }}
-      >
-        <Masonry items={masonryItems} />
-      </div>
-
-      {/* Terminal con información sobre Compufest */}
-      <div 
-        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0"
-      >
-        <Terminal
-          title="$ compufest --info"
-          content={`¿Qué es el compufest?
-
-El compufest es el evento estudiantil de computación y programación más grande de la UNAM. Este evento existe no solo para dar foco en las carreras de computación que existen en la UNAM sino también para que alumnxs, profesorxs, investigadorxs y comunidades tecnológicas puedan intercambiar conocimientos y conectar entre sí, en un espacio tanto físico como digital.
-
-En esta segunda edición, estilizada como compufest[1], se celebrará los próximos 23 y 24 de abril del 2026. Nuevamente se realizará en su lugar de origen, la Facultad de Ciencias, en Ciudad Universitaria.`}
-          speed={25}
-        />
+      {/* Galería Draggable Card */}
+      <div className="w-full mt-12 md:mt-16 lg:mt-20">
+        <DraggableCardGallery />
       </div>
 
       {/* Countdown Timer */}
@@ -175,7 +127,7 @@ En esta segunda edición, estilizada como compufest[1], se celebrará los próxi
         className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
       >
         <h3
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-center text-white"
           style={{
             fontFamily: "'Red Hat Display', sans-serif",
             fontWeight: 700,
@@ -188,19 +140,40 @@ En esta segunda edición, estilizada como compufest[1], se celebrará los próxi
 
       {/* Terminal con información sobre el Hackathon */}
       <div 
-        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0"
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-8 lg:px-16 min-h-96 md:max-w-6xl lg:max-w-7xl mx-auto"
       >
         <Terminal
-          title="$ cat hackathon-info.txt"
-          content={`¡PRIMERA VEZ EN LA FACULTAD DE CIENCIAS!
-En ésta edición tendremos una primicia en la Facultad de Ciencias: su primer hackathon.
-
-Mientras en los hackatones tradicionales se busca llegar a una solución de mercado general, el reto de este hackathon será más particular y orientado a la creatividad y aprendizaje de los equipos participantes.
-
-$ echo reto.md
-
-El reto será crear una interfaz para la gestión de una cava en un restaurante, con la particularidad de que la solución debe ser creada utilizando bibliotecas y lenguajes fuera de lo común: sin nada de diseño web tradicional.`}
-          speed={25}
+          commands={[
+            "hackathon --reto",
+            "cat Primera_vez_Ciencias.txt",
+            "echo interfaz-cava-restaurante",
+            "status --proximi",
+          ]}
+          outputs={{
+            0: [
+              "¡PRIMERA VEZ EN LA FACULTAD DE CIENCIAS!",
+              "En esta edición tendremos una primicia en la Facultad de Ciencias: su primer hackathon.",
+            ],
+            1: [
+              "Mientras en los hackatones tradicionales se busca llegar a una solución de mercado general,",
+              "el reto de este hackathon será más particular y orientado a la creatividad y aprendizaje",
+              "de los equipos participantes.",
+            ],
+            2: [
+              "Crear una interfaz para la gestión de una cava en un restaurante",
+              "Particularidad: usar bibliotecas y lenguajes fuera de lo común",
+              "Sin nada de diseño web tradicional",
+            ],
+            3: [
+              "Muy pronto sacaremos más información sobre:",
+              "• Las reglas del hackathon",
+              "• Los jueces",
+              "• El mecanismo completo del evento",
+              "¡Mantente atento a nuestras redes sociales!",
+            ],
+          }}
+          typingSpeed={30}
+          delayBetweenCommands={800}
         />
       </div>
 
@@ -220,243 +193,104 @@ El reto será crear una interfaz para la gestión de una cava en un restaurante,
         </h3>
       </div>
 
-      {/* Patrocinadores Cards */}
-      <div className="w-full mt-20 md:mt-24 px-4 md:px-0">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 md:gap-16 justify-items-center" style={{ marginTop: "40px" }}>
-          {[1, 2, 3, 4, 5, 6].map((num) => (
-            <CometCard key={`sponsor-${num}`}>
-              {num === 1 ? (
-                <a
-                  href="https://aws.amazon.com/es/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] bg-white object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/awslogosvg.svg"
-                          alt="AWS Logo"
-                          width={220}
-                          height={220}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">AWS</div>
-                    <div className="text-xs text-gray-300 opacity-50">Amazon Web Services</div>
-                  </div>
-                </a>
-              ) : num === 2 ? (
-                <a
-                  href="https://www.chiiko.design"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          backgroundColor: "#ce4676",
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/chiikologosvg.svg"
-                          alt="Chiikö Logo"
-                          width={280}
-                          height={280}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">Chiikö</div>
-                    <div className="text-xs text-gray-300 opacity-50">Chiikö</div>
-                  </div>
-                </a>
-              ) : num === 3 ? (
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          backgroundColor: "#ffffff",
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/github-icon.svg"
-                          alt="GitHub Logo"
-                          width={220}
-                          height={220}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">GitHub</div>
-                    <div className="text-xs text-gray-300 opacity-50">GitHub</div>
-                  </div>
-                </a>
-              ) : num === 4 ? (
-                <a
-                  href="https://interledger.org/es"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          backgroundColor: "#C9C6BD",
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/interleadgersvg.svg"
-                          alt="Interledger Logo"
-                          width={220}
-                          height={220}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">Interledger</div>
-                    <div className="text-xs text-gray-300 opacity-50">Interledger Foundation</div>
-                  </div>
-                </a>
-              ) : num === 5 ? (
-                <a
-                  href="https://www.notion.com/es"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          backgroundColor: "#ffffff",
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/notionsvg.svg"
-                          alt="Notion Logo"
-                          width={220}
-                          height={220}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">Notion</div>
-                    <div className="text-xs text-gray-300 opacity-50">Notion</div>
-                  </div>
-                </a>
-              ) : num === 6 ? (
-                <a
-                  href="https://www.ketherlabs.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          backgroundColor: "#00FF7E",
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/ketherlabssvg.svg"
-                          alt="Ketherlabs Logo"
-                          width={220}
-                          height={220}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">Ketherlabs</div>
-                    <div className="text-xs text-gray-300 opacity-50">Ketherlabs</div>
-                  </div>
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform"
-                  aria-label={`Sponsor ${num}`}
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] bg-gradient-to-br from-blue-600 to-blue-900 object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <span className="text-white text-2xl font-bold opacity-50">Sponsor {num}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">Patrocinador</div>
-                    <div className="text-xs text-gray-300 opacity-50">#{num.toString().padStart(2, '0')}</div>
-                  </div>
-                </button>
-              )}
-            </CometCard>
-          ))}
+      {/* Patrocinadores Stickers Grid */}
+      <div className="w-full mt-4 md:mt-1 px-4 md:px-0 flex justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 md:gap-0" style={{ maxWidth: "900px", rowGap: "-20px" }}>
+          {/* AWS Sticker */}
+          <a
+            href="https://aws.amazon.com/es/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
+          >
+            <Image
+              src="/awssticker.svg"
+              alt="AWS"
+              width={280}
+              height={280}
+              unoptimized
+            />
+          </a>
+
+          {/* Chiikö Sticker */}
+          <a
+            href="https://www.chiiko.design"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
+          >
+            <Image
+              src="/chiikostickerlogo.svg"
+              alt="Chiikö"
+              width={280}
+              height={280}
+              unoptimized
+            />
+          </a>
+
+          {/* GitHub Sticker */}
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
+          >
+            <Image
+              src="/githubsticker.svg"
+              alt="GitHub"
+              width={280}
+              height={280}
+              unoptimized
+            />
+          </a>
+
+          {/* Interledger Sticker */}
+          <a
+            href="https://interledger.org/es"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
+          >
+            <Image
+              src="/inteleadgerlogosvg.svg"
+              alt="Interledger Foundation"
+              width={280}
+              height={280}
+              unoptimized
+            />
+          </a>
+
+          {/* Ketherlabs Sticker */}
+          <a
+            href="https://www.ketherlabs.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
+          >
+            <Image
+              src="/ketherlabslogosticker.svg"
+              alt="Ketherlabs"
+              width={280}
+              height={280}
+              unoptimized
+            />
+          </a>
+
+          {/* Notion Sticker */}
+          <a
+            href="https://www.notion.com/es"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
+          >
+            <Image
+              src="/notionlogosvgsticker.svg"
+              alt="Notion"
+              width={280}
+              height={280}
+              unoptimized
+            />
+          </a>
         </div>
       </div>
 
@@ -479,141 +313,43 @@ El reto será crear una interfaz para la gestión de una cava en un restaurante,
         </p>
       </div>
 
-      {/* Comunidades Aliadas Cards */}
-      <div className="w-full mt-20 md:mt-24 px-4 md:px-0">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 md:gap-16 justify-items-center" style={{ marginTop: "40px" }}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((num) => (
-            <CometCard key={`community-${num}`}>
-              {num === 1 ? (
-                <a
-                  href="https://www.instagram.com/awsclub.ipn/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          backgroundColor: "#9333ea",
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/ipnawssvg.svg"
-                          alt="AWS IPN Logo"
-                          width={220}
-                          height={220}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">AWS IPN</div>
-                    <div className="text-xs text-gray-300 opacity-50">AWS Cloud Club IPN</div>
-                  </div>
-                </a>
-              ) : num === 2 ? (
-                <a
-                  href="https://www.instagram.com/aws.ajolotes/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          backgroundColor: "#9333ea",
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/awsAjolote.svg"
-                          alt="AWS Ajolotes Logo"
-                          width={220}
-                          height={220}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">AWS Ajolotes</div>
-                    <div className="text-xs text-gray-300 opacity-50">AWS UG Ajolotes en la nube</div>
-                  </div>
-                </a>
-              ) : num === 3 ? (
-                <a
-                  href="https://www.instagram.com/chidastech/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform no-underline"
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          backgroundColor: "#ffffff",
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <Image
-                          src="/chidastechsvg.svg"
-                          alt="Chidas Tech Logo"
-                          width={220}
-                          height={220}
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">Chidas Tech</div>
-                    <div className="text-xs text-gray-300 opacity-50">Chidas Tech</div>
-                  </div>
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform"
-                  aria-label={`Comunidad ${num}`}
-                  style={{
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <div className="mx-2 flex-1">
-                    <div className="relative mt-2 aspect-[3/4] w-full">
-                      <div
-                        className="absolute inset-0 h-full w-full rounded-[16px] bg-gradient-to-br from-cyan-600 to-cyan-900 object-cover contrast-75 flex items-center justify-center"
-                        style={{
-                          boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                        }}
-                      >
-                        <span className="text-white text-2xl font-bold opacity-50">Comunidad {num}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-xs">Comunidad</div>
-                    <div className="text-xs text-gray-300 opacity-50">#{num.toString().padStart(2, '0')}</div>
-                  </div>
-                </button>
-              )}
-            </CometCard>
+      {/* Comunidades Aliadas Stickers Grid */}
+      <div className="w-full mt-4 md:mt-1 px-4 md:px-0 flex justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 md:gap-0" style={{ maxWidth: "900px", rowGap: "-20px" }}>
+          {[
+            { num: 67, url: "https://www.instagram.com/awsclub.ipn/" },
+            { num: 68, url: "https://www.instagram.com/aws.ajolotes/" },
+            { num: 69, url: "https://www.instagram.com/chidastech/" },
+            { num: 70, url: "https://www.instagram.com/embajadorascloud/" },
+            { num: 71, url: "https://www.meetup.com/es-es/fedora-mexico/" },
+            { num: 72, url: "https://githubcampus.expert/" },
+            { num: 73, url: "https://www.instagram.com/lidsol_fi/" },
+            { num: 74, url: "https://www.instagram.com/lnxzpn/" },
+            { num: 75, url: "https://www.instagram.com/mobiledevelopercommunity/" },
+            { num: 76, url: "https://www.instagram.com/nebursaturnacademy/" },
+            { num: 77, url: "https://www.instagram.com/panteras.dev/" },
+            { num: 78, url: "https://www.instagram.com/panteras.sec/" },
+            { num: 79, url: "https://www.instagram.com/pythoncdmx/" },
+            { num: 80, url: "https://rustmx.github.io/" },
+            { num: 81, url: "https://www.instagram.com/techy_events_community/" },
+            { num: 82, url: "https://www.instagram.com/technolatinas/" },
+            { num: 83, url: "https://www.instagram.com/woman_diversity/" },
+          ].map(({ num, url }) => (
+            <a
+              key={`community-${num}`}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
+            >
+              <Image
+                src={`/${num}.svg`}
+                alt={`Community ${num}`}
+                width={350}
+                height={350}
+                unoptimized
+              />
+            </a>
           ))}
         </div>
       </div>
@@ -634,37 +370,32 @@ El reto será crear una interfaz para la gestión de una cava en un restaurante,
         </h3>
       </div>
 
-      {/* Comunidades Organizadoras Cards */}
-      <div className="w-full mt-20 md:mt-24 px-4 md:px-0 pb-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 md:gap-16 justify-items-center" style={{ marginTop: "40px" }}>
-          {[1, 2, 3, 4, 5, 6].map((num) => (
-            <CometCard key={`organizer-${num}`}>
-              <button
-                type="button"
-                className="flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 md:p-4 hover:scale-105 transition-transform"
-                aria-label={`Comunidad Organizadora ${num}`}
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                <div className="mx-2 flex-1">
-                  <div className="relative mt-2 aspect-[3/4] w-full">
-                    <div
-                      className="absolute inset-0 h-full w-full rounded-[16px] bg-gradient-to-br from-purple-600 to-purple-900 object-cover contrast-75 flex items-center justify-center"
-                      style={{
-                        boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                      }}
-                    >
-                      <span className="text-white text-2xl font-bold opacity-50">Organizadora {num}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                  <div className="text-xs">Organizadora</div>
-                  <div className="text-xs text-gray-300 opacity-50">#{num.toString().padStart(2, '0')}</div>
-                </div>
-              </button>
-            </CometCard>
+      {/* Comunidades Organizadoras Stickers Grid */}
+      <div className="w-full mt-4 md:mt-1 px-4 md:px-0 flex justify-center pb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 md:gap-0" style={{ maxWidth: "900px", rowGap: "-20px" }}>
+          {[
+            { num: 84, url: "https://guayabadev.com/" },
+            { num: 85, url: "https://www.instagram.com/ixalli_oficial/" },
+            { num: 86, url: "https://www.instagram.com/hackersfightclub/" },
+            { num: 87, url: "https://linktr.ee/Sudo_FCiencias" },
+            { num: 88, url: "https://www.instagram.com/pumasmas.fcunam/" },
+            { num: 89, url: "https://linktr.ee/aws_unam" },
+          ].map(({ num, url }) => (
+            <a
+              key={`organizer-${num}`}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
+            >
+              <Image
+                src={`/${num}.svg`}
+                alt={`Organizadora ${num}`}
+                width={350}
+                height={350}
+                unoptimized
+              />
+            </a>
           ))}
         </div>
       </div>

@@ -37,12 +37,17 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link to="/contador" className={styles.link}>
+                Contador
+              </Link>
+            </li>
           </ul>
         </nav>
 
         {/* Copyright */}
         <div className={styles.copyright}>
-          <p>&copy; {new Date().getFullYear()} CompuFest. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Compufest. Todos los derechos reservados.</p>
         </div>
       </div>
 

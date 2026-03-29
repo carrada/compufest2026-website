@@ -182,7 +182,7 @@
   object-fit: contain;
 }
 .sm-socials-item:nth-child(1) .sm-socials-logo {
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 .sm-socials-item:nth-child(2) .sm-socials-logo,
 .sm-socials-item:nth-child(3) .sm-socials-logo {
@@ -192,7 +192,7 @@
   filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
 .sm-socials-item:nth-child(1) .sm-socials-link:hover .sm-socials-logo {
-  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+  filter: none;
 }
 .sm-socials-item:nth-child(2) .sm-socials-link:hover .sm-socials-logo,
 .sm-socials-item:nth-child(3) .sm-socials-link:hover .sm-socials-logo {

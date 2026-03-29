@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: "CompuFest",
   description: "CompuFest 2026 - Hackathon de Ciencias de la Computación",
   icons: {
-    icon: "/favicon.png",
+    icon: "/Isologo.svg",
   },
 };
 

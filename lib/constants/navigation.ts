@@ -7,7 +7,7 @@ import type { MenuItem, SocialItem, SectionRoute } from "@/lib/types";
 
 export const MENU_ITEMS: MenuItem[] = [
   { label: "Inicio", ariaLabel: "Ir al inicio", link: "/" },
-  { label: "Registro", ariaLabel: "Ir al registro", link: "https://luma.com/nlyxj7sm" },
+  { label: "Registro", ariaLabel: "Ir al registro", link: "https://luma.com/nlyxj7sm", openInNewTab: true },
   { label: "WeirdUI", ariaLabel: "Ver la hackathon", link: "/hackathon" },
   { label: "Charlas", ariaLabel: "Ver charlas", link: "/charlas" },
   { label: "Talleres", ariaLabel: "Ver talleres", link: "/talleres" },
@@ -16,7 +16,7 @@ export const MENU_ITEMS: MenuItem[] = [
 ];
 
 export const SOCIAL_ITEMS: SocialItem[] = [
-  { label: "GuayabaDev", link: "https://guayabadev.com/", logo: "/guayaba-favicon-new.svg" },
+  { label: "GuayabaDev", link: "https://guayabadev.com/", logo: "/guayabadevlogomenuext.svg" },
   { label: "Sudo", link: "https://linktr.ee/Sudo_FCiencias", logo: "/sudo_isologo.svg" },
   { label: "Ixalli", link: "https://www.instagram.com/ixalli_oficial/", logo: "/ixalli1-updated.svg" },
   { label: "PumasMás", link: "https://www.instagram.com/pumasmas.fcunam/", logo: "/pumasmas.svg" },
