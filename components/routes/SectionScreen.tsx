@@ -17,6 +17,11 @@ const ASCIIText = dynamic(
   { ssr: false, loading: () => <div style={{ minHeight: '200px' }} /> }
 );
 
+const CounterPage = dynamic(
+  () => import("@/components/CounterPage"),
+  { ssr: false, loading: () => <div style={{ minHeight: '100vh' }} /> }
+);
+
 interface SectionScreenProps {
   title: string;
   subtitle: string;
@@ -994,6 +999,8 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             delayBetweenCommands={800}
           />
         </div>
+      ) : title === "Contador" ? (
+        <CounterPage />
       ) : (
         <div style={containerStyle}>
           <h1 style={TYPOGRAPHY.heading}>{title}</h1>
