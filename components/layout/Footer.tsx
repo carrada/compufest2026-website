@@ -37,11 +37,6 @@ export function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link to="/contador" className={styles.link}>
-                Contador
-              </Link>
-            </li>
           </ul>
         </nav>
 
