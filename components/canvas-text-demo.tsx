@@ -124,14 +124,14 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
 
       {/* Hackathon Weird-UI Title */}
       <div 
-        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center overflow-hidden"
       >
         <h3
-          className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-center text-white whitespace-nowrap"
           style={{
             fontFamily: "'Red Hat Display', sans-serif",
             fontWeight: 700,
-            letterSpacing: "-1px",
+            letterSpacing: isMobile ? "0px" : "-1px",
           }}
         >
           Hackathon WeirdUI[1]
