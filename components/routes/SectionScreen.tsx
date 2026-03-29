@@ -18,7 +18,7 @@ const ASCIIText = dynamic(
 );
 
 const CounterPage = dynamic(
-  () => import("@/components/CounterPage"),
+  () => import("@/app/dev/CounterPage"),
   { ssr: false, loading: () => <div style={{ minHeight: '100vh' }} /> }
 );
 
