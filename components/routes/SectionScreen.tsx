@@ -46,6 +46,10 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
     };
   }, []);
 
+  if (!isClient) {
+    return <section style={{ minHeight: LAYOUT.section.minHeight }} />;
+  }
+
   const showASCII = false;
   const asciiFontSize = isMobile ? 4 : isTablet ? 6 : 8;
   const textFontSize = isMobile ? 40 : isTablet ? 100 : 180;
