@@ -50,4 +50,9 @@ export const SECTION_ROUTES: SectionRoute[] = [
     title: "FAQ",
     subtitle: "Respuestas rápidas a las dudas más comunes.",
   },
+  {
+    path: "/contador",
+    title: "Contador",
+    subtitle: "Acceso directo",
+  },
 ];
