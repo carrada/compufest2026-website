@@ -27,7 +27,6 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
     let debounceTimer: NodeJS.Timeout;
 
     const handleResize = () => {
@@ -40,6 +39,8 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
 
     handleResize();
     window.addEventListener("resize", handleResize);
+    setIsClient(true);
+    
     return () => {
       clearTimeout(debounceTimer);
       window.removeEventListener("resize", handleResize);
