@@ -1,4 +1,4 @@
-import CounterPage from "@/components/CounterPage";
+import CounterPage from "@/app/dev/CounterPage";
 
 export const metadata = {
   title: "Contador - CompuFest 2026",
