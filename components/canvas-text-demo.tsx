@@ -334,23 +334,28 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
             { num: 81, url: "https://www.instagram.com/techy_events_community/" },
             { num: 82, url: "https://www.instagram.com/technolatinas/" },
             { num: 83, url: "https://www.instagram.com/woman_diversity/" },
-          ].map(({ num, url }) => (
+            { name: "0xcLogosticker.svg", url: "https://linktr.ee/0xCommunity?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbd9QRyrGlek2PLfaRN0mv3ykZpN7KV_0Ug173x9NpuDNl5Xb3RgH9Y2B678_aem_VuzngntcsgIUXMRHDZ_gzg" },
+          ].map(({ num, name, url }, idx) => {
+            const fileName = num ? `/${num}.svg` : `/${name}`;
+            const key = num ? `community-${num}` : `community-0xc`;
+            return (
             <a
-              key={`community-${num}`}
+              key={key}
               href={url}
               target="_blank"
               rel="noopener noreferrer"
               className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
             >
               <Image
-                src={`/${num}.svg`}
-                alt={`Community ${num}`}
+                src={fileName}
+                alt={`Community ${num || name}`}
                 width={350}
                 height={350}
                 unoptimized
               />
             </a>
-          ))}
+          );
+          })}
         </div>
       </div>
 
