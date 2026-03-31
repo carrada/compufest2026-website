@@ -69,6 +69,11 @@ const mapRange = (n: number, start: number, stop: number, start2: number, stop2:
 
 const PX_RATIO = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
+const isMobileDevice = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+};
+
 interface AsciiFilterOptions {
   fontSize?: number;
   fontFamily?: string;
@@ -313,6 +318,9 @@ class CanvAscii {
   width: number;
   height: number;
   enableWaves: boolean;
+  isMobile: boolean;
+  lastFrameTime: number = 0;
+  frameInterval: number = 0;
   textCanvas!: CanvasTxt;
   texture!: THREE.CanvasTexture;
   geometry!: THREE.PlaneGeometry;
@@ -344,6 +352,8 @@ class CanvAscii {
     this.width = width;
     this.height = height;
     this.enableWaves = enableWaves;
+    this.isMobile = isMobileDevice();
+    this.frameInterval = this.isMobile ? 1000 / 30 : 0; // 30 FPS en móvil, sin límite en desktop
 
     this.camera = new this.THREE.PerspectiveCamera(45, this.width / this.height, 1, 1000);
     this.camera.position.z = 30;
@@ -407,8 +417,9 @@ class CanvAscii {
   }
 
   setRenderer() {
+    const pixelRatio = this.isMobile ? 0.75 : 1; // Reducir resolución en móvil para mejor performance
     this.renderer = new this.THREE.WebGLRenderer({ antialias: false, alpha: true });
-    this.renderer.setPixelRatio(1);
+    this.renderer.setPixelRatio(pixelRatio);
     this.renderer.setClearColor(0x000000, 0);
 
     this.filter = new AsciiFilter(this.renderer, {
@@ -451,7 +462,16 @@ class CanvAscii {
   animate() {
     const animateFrame = () => {
       this.animationFrameId = requestAnimationFrame(animateFrame);
-      this.render();
+      
+      if (this.frameInterval > 0) {
+        const now = performance.now();
+        if (now - this.lastFrameTime >= this.frameInterval) {
+          this.lastFrameTime = now;
+          this.render();
+        }
+      } else {
+        this.render();
+      }
     };
     animateFrame();
   }
@@ -512,16 +532,24 @@ class CanvAscii {
     cancelAnimationFrame(this.animationFrameId);
     if (this.filter) {
       this.filter.dispose();
-      if (this.filter.domElement.parentNode) {
-        this.container.removeChild(this.filter.domElement);
+      try {
+        if (this.filter.domElement && this.filter.domElement.parentNode) {
+          this.container.removeChild(this.filter.domElement);
+        }
+      } catch (error) {
+        console.warn('Error removing filter element:', error);
       }
     }
     this.container.removeEventListener('mousemove', this.onMouseMoveHandler);
     this.container.removeEventListener('touchmove', this.onMouseMoveHandler);
     this.clear();
     if (this.renderer) {
-      this.renderer.dispose();
-      this.renderer.forceContextLoss();
+      try {
+        this.renderer.dispose();
+        this.renderer.forceContextLoss();
+      } catch (error) {
+        console.warn('Error disposing renderer:', error);
+      }
     }
   }
 }
@@ -650,8 +678,9 @@ const ASCIIText: FC<ASCIITextProps> = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        transform: typeof window !== 'undefined' && window.innerWidth < 768 ? 'scale(0.6)' : 'scale(1)',
-        transition: 'transform 0.3s ease'
+        transform: typeof window !== 'undefined' && window.innerWidth < 640 ? 'scale(0.5)' : (typeof window !== 'undefined' && window.innerWidth < 768) ? 'scale(0.75)' : 'scale(1)',
+        transition: 'transform 0.3s ease',
+        overflow: 'hidden'
       }}
     >
       {/* Left hand SVG - Desktop only */}

@@ -290,9 +290,9 @@ export const StaggeredMenu = ({
       </div>
 
       <header className="staggered-menu-header" aria-label="Main navigation header">
-        <div className="sm-logo" aria-label="Logo">
+        <Link href="/" className="sm-logo" aria-label="Logo">
           <Image src={logoUrl} alt="Logo" className="sm-logo-img" draggable={false} width={110} height={24} priority />
-        </div>
+        </Link>
         <button ref={toggleBtnRef} className="sm-toggle" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="staggered-menu-panel" onClick={toggleMenu} type="button">
           <span ref={textWrapRef} className="sm-toggle-textWrap" aria-hidden="true">
             <span ref={textInnerRef} className="sm-toggle-textInner">

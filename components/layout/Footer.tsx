@@ -5,7 +5,7 @@
 
 'use client';
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Image from 'next/image';
 import { MENU_ITEMS } from '@/lib/constants/navigation';
 import styles from './Footer.module.css';
@@ -18,13 +18,13 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         {/* Logo */}
-        <div className={styles.logoSection}>
+        <Link href="/" className={styles.logoSection}>
           <img
             src="/isotipo-blanco.png"
             alt="CompuFest Logo"
             className={styles.logo}
           />
-        </div>
+        </Link>
 
         {/* Links a secciones */}
         <nav className={styles.navigation}>
@@ -32,7 +32,7 @@ export function Footer() {
           <ul className={styles.linksList}>
             {internalLinks.map((item) => (
               <li key={item.link}>
-                <Link to={item.link} className={styles.link}>
+                <Link href={item.link} className={styles.link}>
                   {item.label}
                 </Link>
               </li>

@@ -58,9 +58,9 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
   }
 
   const showASCII = false;
-  const asciiFontSize = isMobile ? 4 : isTablet ? 6 : 8;
-  const textFontSize = isMobile ? 40 : isTablet ? 100 : 180;
-  const planeBaseHeight = isMobile ? 4 : isTablet ? 6 : 8;
+  const asciiFontSize = isMobile ? 6 : isTablet ? 7 : 8;
+  const textFontSize = isMobile ? 60 : isTablet ? 140 : 200;
+  const planeBaseHeight = isMobile ? 5 : isTablet ? 6.5 : 8;
 
   const sectionStyle: CSSProperties = {
     minHeight: LAYOUT.section.minHeight,
