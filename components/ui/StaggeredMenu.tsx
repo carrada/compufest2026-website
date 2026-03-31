@@ -336,7 +336,7 @@ export const StaggeredMenu = ({
                   <li key={s.label + i} className="sm-socials-item">
                     {s.logo ? (
                       <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link" aria-label={s.label}>
-                        <Image src={s.logo} alt={s.label} width={72} height={72} className="sm-socials-logo" />
+                        <Image src={s.logo} alt={s.label} width={128} height={128} className="sm-socials-logo" quality={95} unoptimized />
                       </a>
                     ) : (
                       <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link">{s.label}</a>
