@@ -212,7 +212,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 fontFamily: "'Red Hat Display', sans-serif",
                 fontSize: "3.5rem",
                 fontWeight: 700,
-                color: "#ffffff",
+                color: "#22c55e",
                 marginBottom: "1rem",
               }}
             >
@@ -228,7 +228,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#a9b853",
+                  color: "#22c55e",
                   marginBottom: "1rem",
                 }}
               >
@@ -336,7 +336,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#a78bfa",
+                  color: "#22c55e",
                   marginBottom: "1rem",
                 }}
               >
@@ -552,7 +552,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#ef7a22",
+                  color: "#22c55e",
                   marginBottom: "1rem",
                 }}
               >
@@ -663,7 +663,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#5f24d5",
+                  color: "#22c55e",
                   marginBottom: "1rem",
                 }}
               >
@@ -771,7 +771,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#a855f7",
+                  color: "#22c55e",
                   marginBottom: "1rem",
                 }}
               >

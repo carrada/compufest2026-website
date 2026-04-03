@@ -21,16 +21,21 @@ const COMPUFEST_IMAGES = [
 
 export function GalleryDemo() {
   return (
-    <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
-      <DomeGallery
-        images={COMPUFEST_IMAGES}
-        fit={0.8}
-        minRadius={600}
-        maxVerticalRotationDeg={0}
-        segments={34}
-        dragDampening={2}
-        grayscale={false}
-      />
+    <div style={{ width: '100%', height: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ padding: '20px', textAlign: 'center', background: 'rgba(0,0,0,0.5)' }}>
+        <h1 style={{ margin: 0, fontSize: '2.5rem', fontWeight: 'bold', letterSpacing: '2px', fontFamily: "'Red Hat Display', sans-serif", color: '#22c55e' }}>CompuFest[0]</h1>
+      </div>
+      <div style={{ flex: 1, position: 'relative' }}>
+        <DomeGallery
+          images={COMPUFEST_IMAGES}
+          fit={0.8}
+          minRadius={600}
+          maxVerticalRotationDeg={0}
+          segments={34}
+          dragDampening={2}
+          grayscale={false}
+        />
+      </div>
     </div>
   );
 }
