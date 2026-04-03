@@ -124,10 +124,10 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
 
       {/* Hackathon Weird-UI Title */}
       <div 
-        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center overflow-hidden"
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
       >
         <h3
-          className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-center text-white whitespace-nowrap"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center text-white"
           style={{
             fontFamily: "'Red Hat Display', sans-serif",
             fontWeight: 700,
@@ -182,7 +182,7 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
       >
         <h3
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center text-white"
           style={{
             fontFamily: "'Red Hat Display', sans-serif",
             fontWeight: 700,
@@ -193,113 +193,38 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         </h3>
       </div>
 
-      {/* Patrocinadores Stickers Grid */}
-      <div className="w-full mt-4 md:mt-1 px-4 md:px-0 flex justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 md:gap-0" style={{ maxWidth: "900px", rowGap: "-20px" }}>
-          {/* AWS Sticker */}
-          <a
-            href="https://aws.amazon.com/es/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
-          >
-            <Image
-              src="/awssticker.svg"
-              alt="AWS"
-              width={280}
-              height={280}
-              unoptimized
-            />
-          </a>
-
-          {/* Chiikö Sticker */}
-          <a
-            href="https://www.chiiko.design"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
-          >
-            <Image
-              src="/chiikostickerlogo.svg"
-              alt="Chiikö"
-              width={280}
-              height={280}
-              unoptimized
-            />
-          </a>
-
-          {/* GitHub Sticker */}
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
-          >
-            <Image
-              src="/githubsticker.svg"
-              alt="GitHub"
-              width={280}
-              height={280}
-              unoptimized
-            />
-          </a>
-
-          {/* Interledger Sticker */}
-          <a
-            href="https://interledger.org/es"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
-          >
-            <Image
-              src="/inteleadgerlogosvg.svg"
-              alt="Interledger Foundation"
-              width={280}
-              height={280}
-              unoptimized
-            />
-          </a>
-
-          {/* Ketherlabs Sticker */}
-          <a
-            href="https://www.ketherlabs.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
-          >
-            <Image
-              src="/ketherlabslogosticker.svg"
-              alt="Ketherlabs"
-              width={280}
-              height={280}
-              unoptimized
-            />
-          </a>
-
-          {/* Notion Sticker */}
-          <a
-            href="https://www.notion.com/es"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
-          >
-            <Image
-              src="/notionlogosvgsticker.svg"
-              alt="Notion"
-              width={280}
-              height={280}
-              unoptimized
-            />
-          </a>
+      {/* Patrocinadores Grid */}
+      <div className="w-full mt-8 px-4 md:px-0 flex justify-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl">
+          {[
+            { id: 62, url: "https://aws.amazon.com/es/" },
+            { id: 63, url: "https://www.chiiko.design/" },
+            { id: 64, url: "https://github.com/" },
+            { id: 65, url: "https://interledger.org/es" },
+            { id: 66, url: "https://www.ketherlabs.com/" },
+            { id: 67, url: "https://www.notion.com/es" },
+          ].map(({ id, url }) => (
+            <a key={`sponsor-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
+              <CometCard className="w-full h-full">
+                <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                  <img
+                    src={`/logos def/${id}.svg`}
+                    alt={`Patrocinador ${id}`}
+                    className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                  />
+                </div>
+              </CometCard>
+            </a>
+          ))}
         </div>
       </div>
 
       {/* Comunidades Aliadas Title */}
       <div 
-        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex flex-col items-center justify-center gap-1"
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
       >
         <h3
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center text-white"
           style={{
             fontFamily: "'Red Hat Display', sans-serif",
             fontWeight: 700,
@@ -308,54 +233,42 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         >
           Comunidades Aliadas
         </h3>
-        <p className="text-sm md:text-base text-white/60 font-light">
-          (Orden Alfabetico)
-        </p>
       </div>
 
-      {/* Comunidades Aliadas Stickers Grid */}
-      <div className="w-full mt-4 md:mt-1 px-4 md:px-0 flex justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 md:gap-0" style={{ maxWidth: "900px", rowGap: "-20px" }}>
+      {/* Comunidades Aliadas Grid */}
+      <div className="w-full mt-8 px-4 md:px-0 flex justify-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl">
           {[
-            { num: 67, url: "https://www.instagram.com/awsclub.ipn/" },
-            { num: 68, url: "https://www.instagram.com/aws.ajolotes/" },
-            { num: 69, url: "https://www.instagram.com/chidastech/" },
-            { num: 70, url: "https://www.instagram.com/embajadorascloud/" },
-            { num: 71, url: "https://www.meetup.com/es-es/fedora-mexico/" },
-            { num: 72, url: "https://githubcampus.expert/" },
-            { num: 73, url: "https://www.instagram.com/lidsol_fi/" },
-            { num: 74, url: "https://www.instagram.com/lnxzpn/" },
-            { num: 75, url: "https://www.instagram.com/mobiledevelopercommunity/" },
-            { num: 76, url: "https://www.instagram.com/nebursaturnacademy/" },
-            { num: 77, url: "https://www.instagram.com/panteras.dev/" },
-            { num: 78, url: "https://www.instagram.com/panteras.sec/" },
-            { num: 79, url: "https://www.instagram.com/pythoncdmx/" },
-            { num: 80, url: "https://rustmx.github.io/" },
-            { num: 81, url: "https://www.instagram.com/techy_events_community/" },
-            { num: 82, url: "https://www.instagram.com/technolatinas/" },
-            { num: 83, url: "https://www.instagram.com/woman_diversity/" },
-            { name: "0xcLogosticker.svg", url: "https://linktr.ee/0xCommunity?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnbd9QRyrGlek2PLfaRN0mv3ykZpN7KV_0Ug173x9NpuDNl5Xb3RgH9Y2B678_aem_VuzngntcsgIUXMRHDZ_gzg" },
-          ].map(({ num, name, url }, idx) => {
-            const fileName = num ? `/${num}.svg` : `/${name}`;
-            const key = num ? `community-${num}` : `community-0xc`;
-            return (
-            <a
-              key={key}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
-            >
-              <Image
-                src={fileName}
-                alt={`Community ${num || name}`}
-                width={350}
-                height={350}
-                unoptimized
-              />
+            { id: 68, url: "https://www.instagram.com/awsclub.ipn/" },
+            { id: 69, url: "https://www.instagram.com/aws.ajolotes/" },
+            { id: 70, url: "https://www.instagram.com/chidastech/" },
+            { id: 71, url: "https://www.instagram.com/embajadorascloud/" },
+            { id: 72, url: "https://www.meetup.com/es-es/fedora-mexico/" },
+            { id: 73, url: "https://githubcampus.expert/" },
+            { id: 74, url: "https://www.instagram.com/lidsol_fi/" },
+            { id: 75, url: "https://www.instagram.com/lnxzpn/" },
+            { id: 76, url: "https://www.instagram.com/nebursaturnacademy/" },
+            { id: 77, url: "https://www.instagram.com/panteras.dev/" },
+            { id: 78, url: "https://www.instagram.com/panteras.sec/" },
+            { id: 79, url: "https://www.instagram.com/pythoncdmx/" },
+            { id: 80, url: "https://rustmx.github.io/" },
+            { id: 81, url: "https://www.instagram.com/techy_events_community/" },
+            { id: 82, url: "https://www.instagram.com/technolatinas/" },
+            { id: 83, url: "https://www.instagram.com/woman_diversity/" },
+            { id: 84, url: "https://linktr.ee/0xCommunity?utm_source=linktree_profile_share&ltsid=de24dfa7-71e9-45b7-93bd-b716504a6fce" },
+          ].map(({ id, url }) => (
+            <a key={`allied-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
+              <CometCard className="w-full h-full">
+                <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                  <img
+                    src={`/logos def/${id}.svg`}
+                    alt={`Comunidad ${id}`}
+                    className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                  />
+                </div>
+              </CometCard>
             </a>
-          );
-          })}
+          ))}
         </div>
       </div>
 
@@ -364,7 +277,7 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
       >
         <h3
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center text-white"
           style={{
             fontFamily: "'Red Hat Display', sans-serif",
             fontWeight: 700,
@@ -375,31 +288,27 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         </h3>
       </div>
 
-      {/* Comunidades Organizadoras Stickers Grid */}
-      <div className="w-full mt-4 md:mt-1 px-4 md:px-0 flex justify-center pb-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 md:gap-0" style={{ maxWidth: "900px", rowGap: "-20px" }}>
+      {/* Comunidades Organizadoras Grid */}
+      <div className="w-full mt-8 px-4 md:px-0 flex justify-center pb-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl">
           {[
-            { num: 84, url: "https://guayabadev.com/" },
-            { num: 85, url: "https://www.instagram.com/ixalli_oficial/" },
-            { num: 86, url: "https://www.instagram.com/hackersfightclub/" },
-            { num: 87, url: "https://linktr.ee/Sudo_FCiencias" },
-            { num: 88, url: "https://www.instagram.com/pumasmas.fcunam/" },
-            { num: 89, url: "https://linktr.ee/aws_unam" },
-          ].map(({ num, url }) => (
-            <a
-              key={`organizer-${num}`}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex justify-center items-center p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
-            >
-              <Image
-                src={`/${num}.svg`}
-                alt={`Organizadora ${num}`}
-                width={350}
-                height={350}
-                unoptimized
-              />
+            { id: 85, url: "https://guayabadev.com/" },
+            { id: 86, url: "https://www.instagram.com/ixalli_oficial/" },
+            { id: 87, url: "https://www.instagram.com/hackersfightclub/" },
+            { id: 88, url: "https://linktr.ee/Sudo_FCiencias" },
+            { id: 89, url: "https://www.instagram.com/pumasmas.fcunam/" },
+            { id: 90, url: "https://linktr.ee/aws_unam" },
+          ].map(({ id, url }) => (
+            <a key={`organizer-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
+              <CometCard className="w-full h-full">
+                <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                  <img
+                    src={`/logos def/${id}.svg`}
+                    alt={`Comunidad ${id}`}
+                    className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                  />
+                </div>
+              </CometCard>
             </a>
           ))}
         </div>

@@ -40,7 +40,7 @@ const CountdownTimer = memo(function CountdownTimer({ className = "flip-clock-co
     <div className="w-full flex flex-col items-center gap-8 md:gap-12">
       {showTitle && (
         <h2
-          className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-center text-white"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center text-white"
           style={{
             fontFamily: "'Red Hat Display', sans-serif",
             fontWeight: 700,

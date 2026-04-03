@@ -185,7 +185,7 @@ main.sphere-main {
   height: 120px;
   z-index: 5;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #000000));
+  background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #060010));
 }
 
 .edge-fade--top {

@@ -212,7 +212,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 fontFamily: "'Red Hat Display', sans-serif",
                 fontSize: "3.5rem",
                 fontWeight: 700,
-                color: "#22c55e",
+                color: "#26D968",
                 marginBottom: "1rem",
               }}
             >
@@ -228,7 +228,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#22c55e",
+                  color: "#26D968",
                   marginBottom: "1rem",
                 }}
               >
@@ -336,7 +336,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#22c55e",
+                  color: "#26D968",
                   marginBottom: "1rem",
                 }}
               >
@@ -444,7 +444,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#38a86a",
+                  color: "#26D968",
                   marginBottom: "1rem",
                 }}
               >
@@ -552,7 +552,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#22c55e",
+                  color: "#26D968",
                   marginBottom: "1rem",
                 }}
               >
@@ -663,7 +663,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#22c55e",
+                  color: "#26D968",
                   marginBottom: "1rem",
                 }}
               >
@@ -771,7 +771,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontSize: "2.5rem",
                   fontWeight: 700,
-                  color: "#22c55e",
+                  color: "#26D968",
                   marginBottom: "1rem",
                 }}
               >
@@ -872,132 +872,26 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
           </div>
 
           <div className="w-full mt-20 px-0">
+            <div className="w-full px-4 md:px-8 lg:px-16 mb-8 flex items-center justify-center">
+              <h3
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center text-white"
+                style={{
+                  fontFamily: "'Red Hat Display', sans-serif",
+                  fontWeight: 700,
+                  letterSpacing: "-1px",
+                  color: "#26D968",
+                }}
+              >
+                CompuFest[0]
+              </h3>
+            </div>
             <GalleryDemo />
           </div>
         </div>
       ) : title === "FAQ" ? (
-        <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
-          <Terminal
-            commands={[
-              "compufest --faq",
-              "info --fechas",
-              "ubicacion --evento",
-              "costo --acceso",
-              "registro --luma",
-              "modalidad --evento",
-              "talleres --registro",
-              "preparacion --evento",
-              "servicios --evento",
-              "equipo --participacion",
-              "premios --ganancias",
-              "horario --evento",
-              "constancia --certificado",
-              "participantes --limite",
-              "requisitos --nivel",
-            ]}
-            outputs={{
-              0: [
-                "📋 COMPUFEST 2026 — FAQ",
-                "",
-                "Preguntas frecuentes y respuestas",
-              ],
-              1: [
-                "PREGUNTA: ¿Cuándo es el compufest[1]?",
-                "",
-                "RESPUESTA: El compufest[1] se celebrará los días 23 y 24 de",
-                "abril del 2026.",
-              ],
-              2: [
-                "PREGUNTA: ¿Dónde se llevará a cabo?",
-                "",
-                "RESPUESTA: El evento se realizará en la Facultad de Ciencias,",
-                "Ciudad Universitaria, UNAM.",
-              ],
-              3: [
-                "PREGUNTA: ¿Tiene algún costo?",
-                "",
-                "RESPUESTA: La asistencia al compufest[1] es completamente",
-                "gratuita. Solo necesitas registrarte.",
-              ],
-              4: [
-                "PREGUNTA: ¿Cómo me registro?",
-                "",
-                "RESPUESTA: Puedes registrarte a través de nuestra página de",
-                "Luma haciendo clic en el botón 'Regístrate aquí' en esta página.",
-              ],
-              5: [
-                "PREGUNTA: ¿Puedo asistir de manera virtual?",
-                "",
-                "RESPUESTA: Sí, el compufest[1] contará con modalidad presencial",
-                "y virtual para que puedas participar desde cualquier lugar.",
-              ],
-              6: [
-                "PREGUNTA: ¿Necesito registrarme a cada taller?",
-                "",
-                "RESPUESTA: No, con tu registro en Luma estás registrado a",
-                "todos los talleres del evento. ¡No es necesario registrarse",
-                "individualmente!",
-              ],
-              7: [
-                "PREGUNTA: ¿Qué debo llevar el día del evento?",
-                "",
-                "RESPUESTA: Lleva tu identificación, computadora portátil (para",
-                "talleres prácticos), cargador, cuaderno y bolígrafo. Para",
-                "participantes virtuales: solo necesitas conexión a internet.",
-              ],
-              8: [
-                "PREGUNTA: ¿Hay estacionamiento disponible?",
-                "",
-                "RESPUESTA: Sí, la Facultad de Ciencias cuenta con áreas de",
-                "estacionamiento. También te recomendamos usar transporte público",
-                "o servicios de compartir viajes.",
-              ],
-              9: [
-                "PREGUNTA: ¿Puedo formar equipos?",
-                "",
-                "RESPUESTA: Sí, puedes participar solo o en equipos. Algunos",
-                "eventos tendrán límites de integrantes por equipo, consulta",
-                "los detalles específicos de cada actividad.",
-              ],
-              10: [
-                "PREGUNTA: ¿Hay premios?",
-                "",
-                "RESPUESTA: Sí, habrá premios en diferentes categorías. Los",
-                "detalles sobre premios específicos se anunciarán próximamente",
-                "en nuestras redes sociales.",
-              ],
-              11: [
-                "PREGUNTA: ¿Necesito conocimientos previos?",
-                "",
-                "RESPUESTA: No necesariamente. Tenemos actividades para todos",
-                "los niveles: desde principiantes hasta avanzados. ¡Todos son",
-                "bienvenidos!",
-              ],
-              12: [
-                "PREGUNTA: ¿Habrá comida disponible?",
-                "",
-                "RESPUESTA: Sí, proporcionaremos refrigerios, bebidas y comidas",
-                "durante el evento. Avísanos si tienes restricciones dietéticas",
-                "en tu registro.",
-              ],
-              13: [
-                "PREGUNTA: ¿Cuál es el horario del evento?",
-                "",
-                "RESPUESTA: El evento funciona de manera continua durante los",
-                "dos días. Chalas: 09:00 - 18:00. Talleres: según horario",
-                "específico. Obtén más detalles en la agenda completa.",
-              ],
-              14: [
-                "PREGUNTA: ¿Se expedirá constancia de asistencia?",
-                "",
-                "RESPUESTA: Sí, proporcionaremos constancias de asistencia",
-                "verificables. Serán enviadas por correo electrónico después",
-                "del evento.",
-              ],
-            }}
-            typingSpeed={30}
-            delayBetweenCommands={800}
-          />
+        <div style={containerStyle}>
+          <h1 style={TYPOGRAPHY.heading}>FAQ</h1>
+          <p style={TYPOGRAPHY.subtitle}>Preguntas Frecuentes</p>
         </div>
       ) : title === "Contador" ? (
         <CounterPage />
