@@ -262,6 +262,7 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
             { id: 71, url: "https://www.instagram.com/embajadorascloud/" },
             { id: 72, url: "https://www.meetup.com/es-es/fedora-mexico/" },
             { id: 73, url: "https://githubcampus.expert/" },
+            { id: 92, url: "https://www.instagram.com/helloworld_unam/" },
             { id: 74, url: "https://www.instagram.com/lidsol_fi/" },
             { id: 75, url: "https://www.instagram.com/lnxzpn/" },
             { id: 76, url: "https://www.instagram.com/nebursaturnacademy/" },
