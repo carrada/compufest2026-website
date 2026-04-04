@@ -33,7 +33,7 @@ const jetBrainsMono = localFont({
 
 export const metadata: Metadata = {
   title: "CompuFest",
-  description: "CompuFest 2026 - Hackathon de Ciencias de la Computación",
+  description: "compufest[1] - Hackathon de Ciencias de la Computación",
   icons: {
     icon: "/Isologo.svg",
   },

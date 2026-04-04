@@ -108,7 +108,7 @@ Este proyecto es de código propietario y está protegido por licencia restricti
 
 ### Permisos Requeridos
 
-Debes tener autorización escrita de Chíiko para:
+Debes tener autorización escrita de Chiikö para:
 - Hacer cambios en el código
 - Enviar pull requests
 - Proponer nuevas características
