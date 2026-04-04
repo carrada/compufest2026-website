@@ -36,6 +36,26 @@ yarn-error.log*
 # vercel
 .vercel
 
+# internal documentation & configuration (private)
+AGENTS.md
+CLAUDE.md
+DEBUGGING_GUIDE.md
+ARCHITECTURE_VERIFICATION.md
+SOLID_REFACTORING.md
+PROJECT_COMPLETION_SUMMARY.md
+OPTIMIZATION_LOG.md
+
+# build & deployment logs
+build.log
+*.log
+
+# IDE & editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
