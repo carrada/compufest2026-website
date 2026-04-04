@@ -110,6 +110,22 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
         </LinkPreview>
       </div>
 
+      {/* Eventos Anteriores Title */}
+      <div 
+        className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center"
+      >
+        <h3
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center text-white"
+          style={{
+            fontFamily: "'Red Hat Display', sans-serif",
+            fontWeight: 700,
+            letterSpacing: isMobile ? "0px" : "-1px",
+          }}
+        >
+          Eventos Anteriores
+        </h3>
+      </div>
+
       {/* Galería Draggable Card */}
       <div className="w-full mt-12 md:mt-16 lg:mt-20">
         <DraggableCardGallery />

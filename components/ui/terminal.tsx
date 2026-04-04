@@ -289,7 +289,7 @@ export interface TerminalProps {
 export function Terminal({
   commands = ["npx shadcn@latest init"],
   outputs = {},
-  username = "Manus-Macbook",
+  username = "compufest[1]",
   className,
   typingSpeed = 50,
   delayBetweenCommands = 800,
