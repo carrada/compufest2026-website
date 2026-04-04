@@ -219,6 +219,7 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
             { id: 65, url: "https://interledger.org/es" },
             { id: 66, url: "https://www.ketherlabs.com/" },
             { id: 67, url: "https://www.notion.com/es" },
+            { id: 91, url: "https://zed.dev/" },
           ].map(({ id, url }) => (
             <a key={`sponsor-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
               <CometCard className="w-full h-full">
