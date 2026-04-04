@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# private documentation folder
+.docs-private/
+
 # internal documentation & configuration (private)
 AGENTS.md
 CLAUDE.md
