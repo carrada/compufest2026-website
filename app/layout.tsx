@@ -32,10 +32,29 @@ const jetBrainsMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "CompuFest",
-  description: "compufest[1] - Hackathon de Ciencias de la Computación",
+  title: "compufest[1]",
+  description: "El evento estudiantil de computación y programación más grande de la UNAM. 20-24 de Abril 2026.",
   icons: {
     icon: "/Isologo.svg",
+  },
+  openGraph: {
+    title: "compufest[1]",
+    description: "El evento estudiantil de computación y programación más grande de la UNAM. 20-24 de Abril 2026.",
+    images: [
+      {
+        url: "/Miniatura.webp",
+        width: 1200,
+        height: 630,
+        alt: "compufest[1] - El evento estudiantil de computación y programación más grande de la UNAM",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "compufest[1]",
+    description: "El evento estudiantil de computación y programación más grande de la UNAM. 20-24 de Abril 2026.",
+    images: ["/Miniatura.webp"],
   },
 };
 
