@@ -19,6 +19,18 @@ const jetBrainsMenuTitle = localFont({
   display: "swap",
 });
 
+const redHatDisplay = localFont({
+  src: "../Red_Hat_Display/static/RedHatDisplay-Bold.ttf",
+  variable: "--font-red-hat-display",
+  display: "swap",
+});
+
+const jetBrainsMono = localFont({
+  src: "../JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-Regular.woff2",
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "CompuFest",
   description: "CompuFest 2026 - Hackathon de Ciencias de la Computación",
@@ -35,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${jetBrainsMenuTitle.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${jetBrainsMenuTitle.variable} ${redHatDisplay.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
