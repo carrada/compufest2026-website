@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import Link from "next/link";
 import Image from "next/image";
 import type { MenuItem, SocialItem } from "@/lib/types";
+import { UserButton } from "@/components/ui/UserButton";
 
 const isExternalLink = (url: string) => /^https?:\/\//i.test(url);
 
@@ -293,7 +294,9 @@ export const StaggeredMenu = ({
         <Link href="/" className="sm-logo" aria-label="Logo">
           <Image src={logoUrl} alt="Logo" className="sm-logo-img" draggable={false} width={110} height={24} priority />
         </Link>
-        <button ref={toggleBtnRef} className="sm-toggle" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="staggered-menu-panel" onClick={toggleMenu} type="button">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <UserButton />
+          <button ref={toggleBtnRef} className="sm-toggle" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="staggered-menu-panel" onClick={toggleMenu} type="button">
           <span ref={textWrapRef} className="sm-toggle-textWrap" aria-hidden="true">
             <span ref={textInnerRef} className="sm-toggle-textInner">
               {textLines.map((l, i) => <span className="sm-toggle-line" key={i}>{l}</span>)}
@@ -304,6 +307,7 @@ export const StaggeredMenu = ({
             <span ref={plusVRef} className="sm-icon-line sm-icon-line-v" />
           </span>
         </button>
+        </div>
       </header>
 
       <aside id="staggered-menu-panel" ref={panelRef} className="staggered-menu-panel" aria-hidden={!open}>

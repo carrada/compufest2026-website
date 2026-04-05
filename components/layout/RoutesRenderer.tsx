@@ -10,6 +10,8 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { HomeRoute } from "@/components/routes/HomeRoute";
 import { SectionScreen } from "@/components/routes/SectionScreen";
 import { FAQRoute } from "@/components/routes/FAQRoute";
+import { DashboardRoute } from "@/components/routes/DashboardRoute";
+import { InviteRoute } from "@/components/routes/InviteRoute";
 import type { SectionRoute } from "@/lib/types";
 
 interface RoutesRendererProps {
@@ -21,6 +23,8 @@ export function RoutesRenderer({ sectionRoutes }: RoutesRendererProps) {
     <Routes>
       <Route path="/" element={<HomeRoute key="/" />} />
       <Route path="/faq" element={<FAQRoute key="/faq" />} />
+      <Route path="/dashboard" element={<DashboardRoute />} />
+      <Route path="/invite/:code" element={<InviteRoute />} />
       {sectionRoutes.map((route) => {
         // Skip FAQ route as it's handled separately
         if (route.path === "/faq") return null;

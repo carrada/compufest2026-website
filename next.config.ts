@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
     unoptimized: false,
     minimumCacheTTL: 60 * 60 * 24 * 365,
   },
+  allowedDevOrigins: ['*.ngrok-free.app'],
   compress: true,
   productionBrowserSourceMaps: false,
   poweredByHeader: false,

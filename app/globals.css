@@ -258,6 +258,719 @@
   .staggered-menu-panel { width: 100%; left: 0; right: 0; }
 }
 
+/* ─── UserButton ────────────────────────────────────────────── */
+.user-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(38, 217, 104, 0.4);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease;
+  pointer-events: auto;
+  flex-shrink: 0;
+}
+.user-button:hover {
+  border-color: #26D968;
+  background: rgba(38, 217, 104, 0.1);
+}
+.user-button--loading {
+  cursor: default;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.user-button-skeleton {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: pulse-skeleton 1.5s ease-in-out infinite;
+}
+@keyframes pulse-skeleton {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.user-button-wrapper {
+  position: relative;
+  pointer-events: auto;
+}
+.user-button--logged {
+  padding: 0;
+  overflow: hidden;
+}
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 200px;
+  background: #111;
+  border: 2px solid #333;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+  animation: dropdown-enter 0.15s ease-out;
+}
+@keyframes dropdown-enter {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.user-dropdown-header {
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.user-dropdown-name {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Red Hat Display', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-dropdown-badge {
+  font-size: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(38, 217, 104, 0.15);
+  color: #26D968;
+  flex-shrink: 0;
+}
+.user-dropdown-divider {
+  height: 1px;
+  background: #262626;
+  margin: 0 0.5rem;
+}
+.user-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1.1rem;
+  border: none;
+  background: transparent;
+  color: #ccc;
+  font-size: 0.9rem;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.user-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+.user-dropdown-item--danger {
+  color: #999;
+}
+.user-dropdown-item--danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* ─── Dashboard ─────────────────────────────────────────────── */
+.dashboard {
+  min-height: 100vh;
+  padding: 6rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 5rem 1rem 2rem;
+  }
+}
+.dashboard-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.dashboard-title {
+  color: #26D968;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 0.5rem;
+  text-shadow: 0 0 20px rgba(38, 217, 104, 0.25);
+}
+.dashboard-card {
+  background: rgba(17, 17, 17, 0.7);
+  border: 1.5px solid rgba(38, 217, 104, 0.18);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+@media (max-width: 480px) {
+  .dashboard-card {
+    padding: 1.25rem;
+  }
+}
+.dashboard-card-title {
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+}
+.dashboard-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 480px) {
+  .dashboard-profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .dashboard-badge {
+    align-self: center;
+  }
+}
+.dashboard-profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(38, 217, 104, 0.3);
+}
+.dashboard-profile-info {
+  flex: 1;
+  min-width: 0;
+}
+.dashboard-profile-name {
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0;
+}
+.dashboard-profile-meta {
+  color: #bbb;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  margin: 3px 0 0;
+}
+.dashboard-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(38, 217, 104, 0.15);
+  color: #26D968;
+}
+.dashboard-input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #f0f0f0;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.dashboard-input:focus {
+  border-color: #26D968;
+  box-shadow: 0 0 0 2px rgba(38, 217, 104, 0.1);
+}
+.dashboard-input:read-only {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.dashboard-input::placeholder {
+  color: #666;
+}
+.dashboard-label {
+  display: block;
+  color: #bbb;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+.dashboard-form-group {
+  margin-bottom: 1rem;
+}
+.dashboard-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.dashboard-btn:active {
+  transform: scale(0.97);
+}
+.dashboard-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.dashboard-btn--primary {
+  background: #26D968;
+  color: #000;
+  font-size: 0.9rem;
+  padding: 0.7rem 1.2rem;
+}
+.dashboard-btn--primary:hover:not(:disabled) {
+  opacity: 0.9;
+  box-shadow: 0 0 15px rgba(38, 217, 104, 0.25);
+}
+.dashboard-btn--secondary {
+  background: transparent;
+  border: 1px solid rgba(38, 217, 104, 0.4);
+  color: #26D968;
+}
+.dashboard-btn--secondary:hover:not(:disabled) {
+  background: rgba(38, 217, 104, 0.1);
+}
+.dashboard-btn--danger {
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+}
+.dashboard-btn--danger:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.1);
+}
+.dashboard-btn--small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+}
+.dashboard-btn--full {
+  width: 100%;
+}
+.dashboard-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+.dashboard-row > *:first-child {
+  flex: 1;
+}
+@media (max-width: 480px) {
+  .dashboard-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .dashboard-row .dashboard-btn {
+    width: 100%;
+  }
+}
+.dashboard-member-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.dashboard-member-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.dashboard-member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dashboard-member-name {
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.dashboard-member-gh {
+  color: #999;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+.dashboard-capacity {
+  color: #bbb;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+.dashboard-invite-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1.5px solid #2a2a2a;
+  border-radius: 10px;
+  margin-bottom: 0;
+  transition: border-color 0.2s;
+}
+.dashboard-invite-box:hover {
+  border-color: #3a3a3a;
+}
+.dashboard-invite-url {
+  flex: 1;
+  color: #26D968;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  word-break: break-all;
+  line-height: 1.4;
+}
+@media (max-width: 480px) {
+  .dashboard-invite-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+  .dashboard-invite-box .dashboard-btn {
+    width: 100%;
+  }
+}
+.dashboard-message {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: #999;
+  font-family: 'Red Hat Display', sans-serif;
+}
+.dashboard-message-title {
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+}
+.dashboard-message p {
+  font-size: 0.95rem;
+  color: #bbb;
+  line-height: 1.5;
+}
+.dashboard-error {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin: 0.75rem 0;
+}
+.dashboard-success {
+  color: #26D968;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.dashboard-section-divider {
+  border: none;
+  border-top: 1px solid #222;
+  margin: 1rem 0;
+}
+.dashboard-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* ─── Admin Section ─────────────────────────────────────────── */
+.admin-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.admin-stats {
+  color: #999;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  margin: 0.25rem 0 0;
+}
+.admin-search {
+  margin: 0;
+}
+.admin-teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.admin-teams-list::-webkit-scrollbar {
+  width: 4px;
+}
+.admin-teams-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-teams-list::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+.admin-team-card {
+  background: rgba(17, 17, 17, 0.7);
+  border: 1px solid rgba(38, 217, 104, 0.12);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+.admin-team-card:hover {
+  border-color: rgba(38, 217, 104, 0.3);
+}
+.admin-team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.admin-team-name {
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin: 0;
+}
+.admin-team-code {
+  color: #666;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+}
+.admin-team-count {
+  color: #bbb;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.admin-member-email {
+  color: #777;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  display: none;
+}
+@media (min-width: 500px) {
+  .admin-member-email {
+    display: block;
+  }
+}
+.admin-team-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #26D968;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  margin-top: 0.75rem;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.admin-team-repo:hover {
+  opacity: 0.8;
+}
+
+/* ─── Confirm Modal ─────────────────────────────────────────── */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  padding: 1.5rem;
+  animation: confirmFadeIn 0.15s ease-out;
+}
+@keyframes confirmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.confirm-modal {
+  background: #111;
+  border: 2px solid #333;
+  border-radius: 14px;
+  padding: 2.25rem 2rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  animation: confirmSlideIn 0.2s ease-out;
+}
+@keyframes confirmSlideIn {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.confirm-icon {
+  margin-bottom: 1.25rem;
+}
+.confirm-icon svg {
+  width: 32px;
+  height: 32px;
+}
+.confirm-title {
+  color: #fff;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem;
+}
+.confirm-message {
+  color: #ccc;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.75rem;
+}
+.confirm-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+.confirm-actions .dashboard-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  border-width: 2px;
+}
+@media (max-width: 480px) {
+  .confirm-modal {
+    padding: 1.75rem 1.25rem;
+  }
+  .confirm-actions {
+    flex-direction: column;
+  }
+}
+
+/* ─── Profile Form ──────────────────────────────────────────── */
+.profile-form-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.profile-form-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(38, 217, 104, 0.3);
+  flex-shrink: 0;
+}
+.profile-form-subtitle {
+  color: #ccc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  margin: 0;
+}
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+@media (max-width: 480px) {
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.profile-form-grid .dashboard-form-group {
+  margin-bottom: 0;
+}
+.profile-form-readonly {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.profile-form-readonly-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.profile-form-readonly-label {
+  color: #777;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 55px;
+}
+.profile-form-readonly-value {
+  color: #ccc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+/* Invite page */
+.invite-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.invite-card {
+  background: rgba(17, 17, 17, 0.6);
+  border: 1px solid rgba(38, 217, 104, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+.invite-team-name {
+  color: #26D968;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+}
+.invite-subtitle {
+  color: #999;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

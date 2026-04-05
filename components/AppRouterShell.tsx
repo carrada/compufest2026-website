@@ -17,6 +17,7 @@ import StaggeredMenu from "@/components/ui/StaggeredMenu";
 import { RoutesRenderer } from "@/components/layout/RoutesRenderer";
 import { Footer } from "@/components/layout/Footer";
 import { useNavigationConfig } from "@/hooks/useNavigationConfig";
+import { AuthProvider } from "@/lib/auth/AuthProvider";
 import { CSSProperties } from "react";
 
 export default function AppRouterShell() {
@@ -47,29 +48,31 @@ export default function AppRouterShell() {
 
   return (
     <BrowserRouter>
-      <main style={mainStyle}>
-        {/* Menú de navegación */}
-        <StaggeredMenu
-          position={navigationConfig.menuConfig.position}
-          items={navigationConfig.menuItems}
-          socialItems={navigationConfig.socialItems}
-          displaySocials={navigationConfig.menuConfig.displaySocials}
-          displayItemNumbering={navigationConfig.menuConfig.displayItemNumbering}
-          menuButtonColor={navigationConfig.menuConfig.menuButtonColor}
-          openMenuButtonColor={navigationConfig.menuConfig.openMenuButtonColor}
-          changeMenuColorOnOpen={navigationConfig.menuConfig.changeMenuColorOnOpen}
-          colors={[...navigationConfig.menuConfig.colors]}
-          logoUrl={navigationConfig.menuConfig.logoUrl}
-          accentColor={navigationConfig.menuConfig.accentColor}
-          isFixed={navigationConfig.menuConfig.isFixed}
-        />
+      <AuthProvider>
+        <main style={mainStyle}>
+          {/* Menú de navegación */}
+          <StaggeredMenu
+            position={navigationConfig.menuConfig.position}
+            items={navigationConfig.menuItems}
+            socialItems={navigationConfig.socialItems}
+            displaySocials={navigationConfig.menuConfig.displaySocials}
+            displayItemNumbering={navigationConfig.menuConfig.displayItemNumbering}
+            menuButtonColor={navigationConfig.menuConfig.menuButtonColor}
+            openMenuButtonColor={navigationConfig.menuConfig.openMenuButtonColor}
+            changeMenuColorOnOpen={navigationConfig.menuConfig.changeMenuColorOnOpen}
+            colors={[...navigationConfig.menuConfig.colors]}
+            logoUrl={navigationConfig.menuConfig.logoUrl}
+            accentColor={navigationConfig.menuConfig.accentColor}
+            isFixed={navigationConfig.menuConfig.isFixed}
+          />
 
-        {/* Rutas renderizadas dinámicamente */}
-        <RoutesRenderer sectionRoutes={navigationConfig.sectionRoutes} />
+          {/* Rutas renderizadas dinámicamente */}
+          <RoutesRenderer sectionRoutes={navigationConfig.sectionRoutes} />
 
-        {/* Footer */}
-        <Footer />
-      </main>
+          {/* Footer */}
+          <Footer />
+        </main>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

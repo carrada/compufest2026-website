@@ -14,6 +14,8 @@
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
     "@react-three/rapier": "^2.2.0",
+    "@supabase/ssr": "^0.10.0",
+    "@supabase/supabase-js": "^2.101.1",
     "@types/three": "^0.183.1",
     "@use-gesture/react": "^10.3.1",
     "canvas-confetti": "^1.9.4",
@@ -39,6 +41,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.2"
   }
 }
