@@ -123,34 +123,38 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
 
           {/* Requisitos */}
           <section style={{ marginBottom: "3rem" }}>
-            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
-              Requisitos
-            </h2>
-            <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "2", paddingLeft: "1.5rem", listStyleType: "none" }}>
-              <li>Para participar necesitas tener un equipo de hasta 5 personas.</li>
-              <li>Cada equipo deberá elegir un nombre con el que serán identificados en el concurso. Ese nombre no debe ser altisonante ni irrespetuoso.</li>
-              <li>Cada integrante del equipo debe de tener una cuenta de GitHub y una cuenta de correo para el registro.</li>
-              <li>Asegurate de usar tu nombre completo legal para inscribirte.</li>
-              <li>El hackathon busca una interfaz como solución, tú decides qué tipo de interfaz entregas!</li>
-              <li>Tu solución no debe incluir ningún archivo .ts, y/o .js. Puedes tener archivos de cualquier otro tipo, menos de esos dos.</li>
-              <li>Tu eliges el tipo de base de datos y donde se aloja. Al final debes explicarnos por que elegiste esa base de datos.</li>
-              <li>Tendrás que implementar control de usuarios (por ejemplo, el sommelier no necesariamente será quien administre las compras) y de salidas y entradas de insumos (en este caso, los vinos).</li>
-            </ul>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+              <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
+                Requisitos
+              </h2>
+              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "2", paddingLeft: "1.5rem", listStyleType: "none", marginBottom: 0 }}>
+                <li>Para participar necesitas tener un equipo de hasta 5 personas.</li>
+                <li>Cada equipo deberá elegir un nombre con el que serán identificados en el concurso. Ese nombre no debe ser altisonante ni irrespetuoso.</li>
+                <li>Cada integrante del equipo debe de tener una cuenta de GitHub y una cuenta de correo para el registro.</li>
+                <li>Asegurate de usar tu nombre completo legal para inscribirte.</li>
+                <li>El hackathon busca una interfaz como solución, tú decides qué tipo de interfaz entregas!</li>
+                <li>Tu solución no debe incluir ningún archivo .ts, y/o .js. Puedes tener archivos de cualquier otro tipo, menos de esos dos.</li>
+                <li>Tu eliges el tipo de base de datos y donde se aloja. Al final debes explicarnos por que elegiste esa base de datos.</li>
+                <li>Tendrás que implementar control de usuarios (por ejemplo, el sommelier no necesariamente será quien administre las compras) y de salidas y entradas de insumos (en este caso, los vinos).</li>
+              </ul>
+            </div>
           </section>
 
           {/* Entregables */}
           <section style={{ marginBottom: "3rem" }}>
-            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
-              Entregables
-            </h2>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
-              Al final debes mostrar tres cosas:
-            </p>
-            <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "2", paddingLeft: "1.5rem", listStyleType: "none" }}>
-              <li>El repositorio de tu solución. Necesitamos revisar el código, por lo que se te asignará un repositorio para alojar tu código.</li>
-              <li>Una forma de probar tu solución: cómo la instalamos? cómo la ejecutamos?</li>
-              <li>Un reporte de tu solución. Queremos conocer cual fue la ruta que tomó tu equipo, el por que decidieron tomar ciertas decisiones, etc, todo lo que nos explique su creatividad y acercamiento al reto.</li>
-            </ul>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+              <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
+                Entregables
+              </h2>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+                Al final debes mostrar tres cosas:
+              </p>
+              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "2", paddingLeft: "1.5rem", listStyleType: "none", marginBottom: 0 }}>
+                <li>El repositorio de tu solución. Necesitamos revisar el código, por lo que se te asignará un repositorio para alojar tu código.</li>
+                <li>Una forma de probar tu solución: cómo la instalamos? cómo la ejecutamos?</li>
+                <li>Un reporte de tu solución. Queremos conocer cual fue la ruta que tomó tu equipo, el por que decidieron tomar ciertas decisiones, etc, todo lo que nos explique su creatividad y acercamiento al reto.</li>
+              </ul>
+            </div>
           </section>
 
           {/* Reglas */}
@@ -224,7 +228,57 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 </p>
               </div>
             </div>
+          </seJueces */}
+          <section style={{ marginBottom: "3rem" }}>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+              <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
+                Jueces
+              </h2>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+                Tu solución será juzgada por profesionales con experiencia en la industria:
+              </p>
+              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#ddd", lineHeight: "1.8", paddingLeft: "1.5rem", listStyleType: "none", marginBottom: 0 }}>
+                <li>Karla Ramirez Pulido - Doctora en Ciencia e Ing. de la Computación, auditora de riesgos tecnológicos e investigadora de sesgos de género en IA.</li>
+                <li>Alicia Margarita De La Mora Cebada - Doctora en Ciencias de la Tierra, Técnica Académica en el Departamento de Supercómputo de la UNAM.</li>
+                <li>Manuel Soto Romero - Maestro en Ciencia e Ingeniería de la Computación, Investigador sobre Teoría de Lenguajes de Programación.</li>
+                <li>Virgilio Castro Rendón - Fundador y mentor de Hackers Fight Club, especialista en ciberseguridad ofensiva y defensiva.</li>
+              </ul>
+            </div>
           </section>
+
+          {/* Premios */}
+          <section style={{ marginBottom: "3rem", paddingBottom: "2rem" }}>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+              <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
+                Premios
+              </h2>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.75rem", marginTop: 0 }}>
+                    1er Lugar
+                  </h3>
+                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0 }}>
+                    <li>Nintendo Switch 2 para el equipo, patrocinado por AWS</li>
+                    <li>Beca de 6 meses en Platzi para cada integrante, patrocinado por Interledger Foundation</li>
+                    <li>Paquete de libros, patrocinado por Interledger Foundation y Zed</li>
+                    <li>Reconocimiento oficial como ganadorx de WeirdUI[1]</li>
+                  </ul>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.75rem", marginTop: 0 }}>
+                    2do y 3er Lugar
+                  </h3>
+                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0 }}>
+                    <li>Paquete de libros para cada integrante, patrocinado por Zed</li>
+                    <li>Posibilidad de acceso a beca de 3 meses en Platzi, patrocinado por Interledger Foundation</li>
+                    <li>Reconocimiento oficial por parte de la Facultad de Ciencias como ganadorx de WeirdUI[1]</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ction>
 
           {/* Registro */}
           <section>
