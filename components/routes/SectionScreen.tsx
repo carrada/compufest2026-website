@@ -228,7 +228,9 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 </p>
               </div>
             </div>
-          </seJueces */}
+          </section>
+
+          {/* Jueces */}
           <section style={{ marginBottom: "3rem" }}>
             <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
               <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
