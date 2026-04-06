@@ -366,7 +366,6 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     1er Lugar
                   </h3>
                   <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0, overflowWrap: "anywhere" }}>
-                    <li>Nintendo Switch 2 para el equipo, patrocinado por AWS</li>
                     <li>Beca de 6 meses en Platzi para cada integrante, patrocinado por Interledger Foundation</li>
                     <li>Paquete de libros, patrocinado por Interledger Foundation y Zed</li>
                     <li>Reconocimiento oficial como ganadorx de WeirdUI[1]</li>
