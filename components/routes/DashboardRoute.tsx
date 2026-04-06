@@ -787,8 +787,21 @@ function TeamView({
 
 // ─── Role Select ────────────────────────────────────────────
 
-function RoleSelect({ userId, currentRole, onChanged }: { userId: string; currentRole: string; onChanged: () => void }) {
+function RoleSelect({ userId, currentRole, isInTeam, onChanged }: { userId: string; currentRole: string; isInTeam: boolean; onChanged: () => void }) {
   const [saving, setSaving] = useState(false);
+
+  // Admins cannot be changed by other admins
+  if (currentRole === 'admin') {
+    return (
+      <span style={{
+        color: '#26D968',
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '0.7rem',
+        textTransform: 'uppercase',
+        letterSpacing: '0.03em',
+      }}>admin</span>
+    );
+  }
 
   const handleChange = async (newRole: string) => {
     if (newRole === currentRole) return;
@@ -808,7 +821,7 @@ function RoleSelect({ userId, currentRole, onChanged }: { userId: string; curren
         background: 'rgba(255,255,255,0.05)',
         border: '1px solid #333',
         borderRadius: '6px',
-        color: currentRole === 'admin' ? '#26D968' : currentRole === 'judge' ? '#eab308' : '#bbb',
+        color: currentRole === 'judge' ? '#eab308' : '#bbb',
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: '0.7rem',
         padding: '0.2rem 0.4rem',
@@ -820,8 +833,7 @@ function RoleSelect({ userId, currentRole, onChanged }: { userId: string; curren
       }}
     >
       <option value="participant">Participant</option>
-      <option value="judge">Judge</option>
-      <option value="admin">Admin</option>
+      {!isInTeam && <option value="judge">Judge</option>}
     </select>
   );
 }
@@ -1087,7 +1099,7 @@ function AdminSection() {
                         @{m.profile?.github_username}
                       </p>
                     </div>
-                    <RoleSelect userId={m.user_id} currentRole={m.profile?.role || 'participant'} onChanged={fetchAll} />
+                    <RoleSelect userId={m.user_id} currentRole={m.profile?.role || 'participant'} isInTeam={true} onChanged={fetchAll} />
                   </li>
                 ))}
               </ul>
@@ -1151,7 +1163,7 @@ function AdminSection() {
                       </p>
                       <p className="dashboard-member-gh">@{u.github_username}</p>
                     </div>
-                    <RoleSelect userId={u.id} currentRole={u.role} onChanged={fetchAll} />
+                    <RoleSelect userId={u.id} currentRole={u.role} isInTeam={false} onChanged={fetchAll} />
                   </li>
                 ))}
               </ul>
