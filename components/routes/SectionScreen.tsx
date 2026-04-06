@@ -90,52 +90,30 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
           />
         </div>
       ) : title === "WeirdUI" ? (
-        <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
-          <Terminal
-            commands={[
-              "status --section",
-              "hackathon --reto",
-              "cat Primera_vez_Ciencias.txt",
-              "echo interfaz-cava-restaurante",
-              "status --proximi",
-            ]}
-            outputs={{
-              0: [
-                "⚠️ SECCIÓN EN CONSTRUCCIÓN",
-                "Esta sección no está en funcionamiento en este momento.",
-                "Pronto dispondremos información completa sobre:",
-                "• Detalles del reto",
-                "• Reglas y mecánica",
-                "• Equipo de jueces",
-                "• Cronograma del evento",
-                "",
-                "¡Vuelve pronto!",
-              ],
-              1: [
-                "¡PRIMERA VEZ EN LA FACULTAD DE CIENCIAS!",
-                "En esta edición tendremos una primicia en la Facultad de Ciencias: su primer hackathon.",
-              ],
-              2: [
-                "Mientras en los hackatones tradicionales se busca llegar a una solución de mercado general,",
-                "el reto de este hackathon será más particular y orientado a la creatividad y aprendizaje",
-                "de los equipos participantes.",
-              ],
-              3: [
-                "Crear una interfaz para la gestión de una cava en un restaurante",
-                "Particularidad: usar bibliotecas y lenguajes fuera de lo común",
-                "Sin nada de diseño web tradicional",
-              ],
-              4: [
-                "Muy pronto sacaremos más información sobre:",
-                "• Las reglas del hackathon",
-                "• Los jueces",
-                "• El mecanismo completo del evento",
-                "¡Mantente atento a nuestras redes sociales!",
-              ],
-            }}
-            typingSpeed={30}
-            delayBetweenCommands={800}
-          />
+        <div className="w-full px-4 md:px-8 lg:px-16 min-h-96 text-center">
+          <h2 style={{ fontSize: textFontSize, fontWeight: "bold", marginBottom: "2rem", color: COLORS.primary }}>
+            {title}
+          </h2>
+          <p style={{ fontSize: "1.125rem", color: "#999", lineHeight: "1.75", marginBottom: "1.5rem" }}>
+            ⚠️ SECCIÓN EN CONSTRUCCIÓN
+          </p>
+          <p style={{ fontSize: "1rem", color: "#ccc", lineHeight: "1.75" }}>
+            Esta sección no está en funcionamiento en este momento.
+            <br />
+            <br />
+            Pronto dispondremos información completa sobre:
+            <br />
+            • Detalles del reto
+            <br />
+            • Reglas y mecánica
+            <br />
+            • Equipo de jueces
+            <br />
+            • Cronograma del evento
+            <br />
+            <br />
+            ¡Vuelve pronto!
+          </p>
         </div>
       ) : title === "Charlas" ? (
         <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
