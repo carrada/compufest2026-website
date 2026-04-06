@@ -785,6 +785,47 @@ function TeamView({
   );
 }
 
+// ─── Role Select ────────────────────────────────────────────
+
+function RoleSelect({ userId, currentRole, onChanged }: { userId: string; currentRole: string; onChanged: () => void }) {
+  const [saving, setSaving] = useState(false);
+
+  const handleChange = async (newRole: string) => {
+    if (newRole === currentRole) return;
+    setSaving(true);
+    const supabase = createClient();
+    await supabase.from('profiles').update({ role: newRole }).eq('id', userId);
+    onChanged();
+    setSaving(false);
+  };
+
+  return (
+    <select
+      value={currentRole}
+      onChange={(e) => handleChange(e.target.value)}
+      disabled={saving}
+      style={{
+        background: 'rgba(255,255,255,0.05)',
+        border: '1px solid #333',
+        borderRadius: '6px',
+        color: currentRole === 'admin' ? '#26D968' : currentRole === 'judge' ? '#eab308' : '#bbb',
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '0.7rem',
+        padding: '0.2rem 0.4rem',
+        cursor: 'pointer',
+        flexShrink: 0,
+        textTransform: 'uppercase',
+        letterSpacing: '0.03em',
+        outline: 'none',
+      }}
+    >
+      <option value="participant">Participant</option>
+      <option value="judge">Judge</option>
+      <option value="admin">Admin</option>
+    </select>
+  );
+}
+
 // ─── Admin Section ──────────────────────────────────────────
 
 function AdminSection() {
@@ -796,59 +837,60 @@ function AdminSection() {
   const [loadingAdmin, setLoadingAdmin] = useState(true);
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    const fetchAll = async () => {
-      const { data: teamsData } = await supabase
-        .from("teams")
-        .select("*")
-        .order("created_at");
+  const fetchAll = useCallback(async () => {
+    const { data: teamsData } = await supabase
+      .from("teams")
+      .select("*")
+      .order("created_at");
 
-      if (!teamsData) {
-        setLoadingAdmin(false);
-        return;
-      }
-
-      const teamsWithMembers = await Promise.all(
-        teamsData.map(async (t) => {
-          const { data: membersData } = await supabase
-            .from("team_members")
-            .select("*, profile:profiles(*)")
-            .eq("team_id", t.id);
-          return {
-            ...t,
-            members: (membersData || []) as (TeamMember & {
-              profile: Profile;
-            })[],
-          };
-        }),
-      );
-
-      setTeams(
-        teamsWithMembers as (Team & {
-          members: (TeamMember & { profile: Profile })[];
-        })[],
-      );
-
-      // Fetch users without a team
-      const { data: allProfiles } = await supabase
-        .from("profiles")
-        .select("*")
-        .order("created_at");
-
-      const { data: allMemberships } = await supabase
-        .from("team_members")
-        .select("user_id");
-
-      const memberIds = new Set((allMemberships || []).map((m) => m.user_id));
-      const usersWithoutTeam = (allProfiles || []).filter(
-        (p) => !memberIds.has(p.id)
-      ) as Profile[];
-      setSoloUsers(usersWithoutTeam);
-
+    if (!teamsData) {
       setLoadingAdmin(false);
-    };
-    fetchAll();
+      return;
+    }
+
+    const teamsWithMembers = await Promise.all(
+      teamsData.map(async (t) => {
+        const { data: membersData } = await supabase
+          .from("team_members")
+          .select("*, profile:profiles(*)")
+          .eq("team_id", t.id);
+        return {
+          ...t,
+          members: (membersData || []) as (TeamMember & {
+            profile: Profile;
+          })[],
+        };
+      }),
+    );
+
+    setTeams(
+      teamsWithMembers as (Team & {
+        members: (TeamMember & { profile: Profile })[];
+      })[],
+    );
+
+    // Fetch users without a team
+    const { data: allProfiles } = await supabase
+      .from("profiles")
+      .select("*")
+      .order("created_at");
+
+    const { data: allMemberships } = await supabase
+      .from("team_members")
+      .select("user_id");
+
+    const memberIds = new Set((allMemberships || []).map((m) => m.user_id));
+    const usersWithoutTeam = (allProfiles || []).filter(
+      (p) => !memberIds.has(p.id)
+    ) as Profile[];
+    setSoloUsers(usersWithoutTeam);
+
+    setLoadingAdmin(false);
   }, [supabase]);
+
+  useEffect(() => {
+    fetchAll();
+  }, [fetchAll]);
 
   const exportCSV = () => {
     const rows = [["equipo", "nombre", "apellido", "email", "github_username"]];
@@ -1045,6 +1087,7 @@ function AdminSection() {
                         @{m.profile?.github_username}
                       </p>
                     </div>
+                    <RoleSelect userId={m.user_id} currentRole={m.profile?.role || 'participant'} onChanged={fetchAll} />
                   </li>
                 ))}
               </ul>
@@ -1105,12 +1148,10 @@ function AdminSection() {
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <p className="dashboard-member-name">
                         {u.first_name} {u.last_name}
-                        {u.role !== 'participant' && (
-                          <span style={{ color: '#26D968', marginLeft: '0.35rem', fontSize: '0.7rem', fontFamily: "'JetBrains Mono', monospace" }}>{u.role}</span>
-                        )}
                       </p>
                       <p className="dashboard-member-gh">@{u.github_username}</p>
                     </div>
+                    <RoleSelect userId={u.id} currentRole={u.role} onChanged={fetchAll} />
                   </li>
                 ))}
               </ul>
