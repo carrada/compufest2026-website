@@ -90,30 +90,151 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
           />
         </div>
       ) : title === "WeirdUI" ? (
-        <div className="w-full px-4 md:px-8 lg:px-16 min-h-96 text-center">
-          <h2 style={{ fontSize: textFontSize, fontWeight: "bold", marginBottom: "2rem", color: COLORS.primary }}>
+        <div className="w-full px-4 md:px-8 lg:px-16">
+          <h1 style={{ fontSize: textFontSize, fontWeight: "bold", marginBottom: "3rem", marginTop: "2rem", color: COLORS.primary, textAlign: "center" }}>
             {title}
-          </h2>
-          <p style={{ fontSize: "1.125rem", color: "#999", lineHeight: "1.75", marginBottom: "1.5rem" }}>
-            ⚠️ SECCIÓN EN CONSTRUCCIÓN
-          </p>
-          <p style={{ fontSize: "1rem", color: "#ccc", lineHeight: "1.75" }}>
-            Esta sección no está en funcionamiento en este momento.
-            <br />
-            <br />
-            Pronto dispondremos información completa sobre:
-            <br />
-            • Detalles del reto
-            <br />
-            • Reglas y mecánica
-            <br />
-            • Equipo de jueces
-            <br />
-            • Cronograma del evento
-            <br />
-            <br />
-            ¡Vuelve pronto!
-          </p>
+          </h1>
+
+          {/* Visión */}
+          <section style={{ marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
+              Visión
+            </h2>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+              Cuando participamos en hackatones, es casi inevitable que llegue el momento de crear una interfaz de usuario. Y normalmente, esa UI está hecha en React, Vue o algún framework popular creado para la web.
+            </p>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8" }}>
+              Pero en WeirdUI[1] tenemos otra visión. Queremos hacerlo de manera diferente. Queremos que sea raro, desafiante, fuera de lo normal. Aquí no usamos los frameworks clásicos ni el stack convencional. Nada de React, nada de JavaScript, ni de TypeScript…nada web. Queremos ver interfaces creadas con Python, Rust, Java, C++, o cualquier otro lenguaje que se te ocurra, siempre y cuando no sea lo "normal".
+            </p>
+          </section>
+
+          {/* El Reto */}
+          <section style={{ marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
+              El Reto
+            </h2>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+              Y que seriá un stack poco convencional sin un reto del mismo nivel? En WeirdUI no buscamos resolver un problema masivo, queremos que enfoques tu creatividad en algo más específico, algo de nicho. El reto de WeirdUI[1] será crear una interfaz para gestionar la cava de un restaurante.
+            </p>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(1rem, 2.5vw, 1.25rem)", color: COLORS.primary, fontWeight: 600, lineHeight: "1.8" }}>
+              ¿Aceptas el reto?
+            </p>
+          </section>
+
+          {/* Requisitos */}
+          <section style={{ marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
+              Requisitos
+            </h2>
+            <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "2", paddingLeft: "1.5rem", listStyleType: "none" }}>
+              <li>Para participar necesitas tener un equipo de hasta 5 personas.</li>
+              <li>Cada equipo deberá elegir un nombre con el que serán identificados en el concurso. Ese nombre no debe ser altisonante ni irrespetuoso.</li>
+              <li>Cada integrante del equipo debe de tener una cuenta de GitHub y una cuenta de correo para el registro.</li>
+              <li>Asegurate de usar tu nombre completo legal para inscribirte.</li>
+              <li>El hackathon busca una interfaz como solución, tú decides qué tipo de interfaz entregas!</li>
+              <li>Tu solución no debe incluir ningún archivo .ts, y/o .js. Puedes tener archivos de cualquier otro tipo, menos de esos dos.</li>
+              <li>Tu eliges el tipo de base de datos y donde se aloja. Al final debes explicarnos por que elegiste esa base de datos.</li>
+              <li>Tendrás que implementar control de usuarios (por ejemplo, el sommelier no necesariamente será quien administre las compras) y de salidas y entradas de insumos (en este caso, los vinos).</li>
+            </ul>
+          </section>
+
+          {/* Entregables */}
+          <section style={{ marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
+              Entregables
+            </h2>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+              Al final debes mostrar tres cosas:
+            </p>
+            <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "2", paddingLeft: "1.5rem", listStyleType: "none" }}>
+              <li>El repositorio de tu solución. Necesitamos revisar el código, por lo que se te asignará un repositorio para alojar tu código.</li>
+              <li>Una forma de probar tu solución: cómo la instalamos? cómo la ejecutamos?</li>
+              <li>Un reporte de tu solución. Queremos conocer cual fue la ruta que tomó tu equipo, el por que decidieron tomar ciertas decisiones, etc, todo lo que nos explique su creatividad y acercamiento al reto.</li>
+            </ul>
+          </section>
+
+          {/* Reglas */}
+          <section style={{ marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
+              Reglas
+            </h2>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px", marginBottom: "1rem" }}>
+              <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1rem, 2vw, 1.25rem)", fontWeight: 600, color: "#fff", marginBottom: "0.5rem", marginTop: 0 }}>
+                Permitido
+              </h3>
+              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#ddd", lineHeight: "1.8", paddingLeft: "1.5rem", listStyleType: "none", margin: 0 }}>
+                <li>Bibliotecas wrappers (mientras el código fuente no sea .js, .ts, etc.)</li>
+                <li>Python: PySide6/PyQt6, Reflex, Flet, TKinter, Texual, Streamlit, Anvil, Typer, Click</li>
+                <li>Rust: Iced, Slint, Ratatui, Druid, GTK-rs, tui-rs</li>
+                <li>Java/Kotlin: Picocli, Compose Multiplatform, JavaFX, Spring Shell, Vaadin</li>
+                <li>Dart: Flutter; Go: Fyne, Bubble Tea, Wails, Cobra</li>
+                <li>Elixir: Owl, Phoenix, Ratatouille; C++: Qt, FLTK, wxWidgets</li>
+                <li>El repositorio con historial de commits consistente durante los días del hackathon</li>
+              </ul>
+            </div>
+            <div style={{ backgroundColor: "rgba(239, 68, 68, 0.05)", padding: "1.5rem", borderLeft: "3px solid #ef4444", borderRadius: "4px" }}>
+              <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1rem, 2vw, 1.25rem)", fontWeight: 600, color: "#fff", marginBottom: "0.5rem", marginTop: 0 }}>
+                Prohibido
+              </h3>
+              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#ddd", lineHeight: "1.8", paddingLeft: "1.5rem", listStyleType: "none", margin: 0 }}>
+                <li>JavaScript, TypeScript, React, Vite, Angular, Next.JS, Astro, Vue, Svelt</li>
+                <li>Cualquier framework web JS/TS de manera general</li>
+                <li>Código generado con IA</li>
+                <li>Código escrito fuera del tiempo oficial del hackathon (excepto librerías de terceros)</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Fases */}
+          <section style={{ marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
+              Fases del Hackathon
+            </h2>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
+              <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.5rem", borderRadius: "8px", border: "1px solid rgba(38, 217, 104, 0.3)" }}>
+                <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
+                  Día 1: Arquitectura y Diseño
+                </h3>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  20 de Abril. Define lenguaje, bibliotecas, base de datos. Diagrama de relaciones. Diseño de interfaz.
+                </p>
+              </div>
+              <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.5rem", borderRadius: "8px", border: "1px solid rgba(38, 217, 104, 0.3)" }}>
+                <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
+                  Día 2: Avances
+                </h3>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  21 de Abril. Esqueleto del proyecto. Al menos una funcionalidad. Base de datos implementada.
+                </p>
+              </div>
+              <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.5rem", borderRadius: "8px", border: "1px solid rgba(38, 217, 104, 0.3)" }}>
+                <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
+                  Día 3: Entrega Final
+                </h3>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  22 de Abril. Código completo. Instrucciones de ejecución. Reporte de solución.
+                </p>
+              </div>
+              <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.5rem", borderRadius: "8px", border: "1px solid rgba(38, 217, 104, 0.3)" }}>
+                <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
+                  Día 4: Pitch Day
+                </h3>
+                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  24 de Abril. Para equipos en top 5. Presentación de 5 minutos. Demo en vivo.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Registro */}
+          <section>
+            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
+              Registro
+            </h2>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8" }}>
+              El registro estará abierto del 06 al 16 de abril de 2026 a las 23:59 hrs. Conecta tu cuenta de GitHub en la parte superior de la página para crear un equipo o unirte a uno con su código. Una vez que cierre el registro, se te asignará un repositorio en la comunidad Sudo FCiencias para subir tus avances.
+            </p>
+          </section>
         </div>
       ) : title === "Charlas" ? (
         <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
