@@ -272,9 +272,9 @@ const CounterPage = memo(function CounterPage() {
           gap: '20px',
           alignItems: 'center',
           justifyContent: 'center',
-          flexWrap: 'wrap',
+          flexWrap: typeof window !== 'undefined' && window.innerWidth < 1024 ? 'wrap' : 'nowrap',
           width: '90%',
-          maxWidth: '800px'
+          maxWidth: '980px'
         }}
       >
         <Image
@@ -317,6 +317,13 @@ const CounterPage = memo(function CounterPage() {
           alt="Notion"
           width={110}
           height={110}
+          unoptimized
+        />
+        <Image
+          src="/logos def/zed-logo.svg"
+          alt="Zed"
+          width={64}
+          height={64}
           unoptimized
         />
       </div>
