@@ -91,6 +91,14 @@ public/
 # No se requieren variables de entorno para desarrollo local
 ```
 
+## Pruebas de Carga
+
+Para preparar el sitio para picos de trafico, revisa y ejecuta la guia en [LOAD_TESTING.md](./LOAD_TESTING.md).
+
+## Analytics (Umami)
+
+Para levantar analytics self-hosted con Umami, revisa [UMAMI_SETUP.md](./UMAMI_SETUP.md).
+
 ## Navegación
 
 - `/` - Página de inicio con contador regresivo

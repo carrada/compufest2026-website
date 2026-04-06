@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "umami:up": "docker compose --env-file infra/umami/.env -f infra/umami/docker-compose.yml up -d",
+    "umami:down": "docker compose --env-file infra/umami/.env -f infra/umami/docker-compose.yml down",
+    "umami:logs": "docker compose --env-file infra/umami/.env -f infra/umami/docker-compose.yml logs -f umami",
+    "load:smoke": "TEST_TYPE=smoke k6 run tests/load/website-load.k6.js",
+    "load:stress": "TEST_TYPE=stress k6 run tests/load/website-load.k6.js",
+    "load:spike": "TEST_TYPE=spike k6 run tests/load/website-load.k6.js"
   },
   "dependencies": {
     "@leenguyen/react-flip-clock-countdown": "^1.7.2",

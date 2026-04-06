@@ -52,6 +52,9 @@ OPTIMIZATION_LOG.md
 build.log
 *.log
 
+# local tools and binaries
+.tools/
+
 # IDE & editor
 .vscode/
 .idea/
