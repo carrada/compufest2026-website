@@ -59,7 +59,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
 
   const showASCII = false;
   const asciiFontSize = isMobile ? 6 : isTablet ? 7 : 8;
-  const textFontSize = isMobile ? 60 : isTablet ? 140 : 200;
+  const textFontSize = isMobile ? 44 : isTablet ? 96 : 200;
   const planeBaseHeight = isMobile ? 5 : isTablet ? 6.5 : 8;
 
   const sectionStyle: CSSProperties = {
@@ -76,6 +76,25 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
     width: "100%",
   };
 
+  const contentMaxWidthStyle: CSSProperties = {
+    width: "100%",
+    maxWidth: "1120px",
+    margin: "0 auto",
+  };
+
+  const responsiveGridStyle = (mobileColumns: string, desktopColumns: string): CSSProperties => ({
+    display: "grid",
+    gridTemplateColumns: isMobile ? mobileColumns : desktopColumns,
+    gap: isMobile ? "0.75rem" : "1rem",
+  });
+
+  const responsiveSectionStyle = (bottomMargin = "3rem"): CSSProperties => ({
+    marginBottom: isMobile ? "2rem" : bottomMargin,
+  });
+
+  const cardPadding = isMobile ? "1rem" : "1.1rem";
+  const panelPadding = isMobile ? "1rem" : "1.5rem";
+
   return (
     <section style={sectionStyle}>
       {showASCII ? (
@@ -89,82 +108,82 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             enableWaves={false}
           />
         </div>
-      ) : title === "WeirdUI" ? (
-        <div className="w-full px-4 md:px-8 lg:px-16">
-          <h1 style={{ fontSize: textFontSize, fontWeight: "bold", marginBottom: "3rem", marginTop: "2rem", color: COLORS.primary, textAlign: "center" }}>
+      ) : title === "WeirdUI" || title === "WeirdUI[1]" ? (
+        <div className="w-full px-4 md:px-8 lg:px-16" style={contentMaxWidthStyle}>
+          <h1 style={{ fontSize: "clamp(3rem, 12vw, 12rem)", fontWeight: "bold", marginBottom: isMobile ? "1.75rem" : "3rem", marginTop: isMobile ? "1rem" : "2rem", color: COLORS.primary, textAlign: "center", lineHeight: 0.95, letterSpacing: isMobile ? "-0.04em" : "-0.03em", overflowWrap: "anywhere" }}>
             {title}
           </h1>
 
           {/* Visión */}
-          <section style={{ marginBottom: "3rem" }}>
+          <section style={responsiveSectionStyle()}>
             <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
               Visión
             </h2>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.9rem" : "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: isMobile ? "1.7" : "1.8", marginBottom: "1rem" }}>
               Cuando participamos en hackatones, es casi inevitable que llegue el momento de crear una interfaz de usuario. Y normalmente, esa UI está hecha en React, Vue o algún framework popular creado para la web.
             </p>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.9rem" : "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: isMobile ? "1.7" : "1.8" }}>
               Pero en WeirdUI[1] tenemos otra visión. Queremos hacerlo de manera diferente. Queremos que sea raro, desafiante, fuera de lo normal. Aquí no usamos los frameworks clásicos ni el stack convencional. Nada de React, nada de JavaScript, ni de TypeScript…nada web. Queremos ver interfaces creadas con Python, Rust, Java, C++, o cualquier otro lenguaje que se te ocurra, siempre y cuando no sea lo "normal".
             </p>
           </section>
 
           {/* El Reto */}
-          <section style={{ marginBottom: "3rem" }}>
+          <section style={responsiveSectionStyle()}>
             <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
               El Reto
             </h2>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.9rem" : "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: isMobile ? "1.7" : "1.8", marginBottom: "1rem" }}>
               Y que seriá un stack poco convencional sin un reto del mismo nivel? En WeirdUI no buscamos resolver un problema masivo, queremos que enfoques tu creatividad en algo más específico, algo de nicho. El reto de WeirdUI[1] será crear una interfaz para gestionar la cava de un restaurante.
             </p>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(1rem, 2.5vw, 1.25rem)", color: COLORS.primary, fontWeight: 600, lineHeight: "1.8" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "1rem" : "clamp(1rem, 2.5vw, 1.25rem)", color: COLORS.primary, fontWeight: 600, lineHeight: "1.8" }}>
               ¿Aceptas el reto?
             </p>
           </section>
 
           {/* Requisitos */}
-          <section style={{ marginBottom: "3rem" }}>
-            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+          <section style={responsiveSectionStyle()}>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: panelPadding, borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
               <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
                 Requisitos
               </h2>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem" }}>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+              <div style={responsiveGridStyle("1fr", "repeat(auto-fit, minmax(220px, 1fr))")}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
                     Para participar necesitas tener un equipo de hasta 5 personas.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
                     Cada equipo deberá elegir un nombre con el que serán identificados en el concurso. Ese nombre no debe ser altisonante ni irrespetuoso.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
                     Cada integrante del equipo debe de tener una cuenta de GitHub y una cuenta de correo para el registro.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
                     Asegúrate de usar tu nombre completo legal para inscribirte.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
                     El hackathon busca una interfaz como solución: tú decides qué tipo de interfaz entregas.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
                     Tu solución no debe incluir ningún archivo .ts ni .js. Puedes tener archivos de cualquier otro tipo.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
                     Tú eliges el tipo de base de datos y dónde se aloja. Al final debes explicar por qué elegiste esa base de datos.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
                     Tendrás que implementar control de usuarios y de salidas y entradas de insumos (en este caso, los vinos).
                   </p>
                 </div>
@@ -173,34 +192,55 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
           </section>
 
           {/* Entregables */}
-          <section style={{ marginBottom: "3rem" }}>
-            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+          <section style={responsiveSectionStyle()}>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: panelPadding, borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
               <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
                 Entregables
               </h2>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.9rem" : "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: isMobile ? "1.7" : "1.8", marginBottom: "1rem" }}>
                 Al final debes mostrar tres cosas:
               </p>
-              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "2", paddingLeft: "1.5rem", listStyleType: "none", marginBottom: 0 }}>
-                <li>El repositorio de tu solución. Necesitamos revisar el código, por lo que se te asignará un repositorio para alojar tu código.</li>
-                <li>Una forma de probar tu solución: cómo la instalamos? cómo la ejecutamos?</li>
-                <li>Un reporte de tu solución. Queremos conocer cual fue la ruta que tomó tu equipo, el por que decidieron tomar ciertas decisiones, etc, todo lo que nos explique su creatividad y acercamiento al reto.</li>
-              </ul>
+              <div style={responsiveGridStyle("1fr", "repeat(auto-fit, minmax(240px, 1fr))")}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    Repositorio
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
+                    El repositorio de tu solución. Necesitamos revisar el código, por lo que se te asignará un repositorio para alojar tu código.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    Prueba
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
+                    Una forma de probar tu solución: cómo la instalamos? cómo la ejecutamos?
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    Reporte
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0, overflowWrap: "anywhere" }}>
+                    Un reporte de tu solución. Queremos conocer cual fue la ruta que tomó tu equipo, el por que decidieron tomar ciertas decisiones, etc, todo lo que nos explique su creatividad y acercamiento al reto.
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Reglas */}
-          <section style={{ marginBottom: "3rem" }}>
-            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+          <section style={responsiveSectionStyle()}>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: panelPadding, borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
               <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
                 Reglas
               </h2>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+              <div style={responsiveGridStyle("1fr", "repeat(auto-fit, minmax(240px, 1fr))")}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.75rem", marginTop: 0 }}>
                     Permitido
                   </h3>
-                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", paddingLeft: "1rem", margin: 0 }}>
+                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", paddingLeft: "1rem", margin: 0, overflowWrap: "anywhere" }}>
                     <li>Bibliotecas wrappers (mientras el código fuente no sea .js ni .ts)</li>
                     <li>Python: PySide6/PyQt6, Reflex, Flet, TKinter, Textual, Streamlit, Anvil, Typer, Click</li>
                     <li>Rust: Iced, Slint, Ratatui, Druid, GTK-rs, tui-rs</li>
@@ -210,11 +250,11 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     <li>Repositorio con historial de commits consistente durante los días del hackathon</li>
                   </ul>
                 </div>
-                <div style={{ backgroundColor: "rgba(239, 68, 68, 0.08)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(239, 68, 68, 0.3)" }}>
+                <div style={{ backgroundColor: "rgba(239, 68, 68, 0.08)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(239, 68, 68, 0.3)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#ff8a8a", marginBottom: "0.75rem", marginTop: 0 }}>
                     Prohibido
                   </h3>
-                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#f1b3b3", lineHeight: "1.7", paddingLeft: "1rem", margin: 0 }}>
+                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#f1b3b3", lineHeight: "1.7", paddingLeft: "1rem", margin: 0, overflowWrap: "anywhere" }}>
                     <li>JavaScript, TypeScript, React, Vite, Angular, Next.js, Astro, Vue, Svelte</li>
                     <li>Cualquier framework web JS/TS de manera general</li>
                     <li>Código generado con IA</li>
@@ -226,85 +266,87 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
           </section>
 
           {/* Fases */}
-          <section style={{ marginBottom: "3rem" }}>
-            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
-              Fases del Hackathon
-            </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1.5rem" }}>
-              <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.5rem", borderRadius: "8px", border: "1px solid rgba(38, 217, 104, 0.3)" }}>
-                <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
+          <section style={responsiveSectionStyle()}>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: panelPadding, borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+              <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
+                Fases del Hackathon
+              </h2>
+              <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? "1rem" : "1.25rem" }}>
+                <div>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
                   Día 1: Arquitectura y Diseño
-                </h3>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                   20 de Abril. Define lenguaje, bibliotecas, base de datos. Diagrama de relaciones. Diseño de interfaz.
-                </p>
-              </div>
-              <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.5rem", borderRadius: "8px", border: "1px solid rgba(38, 217, 104, 0.3)" }}>
-                <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
+                  </p>
+                </div>
+                <div>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
                   Día 2: Avances
-                </h3>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                   21 de Abril. Esqueleto del proyecto. Al menos una funcionalidad. Base de datos implementada.
-                </p>
-              </div>
-              <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.5rem", borderRadius: "8px", border: "1px solid rgba(38, 217, 104, 0.3)" }}>
-                <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
+                  </p>
+                </div>
+                <div>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
                   Día 3: Entrega Final
-                </h3>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                   22 de Abril. Código completo. Instrucciones de ejecución. Reporte de solución.
-                </p>
-              </div>
-              <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.5rem", borderRadius: "8px", border: "1px solid rgba(38, 217, 104, 0.3)" }}>
-                <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
+                  </p>
+                </div>
+                <div>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.5rem", marginTop: 0 }}>
                   Día 4: Pitch Day
-                </h3>
-                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                   24 de Abril. Para equipos en top 5. Presentación de 5 minutos. Demo en vivo.
-                </p>
+                  </p>
+                </div>
               </div>
             </div>
           </section>
 
           {/* Jueces */}
-          <section style={{ marginBottom: "3rem" }}>
-            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+          <section style={responsiveSectionStyle()}>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: panelPadding, borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
               <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
                 Jueces
               </h2>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.9rem" : "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: isMobile ? "1.7" : "1.8", marginBottom: "1rem" }}>
                 Tu solución será evaluada por profesionales con experiencia en investigación, ingeniería y ciberseguridad.
               </p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+              <div style={responsiveGridStyle("1fr", "repeat(auto-fit, minmax(240px, 1fr))")}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
                     Karla Ramirez Pulido
                   </h3>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                     Doctora en Ciencia e Ingeniería de la Computación, auditora de riesgos tecnológicos e investigadora de sesgos de género en IA.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
                     Alicia Margarita De La Mora Cebada
                   </h3>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                     Doctora en Ciencias de la Tierra y Técnica Académica en el Departamento de Supercómputo de la UNAM.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
                     Manuel Soto Romero
                   </h3>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                     Maestro en Ciencia e Ingeniería de la Computación e investigador sobre Teoría de Lenguajes de Programación.
                   </p>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
                     Virgilio Castro Rendón
                   </h3>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                     Fundador y mentor de Hackers Fight Club, especialista en ciberseguridad ofensiva y defensiva.
                   </p>
                 </div>
@@ -313,28 +355,28 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
           </section>
 
           {/* Premios */}
-          <section style={{ marginBottom: "3rem", paddingBottom: "2rem" }}>
-            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+          <section style={{ marginBottom: isMobile ? "2rem" : "3rem", paddingBottom: isMobile ? "1.5rem" : "2rem" }}>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: panelPadding, borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
               <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
                 Premios
               </h2>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+              <div style={responsiveGridStyle("1fr", "repeat(auto-fit, minmax(240px, 1fr))")}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.75rem", marginTop: 0 }}>
                     1er Lugar
                   </h3>
-                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0 }}>
+                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0, overflowWrap: "anywhere" }}>
                     <li>Nintendo Switch 2 para el equipo, patrocinado por AWS</li>
                     <li>Beca de 6 meses en Platzi para cada integrante, patrocinado por Interledger Foundation</li>
                     <li>Paquete de libros, patrocinado por Interledger Foundation y Zed</li>
                     <li>Reconocimiento oficial como ganadorx de WeirdUI[1]</li>
                   </ul>
                 </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.75rem", marginTop: 0 }}>
                     2do y 3er Lugar
                   </h3>
-                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0 }}>
+                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0, overflowWrap: "anywhere" }}>
                     <li>Paquete de libros para cada integrante, patrocinado por Zed</li>
                     <li>Posibilidad de acceso a beca de 3 meses en Platzi, patrocinado por Interledger Foundation</li>
                     <li>Reconocimiento oficial por parte de la Facultad de Ciencias como ganadorx de WeirdUI[1]</li>
@@ -349,7 +391,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
               Registro
             </h2>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.9rem" : "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: isMobile ? "1.7" : "1.8" }}>
               El registro estará abierto del 06 al 16 de abril de 2026 a las 23:59 hrs. Conecta tu cuenta de GitHub en la parte superior de la página para crear un equipo o unirte a uno con su código. Una vez que cierre el registro, se te asignará un repositorio en la comunidad Sudo FCiencias para subir tus avances.
             </p>
           </section>

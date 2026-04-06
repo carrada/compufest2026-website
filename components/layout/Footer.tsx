@@ -42,7 +42,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className={styles.copyright}>
-          <p>&copy; {new Date().getFullYear()} Compufest. Todos los derechos reservados.</p>
+          <p>&copy; 2026 compufest[1]. Todos los derechos reservados.</p>
         </div>
       </div>
 

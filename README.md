@@ -31,6 +31,10 @@ compufest[1] es un evento que incluye:
 ## Proyecto
 
 - **Creador**: Chiikö
+- **Crédito backend**: Ian Vega, por desarrollar la parte de backend del login y otras funcionalidades del hackathon
+- **Redes de Ian Vega**:
+   - LinkedIn: https://www.linkedin.com/in/lann892?utm_source=share_via&utm_content=profile&utm_medium=member_ios
+   - GitHub: https://github.com/Lann892
 - **Contacto**: [chiiko.design](https://chiiko.design)
 - **Email Jurídico**: juridico@chiiko.design
 

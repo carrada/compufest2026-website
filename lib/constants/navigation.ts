@@ -27,7 +27,7 @@ export const SOCIAL_ITEMS: SocialItem[] = [
 export const SECTION_ROUTES: SectionRoute[] = [
   {
     path: "/hackathon",
-    title: "WeirdUI",
+    title: "WeirdUI[1]",
     subtitle: "Reto creativo para construir interfaces fuera de lo común.",
   },
   {
