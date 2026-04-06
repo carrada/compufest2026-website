@@ -127,16 +127,48 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
               <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
                 Requisitos
               </h2>
-              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "2", paddingLeft: "1.5rem", listStyleType: "none", marginBottom: 0 }}>
-                <li>Para participar necesitas tener un equipo de hasta 5 personas.</li>
-                <li>Cada equipo deberá elegir un nombre con el que serán identificados en el concurso. Ese nombre no debe ser altisonante ni irrespetuoso.</li>
-                <li>Cada integrante del equipo debe de tener una cuenta de GitHub y una cuenta de correo para el registro.</li>
-                <li>Asegurate de usar tu nombre completo legal para inscribirte.</li>
-                <li>El hackathon busca una interfaz como solución, tú decides qué tipo de interfaz entregas!</li>
-                <li>Tu solución no debe incluir ningún archivo .ts, y/o .js. Puedes tener archivos de cualquier otro tipo, menos de esos dos.</li>
-                <li>Tu eliges el tipo de base de datos y donde se aloja. Al final debes explicarnos por que elegiste esa base de datos.</li>
-                <li>Tendrás que implementar control de usuarios (por ejemplo, el sommelier no necesariamente será quien administre las compras) y de salidas y entradas de insumos (en este caso, los vinos).</li>
-              </ul>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem" }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                    Para participar necesitas tener un equipo de hasta 5 personas.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                    Cada equipo deberá elegir un nombre con el que serán identificados en el concurso. Ese nombre no debe ser altisonante ni irrespetuoso.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                    Cada integrante del equipo debe de tener una cuenta de GitHub y una cuenta de correo para el registro.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                    Asegúrate de usar tu nombre completo legal para inscribirte.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                    El hackathon busca una interfaz como solución: tú decides qué tipo de interfaz entregas.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                    Tu solución no debe incluir ningún archivo .ts ni .js. Puedes tener archivos de cualquier otro tipo.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                    Tú eliges el tipo de base de datos y dónde se aloja. Al final debes explicar por qué elegiste esa base de datos.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.1rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", margin: 0 }}>
+                    Tendrás que implementar control de usuarios y de salidas y entradas de insumos (en este caso, los vinos).
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -159,33 +191,37 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
 
           {/* Reglas */}
           <section style={{ marginBottom: "3rem" }}>
-            <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem" }}>
-              Reglas
-            </h2>
-            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px", marginBottom: "1rem" }}>
-              <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1rem, 2vw, 1.25rem)", fontWeight: 600, color: "#fff", marginBottom: "0.5rem", marginTop: 0 }}>
-                Permitido
-              </h3>
-              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#ddd", lineHeight: "1.8", paddingLeft: "1.5rem", listStyleType: "none", margin: 0 }}>
-                <li>Bibliotecas wrappers (mientras el código fuente no sea .js, .ts, etc.)</li>
-                <li>Python: PySide6/PyQt6, Reflex, Flet, TKinter, Texual, Streamlit, Anvil, Typer, Click</li>
-                <li>Rust: Iced, Slint, Ratatui, Druid, GTK-rs, tui-rs</li>
-                <li>Java/Kotlin: Picocli, Compose Multiplatform, JavaFX, Spring Shell, Vaadin</li>
-                <li>Dart: Flutter; Go: Fyne, Bubble Tea, Wails, Cobra</li>
-                <li>Elixir: Owl, Phoenix, Ratatouille; C++: Qt, FLTK, wxWidgets</li>
-                <li>El repositorio con historial de commits consistente durante los días del hackathon</li>
-              </ul>
-            </div>
-            <div style={{ backgroundColor: "rgba(239, 68, 68, 0.05)", padding: "1.5rem", borderLeft: "3px solid #ef4444", borderRadius: "4px" }}>
-              <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1rem, 2vw, 1.25rem)", fontWeight: 600, color: "#fff", marginBottom: "0.5rem", marginTop: 0 }}>
-                Prohibido
-              </h3>
-              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#ddd", lineHeight: "1.8", paddingLeft: "1.5rem", listStyleType: "none", margin: 0 }}>
-                <li>JavaScript, TypeScript, React, Vite, Angular, Next.JS, Astro, Vue, Svelt</li>
-                <li>Cualquier framework web JS/TS de manera general</li>
-                <li>Código generado con IA</li>
-                <li>Código escrito fuera del tiempo oficial del hackathon (excepto librerías de terceros)</li>
-              </ul>
+            <div style={{ backgroundColor: "rgba(38, 217, 104, 0.05)", padding: "1.5rem", borderLeft: "3px solid #26D968", borderRadius: "4px" }}>
+              <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "clamp(1.5rem, 4vw, 2rem)", fontWeight: 600, color: COLORS.primary, marginBottom: "1rem", marginTop: 0 }}>
+                Reglas
+              </h2>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.75rem", marginTop: 0 }}>
+                    Permitido
+                  </h3>
+                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.7", paddingLeft: "1rem", margin: 0 }}>
+                    <li>Bibliotecas wrappers (mientras el código fuente no sea .js ni .ts)</li>
+                    <li>Python: PySide6/PyQt6, Reflex, Flet, TKinter, Textual, Streamlit, Anvil, Typer, Click</li>
+                    <li>Rust: Iced, Slint, Ratatui, Druid, GTK-rs, tui-rs</li>
+                    <li>Java/Kotlin: Picocli, Compose Multiplatform, JavaFX, Spring Shell, Vaadin</li>
+                    <li>Dart: Flutter; Go: Fyne, Bubble Tea, Wails, Cobra</li>
+                    <li>Elixir: Owl, Phoenix, Ratatouille; C++: Qt, FLTK, wxWidgets</li>
+                    <li>Repositorio con historial de commits consistente durante los días del hackathon</li>
+                  </ul>
+                </div>
+                <div style={{ backgroundColor: "rgba(239, 68, 68, 0.08)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(239, 68, 68, 0.3)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#ff8a8a", marginBottom: "0.75rem", marginTop: 0 }}>
+                    Prohibido
+                  </h3>
+                  <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#f1b3b3", lineHeight: "1.7", paddingLeft: "1rem", margin: 0 }}>
+                    <li>JavaScript, TypeScript, React, Vite, Angular, Next.js, Astro, Vue, Svelte</li>
+                    <li>Cualquier framework web JS/TS de manera general</li>
+                    <li>Código generado con IA</li>
+                    <li>Código escrito fuera del tiempo oficial del hackathon (excepto librerías de terceros)</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -237,14 +273,42 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 Jueces
               </h2>
               <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "#ccc", lineHeight: "1.8", marginBottom: "1rem" }}>
-                Tu solución será juzgada por profesionales con experiencia en la industria:
+                Tu solución será evaluada por profesionales con experiencia en investigación, ingeniería y ciberseguridad.
               </p>
-              <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: "#ddd", lineHeight: "1.8", paddingLeft: "1.5rem", listStyleType: "none", marginBottom: 0 }}>
-                <li>Karla Ramirez Pulido - Doctora en Ciencia e Ing. de la Computación, auditora de riesgos tecnológicos e investigadora de sesgos de género en IA.</li>
-                <li>Alicia Margarita De La Mora Cebada - Doctora en Ciencias de la Tierra, Técnica Académica en el Departamento de Supercómputo de la UNAM.</li>
-                <li>Manuel Soto Romero - Maestro en Ciencia e Ingeniería de la Computación, Investigador sobre Teoría de Lenguajes de Programación.</li>
-                <li>Virgilio Castro Rendón - Fundador y mentor de Hackers Fight Club, especialista en ciberseguridad ofensiva y defensiva.</li>
-              </ul>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    Karla Ramirez Pulido
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                    Doctora en Ciencia e Ingeniería de la Computación, auditora de riesgos tecnológicos e investigadora de sesgos de género en IA.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    Alicia Margarita De La Mora Cebada
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                    Doctora en Ciencias de la Tierra y Técnica Académica en el Departamento de Supercómputo de la UNAM.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    Manuel Soto Romero
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                    Maestro en Ciencia e Ingeniería de la Computación e investigador sobre Teoría de Lenguajes de Programación.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: "1.25rem", borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    Virgilio Castro Rendón
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0 }}>
+                    Fundador y mentor de Hackers Fight Club, especialista en ciberseguridad ofensiva y defensiva.
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -279,8 +343,6 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
               </div>
             </div>
           </section>
-
-          {/* ction>
 
           {/* Registro */}
           <section>
