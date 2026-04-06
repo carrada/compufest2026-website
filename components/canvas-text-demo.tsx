@@ -181,11 +181,11 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
               "Sin nada de diseño web tradicional",
             ],
             3: [
-              "Muy pronto sacaremos más información sobre:",
-              "• Las reglas del hackathon",
-              "• Los jueces",
-              "• El mecanismo completo del evento",
-              "¡Mantente atento a nuestras redes sociales!",
+              "La información del hackathon ya está disponible en la sección WeirdUI[1]:",
+              "• Reglas del hackathon",
+              "• Jueces",
+              "• Mecanismo completo del evento",
+              "Consulta la sección WeirdUI[1] en el menú para ver todos los detalles.",
             ],
           }}
           typingSpeed={30}
