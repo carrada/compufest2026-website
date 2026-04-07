@@ -790,7 +790,7 @@ function TeamView({
 function RoleSelect({ userId, currentRole, isInTeam, onChanged }: { userId: string; currentRole: string; isInTeam: boolean; onChanged: () => void }) {
   const [saving, setSaving] = useState(false);
 
-  // Admins cannot be changed by other admins
+  // Admins cannot be demoted
   if (currentRole === 'admin') {
     return (
       <span style={{
@@ -821,7 +821,7 @@ function RoleSelect({ userId, currentRole, isInTeam, onChanged }: { userId: stri
         background: 'rgba(255,255,255,0.05)',
         border: '1px solid #333',
         borderRadius: '6px',
-        color: currentRole === 'judge' ? '#eab308' : '#bbb',
+        color: currentRole === 'admin' ? '#26D968' : currentRole === 'judge' ? '#eab308' : '#bbb',
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: '0.7rem',
         padding: '0.2rem 0.4rem',
@@ -834,6 +834,7 @@ function RoleSelect({ userId, currentRole, isInTeam, onChanged }: { userId: stri
     >
       <option value="participant">Participant</option>
       {!isInTeam && <option value="judge">Judge</option>}
+      {!isInTeam && <option value="admin">Admin</option>}
     </select>
   );
 }
@@ -855,13 +856,8 @@ function AdminSection() {
       .select("*")
       .order("created_at");
 
-    if (!teamsData) {
-      setLoadingAdmin(false);
-      return;
-    }
-
     const teamsWithMembers = await Promise.all(
-      teamsData.map(async (t) => {
+      (teamsData || []).map(async (t) => {
         const { data: membersData } = await supabase
           .from("team_members")
           .select("*, profile:profiles(*)")
