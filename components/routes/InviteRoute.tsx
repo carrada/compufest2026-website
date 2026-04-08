@@ -6,6 +6,11 @@ import { useAuth } from '@/lib/auth/AuthProvider';
 import { createClient } from '@/lib/supabase/client';
 import type { Team } from '@/lib/types';
 
+const COMPETITION_START = new Date('2026-04-20T15:00:00Z');
+function isCompetitionStarted() {
+  return new Date() >= COMPETITION_START;
+}
+
 export function InviteRoute() {
   const { code } = useParams<{ code: string }>();
   const navigate = useNavigate();
@@ -107,6 +112,20 @@ export function InviteRoute() {
         <div className="invite-card">
           <h2 className="invite-team-name">Invitacion no valida</h2>
           <p className="invite-subtitle">Este codigo de invitacion no existe o ha expirado.</p>
+          <button className="dashboard-btn dashboard-btn--secondary" onClick={() => navigate('/')}>
+            Volver al inicio
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (isCompetitionStarted()) {
+    return (
+      <div className="invite-page">
+        <div className="invite-card">
+          <h2 className="invite-team-name">{team.name}</h2>
+          <p className="invite-subtitle">El registro de equipos ha cerrado. La competencia ya inicio.</p>
           <button className="dashboard-btn dashboard-btn--secondary" onClick={() => navigate('/')}>
             Volver al inicio
           </button>
