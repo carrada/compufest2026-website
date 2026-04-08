@@ -6,6 +6,7 @@
 'use client';
 
 import { CSSProperties, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { COLORS, TYPOGRAPHY, LAYOUT } from "@/lib/constants/theme";
 import dynamic from 'next/dynamic';
 import { Terminal } from "@/components/ui/terminal";
@@ -110,9 +111,17 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
         </div>
       ) : title === "WeirdUI" || title === "WeirdUI[1]" ? (
         <div className="w-full px-4 md:px-8 lg:px-16" style={contentMaxWidthStyle}>
-          <h1 style={{ fontSize: "clamp(3rem, 12vw, 12rem)", fontWeight: "bold", marginBottom: isMobile ? "1.75rem" : "3rem", marginTop: isMobile ? "1rem" : "2rem", color: COLORS.primary, textAlign: "center", lineHeight: 0.95, letterSpacing: isMobile ? "-0.04em" : "-0.03em", overflowWrap: "anywhere" }}>
-            {title}
-          </h1>
+          <div style={{ marginTop: isMobile ? "1rem" : "2rem", marginBottom: isMobile ? "1.75rem" : "3rem", textAlign: "center", display: "flex", justifyContent: "center" }}>
+            <Image
+              src="/logo_weirdui1.png"
+              alt="WeirdUI[1]"
+              width={isMobile ? 200 : isTablet ? 400 : 600}
+              height={isMobile ? 100 : isTablet ? 200 : 300}
+              style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+              priority
+              unoptimized
+            />
+          </div>
 
           {/* Visión */}
           <section style={responsiveSectionStyle()}>
@@ -366,8 +375,10 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     1er Lugar
                   </h3>
                   <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0, overflowWrap: "anywhere" }}>
+                    <li>Gran premio especial, patrocinado por AWS.</li>
                     <li>Beca de 6 meses en Platzi para cada integrante, patrocinado por Interledger Foundation</li>
-                    <li>Paquete de libros, patrocinado por Interledger Foundation y Zed</li>
+                    <li>Paquete de libros, patrocinado por Interledger Foundation</li>
+                    <li>Beca de 3 meses en Pentesterlab, patrocinada por Hackers Fight Club.</li>
                     <li>Reconocimiento oficial como ganadorx de WeirdUI[1]</li>
                   </ul>
                 </div>
@@ -376,8 +387,8 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     2do y 3er Lugar
                   </h3>
                   <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0, overflowWrap: "anywhere" }}>
-                    <li>Paquete de libros para cada integrante, patrocinado por Zed</li>
-                    <li>Posibilidad de acceso a beca de 3 meses en Platzi, patrocinado por Interledger Foundation</li>
+                    <li>Paquete de libros para cada integrante, patrocinado por Interledger Foundation</li>
+                    <li>Beca de 3 meses en Platzi (tras completar curso "Open Payments"), patrocinada por Interledger Foundation</li>
                     <li>Reconocimiento oficial por parte de la Facultad de Ciencias como ganadorx de WeirdUI[1]</li>
                   </ul>
                 </div>
