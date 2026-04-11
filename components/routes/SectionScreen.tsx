@@ -374,8 +374,11 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.75rem", marginTop: 0 }}>
                     1er Lugar
                   </h3>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1rem" }}>
+                    <img src="/nswitch2.svg" alt="NSwitch Logo" style={{ width: "80px", height: "80px", objectFit: "contain", marginBottom: "0.5rem" }} />
+                  </div>
                   <ul style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", paddingLeft: "1rem", margin: 0, overflowWrap: "anywhere" }}>
-                    <li>Gran premio especial, patrocinado por AWS.</li>
+                    <li>Nintendo Switch 2, patrocinado por AWS.</li>
                     <li>Beca de 6 meses en Platzi para cada integrante, patrocinado por Interledger Foundation</li>
                     <li>Paquete de libros, patrocinado por Interledger Foundation</li>
                     <li>Beca de 3 meses en Pentesterlab, patrocinada por Hackers Fight Club.</li>
