@@ -430,9 +430,6 @@ class CanvAscii {
 
     this.container.appendChild(this.filter.domElement);
     this.setSize(this.width, this.height);
-
-    this.container.addEventListener('mousemove', this.onMouseMoveHandler);
-    this.container.addEventListener('touchmove', this.onMouseMoveHandler);
   }
 
   setSize(w: number, h: number): void {
