@@ -16,12 +16,12 @@ export const MENU_ITEMS: MenuItem[] = [
 ];
 
 export const SOCIAL_ITEMS: SocialItem[] = [
-  { label: "GuayabaDev", link: "https://guayabadev.com/", logo: "/guayabadevlogomenuext.svg" },
-  { label: "Sudo", link: "https://linktr.ee/Sudo_FCiencias", logo: "/sudo_isologo.svg" },
-  { label: "Ixalli", link: "https://www.instagram.com/ixalli_oficial/", logo: "/ixalli1-updated.svg" },
-  { label: "PumasMás", link: "https://www.instagram.com/pumasmas.fcunam/", logo: "/pumasmas.svg" },
-  { label: "Hackers Fight Club", link: "https://www.instagram.com/hackersfightclub/", logo: "/hfc.svg" },
-  { label: "AWS UNAM", link: "https://linktr.ee/aws_unam", logo: "/awsunam.svg" },
+  { label: "GuayabaDev", link: "https://guayabadev.com/", logo: "/logos def/85.svg" },
+  { label: "Sudo", link: "https://linktr.ee/Sudo_FCiencias", logo: "/logos def/88.svg" },
+  { label: "Ixalli", link: "https://www.instagram.com/ixalli_oficial/", logo: "/logos def/86.svg" },
+  { label: "PumasMás", link: "https://www.instagram.com/pumasmas.fcunam/", logo: "/logos def/pumasmaslogodef.svg" },
+  { label: "Hackers Fight Club", link: "https://www.instagram.com/hackersfightclub/", logo: "/logos def/87.svg" },
+  { label: "AWS UNAM", link: "https://linktr.ee/aws_unam", logo: "/logos def/90.svg" },
 ];
 
 export const SECTION_ROUTES: SectionRoute[] = [
