@@ -213,19 +213,21 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
       <div className="w-full mt-8 px-4 md:px-0 flex justify-center">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl">
           {[
-            { id: 62, url: "https://aws.amazon.com/es/" },
-            { id: 63, url: "https://www.chiiko.design/" },
-            { id: 64, url: "https://github.com/" },
-            { id: 65, url: "https://interledger.org/es" },
-            { id: 66, url: "https://www.ketherlabs.com/" },
-            { id: 67, url: "https://www.notion.com/es" },
-            { id: 91, url: "https://zed.dev/" },
-          ].map(({ id, url }) => (
+            { id: 62, url: "https://aws.amazon.com/es/", ext: "svg" },
+            { id: 63, url: "https://www.chiiko.design/", ext: "svg" },
+            { id: 64, url: "https://github.com/", ext: "svg" },
+            { id: 65, url: "https://interledger.org/es", ext: "svg" },
+            { id: 66, url: "https://www.ketherlabs.com/", ext: "svg" },
+            { id: 67, url: "https://www.notion.com/es", ext: "svg" },
+            { id: "e-study", url: "https://estudy.com.mx/web/", ext: "svg" },
+            { id: "8qu", url: "https://8qu.com.mx/", ext: "png" },
+            { id: "mobil3logo", url: "https://mobil3.xyz/", ext: "svg" },
+          ].map(({ id, url, ext }) => (
             <a key={`sponsor-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
               <CometCard className="w-full h-full">
                 <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
                   <img
-                    src={`/logos def/${id}.svg`}
+                    src={`/logos def/${id}.${ext}`}
                     alt={`Patrocinador ${id}`}
                     className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity"
                   />
@@ -256,30 +258,34 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
       <div className="w-full mt-8 px-4 md:px-0 flex justify-center">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl">
           {[
-            { id: 68, url: "https://www.instagram.com/awsclub.ipn/" },
-            { id: 69, url: "https://www.instagram.com/aws.ajolotes/" },
-            { id: 70, url: "https://www.instagram.com/chidastech/" },
-            { id: 71, url: "https://www.instagram.com/embajadorascloud/" },
-            { id: 72, url: "https://www.meetup.com/es-es/fedora-mexico/" },
-            { id: 73, url: "https://githubcampus.expert/" },
-            { id: 92, url: "https://www.instagram.com/helloworld_unam/" },
-            { id: 74, url: "https://www.instagram.com/lidsol_fi/" },
-            { id: 75, url: "https://www.instagram.com/lnxzpn/" },
-            { id: 76, url: "https://www.instagram.com/nebursaturnacademy/" },
-            { id: 77, url: "https://www.instagram.com/panteras.dev/" },
-            { id: 78, url: "https://www.instagram.com/panteras.sec/" },
-            { id: 79, url: "https://www.instagram.com/pythoncdmx/" },
-            { id: 80, url: "https://rustmx.github.io/" },
-            { id: 81, url: "https://www.instagram.com/techy_events_community/" },
-            { id: 82, url: "https://www.instagram.com/technolatinas/" },
-            { id: 83, url: "https://www.instagram.com/woman_diversity/" },
-            { id: 84, url: "https://linktr.ee/0xCommunity?utm_source=linktree_profile_share&ltsid=de24dfa7-71e9-45b7-93bd-b716504a6fce" },
-          ].map(({ id, url }) => (
+            { id: 68, url: "https://www.instagram.com/awsclub.ipn/", logo: "/logos def/68.svg" },
+            { id: 69, url: "https://www.instagram.com/aws.ajolotes/", logo: "/logos def/69.svg" },
+            { id: "axopunk", url: "https://linktr.ee/axopunk?utm_source=linktree_profile_share&ltsid=bf7051d1-97eb-44a7-a9ae-98f87e9a7c10", logo: "/logos def/AxoPunk_TintaBlanca.png" },
+            { id: 70, url: "https://www.instagram.com/chidastech/", logo: "/logos def/70.svg" },
+            { id: "codeandomexico", url: "https://codeandomexico.org/", logo: "/logos def/codeandomexico.svg" },
+            { id: 71, url: "https://www.instagram.com/embajadorascloud/", logo: "/logos def/71.svg" },
+            { id: 72, url: "https://www.meetup.com/es-es/fedora-mexico/", logo: "/logos def/72.svg" },
+            { id: "gittogethercdmx", url: "https://www.instagram.com/gittogethercdmx/", logo: "/logos def/GitTogetherCDMX_Center.png" },
+            { id: 73, url: "https://githubcampus.expert/", logo: "/logos def/73.svg" },
+            { id: 92, url: "https://www.instagram.com/helloworld_unam/", logo: "/logos def/92.svg" },
+            { id: 74, url: "https://www.instagram.com/lidsol_fi/", logo: "/logos def/74.svg" },
+            { id: 75, url: "https://www.instagram.com/lnxzpn/", logo: "/logos def/75.svg" },
+            { id: 76, url: "https://www.instagram.com/nebursaturnacademy/", logo: "/logos def/76.svg" },
+            { id: 77, url: "https://www.instagram.com/panteras.dev/", logo: "/logos def/77.svg" },
+            { id: 78, url: "https://www.instagram.com/panteras.sec/", logo: "/logos def/78.svg" },
+            { id: 79, url: "https://www.instagram.com/pythoncdmx/", logo: "/logos def/79.svg" },
+            { id: "techsisters", url: "https://www.instagram.com/techsisterss/", logo: "/logos def/techsisters.png" },
+            { id: 80, url: "https://rustmx.github.io/", logo: "/logos def/80.svg" },
+            { id: 81, url: "https://www.instagram.com/techy_events_community/", logo: "/logos def/81.svg" },
+            { id: 82, url: "https://www.instagram.com/technolatinas/", logo: "/logos def/82.svg" },
+            { id: 83, url: "https://www.instagram.com/woman_diversity/", logo: "/logos def/83.svg" },
+            { id: 84, url: "https://linktr.ee/0xCommunity?utm_source=linktree_profile_share&ltsid=de24dfa7-71e9-45b7-93bd-b716504a6fce", logo: "/logos def/84.svg" },
+          ].map(({ id, url, logo }) => (
             <a key={`allied-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
               <CometCard className="w-full h-full">
                 <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
                   <img
-                    src={`/logos def/${id}.svg`}
+                    src={logo}
                     alt={`Comunidad ${id}`}
                     className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity"
                   />
@@ -310,18 +316,18 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
       <div className="w-full mt-8 px-4 md:px-0 flex justify-center pb-4">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl">
           {[
-            { id: 85, url: "https://guayabadev.com/" },
-            { id: 86, url: "https://www.instagram.com/ixalli_oficial/" },
-            { id: 87, url: "https://www.instagram.com/hackersfightclub/" },
-            { id: 88, url: "https://linktr.ee/Sudo_FCiencias" },
-            { id: 89, url: "https://www.instagram.com/pumasmas.fcunam/" },
-            { id: 90, url: "https://linktr.ee/aws_unam" },
-          ].map(({ id, url }) => (
+            { id: 85, url: "https://guayabadev.com/", logo: "/logos def/85.svg" },
+            { id: 86, url: "https://www.instagram.com/ixalli_oficial/", logo: "/logos def/86.svg" },
+            { id: 87, url: "https://www.instagram.com/hackersfightclub/", logo: "/logos def/87.svg" },
+            { id: 88, url: "https://linktr.ee/Sudo_FCiencias", logo: "/logos def/88.svg" },
+            { id: 89, url: "https://www.instagram.com/pumasmas.fcunam/", logo: "/logos def/pumasmaslogodef.svg" },
+            { id: 90, url: "https://linktr.ee/aws_unam", logo: "/logos def/90.svg" },
+          ].map(({ id, url, logo }) => (
             <a key={`organizer-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
               <CometCard className="w-full h-full">
                 <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
                   <img
-                    src={`/logos def/${id}.svg`}
+                    src={logo}
                     alt={`Comunidad ${id}`}
                     className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity"
                   />
