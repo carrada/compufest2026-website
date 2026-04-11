@@ -178,7 +178,7 @@
   height: 128px;
   display: block;
   transition: filter 0.3s ease, opacity 0.3s ease;
-  filter: brightness(0) invert(1);
+  filter: none;
   object-fit: contain;
 }
 .sm-socials-item:nth-child(1) .sm-socials-logo {
@@ -186,17 +186,17 @@
 }
 .sm-socials-item:nth-child(2) .sm-socials-logo,
 .sm-socials-item:nth-child(3) .sm-socials-logo {
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 .sm-socials-link:hover .sm-socials-logo {
-  filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+  filter: none;
 }
 .sm-socials-item:nth-child(1) .sm-socials-link:hover .sm-socials-logo {
   filter: none;
 }
 .sm-socials-item:nth-child(2) .sm-socials-link:hover .sm-socials-logo,
 .sm-socials-item:nth-child(3) .sm-socials-link:hover .sm-socials-logo {
-  filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+  filter: none;
 }
 .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 .sm-panel-item {
@@ -232,14 +232,14 @@
   opacity: var(--sm-num-opacity, 0);
 }
 .staggered-menu-panel .sm-socials-item:nth-child(1) .sm-socials-logo {
-  filter: brightness(0) invert(1) !important;
+  filter: none !important;
 }
 .staggered-menu-panel .sm-socials-list .sm-socials-link {
   opacity: 1;
   transition: opacity 0.3s ease;
 }
 .staggered-menu-panel .sm-socials-logo {
-  filter: brightness(0) invert(1) !important;
+  filter: none !important;
 }
 .staggered-menu-panel .sm-socials-list:hover .sm-socials-link:not(:hover) {
   opacity: 0.35;
