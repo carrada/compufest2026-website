@@ -222,6 +222,7 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
             { id: "e-study", url: "https://estudy.com.mx/web/", ext: "svg" },
             { id: "8qu", url: "https://8qu.com.mx/", ext: "png" },
             { id: "mobil3logo", url: "https://mobil3.xyz/", ext: "svg" },
+            { id: "Logo-makings", url: "https://www.instagram.com/making.something_/", ext: "png" },
           ].map(({ id, url, ext }) => (
             <a key={`sponsor-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
               <CometCard className="w-full h-full">
