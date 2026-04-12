@@ -480,10 +480,11 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
         <div className="w-full px-4 md:px-8 lg:px-16">
           <div className="mb-12 text-center">
             <h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center"
               style={{
                 fontFamily: "'Red Hat Display', sans-serif",
-                fontSize: "3.5rem",
                 fontWeight: 700,
+                letterSpacing: "-1px",
                 color: "#26D968",
                 marginBottom: "1rem",
               }}
