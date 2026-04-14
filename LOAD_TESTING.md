@@ -54,8 +54,7 @@ Rutas incluidas:
 - `/`
 - `/faq`
 - `/hackathon`
-- `/charlas`
-- `/talleres`
+- `/agenda`
 - `/nosotros`
 
 Umbrales por escenario:

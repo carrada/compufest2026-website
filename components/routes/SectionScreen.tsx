@@ -409,67 +409,34 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             </p>
           </section>
         </div>
-      ) : title === "Charlas" ? (
+      ) : title === "Agenda" ? (
         <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
           <Terminal
             commands={[
-              "status --charlas",
-              "charlas --info",
+              "status --agenda",
+              "agenda --info",
             ]}
             outputs={{
               0: [
                 "⚠️ SECCIÓN EN CONSTRUCCIÓN",
                 "Esta sección no está en funcionamiento en este momento.",
                 "",
-                "¡Pero pronto tendremos charlas increíbles!",
+                "¡Pero pronto tendremos tu agenda completa!",
               ],
               1: [
-                "📢 CHARLAS COMPUFEST 2026",
+                "📅 AGENDA COMPUFEST 2026",
                 "",
                 "Contaremos con:",
-                "• Líderes de opinión en la industria tech",
+                "• Charlas con líderes de opinión en tech",
+                "• Talleres prácticos para aprender construyendo",
                 "• Conferencias en diferentes locaciones",
+                "• Hackathon: WeirdUI[1]",
                 "• Oportunidad de networking con profesionales",
-                "  con años de experiencia en la industria",
                 "",
                 "✨ Lo mejor: ¡TODO COMPLETAMENTE GRATIS!",
                 "",
                 "Mantente atento a nuestras redes sociales",
-                "para conocer a los speakers y horarios.",
-              ],
-            }}
-            typingSpeed={30}
-            delayBetweenCommands={800}
-          />
-        </div>
-      ) : title === "Talleres" ? (
-        <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
-          <Terminal
-            commands={[
-              "status --talleres",
-              "talleres --info",
-            ]}
-            outputs={{
-              0: [
-                "⚠️ SECCIÓN EN CONSTRUCCIÓN",
-                "Esta sección no está en funcionamiento en este momento.",
-                "",
-                "¡Pero pronto tendremos talleres increíbles!",
-              ],
-              1: [
-                "🎓 TALLERES COMPUFEST 2026",
-                "",
-                "Talleres en locaciones exclusivas en la facultad",
-                "",
-                "Aprenderás:",
-                "• Habilidades laborales para el mercado tech",
-                "• Experiencia práctica en proyectos reales",
-                "• Conocimiento directo de profesionales",
-                "",
-                "Perfecto si quieres meterte al mercado tech",
-                "en un futuro. ¡Totalmente GRATIS!",
-                "",
-                "Síguenos en redes sociales para más detalles.",
+                "para conocer el cronograma completo.",
               ],
             }}
             typingSpeed={30}
