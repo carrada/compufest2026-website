@@ -621,49 +621,49 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-7xl">
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
-                    <img src="/logoscharlas/Amazon_Web_Services-Logo.wine.svg" alt="AWS" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                    <img src="/logoscharlas/Amazon_Web_Services-Logo.wine.svg" alt="AWS" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
                   </div>
                 </CometCard>
                 
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
-                    <img src="/logoscharlas/Google_2015_logo.svg.png" alt="Google" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                    <img src="/logoscharlas/Google_Favicon_2025.svg.png" alt="Google" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
                   </div>
                 </CometCard>
                 
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
-                    <img src="/logoscharlas/Logo_de_Actinver.svg.png" alt="Actinver" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                    <img src="/logoscharlas/microsoft-logo.webp" alt="Microsoft" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
                   </div>
                 </CometCard>
                 
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
-                    <img src="/logoscharlas/Mercado-Libre-Logo-2013.png" alt="Mercado Libre" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                    <img src="/logoscharlas/Mercado-Libre-Logo-2013.png" alt="Mercado Libre" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
                   </div>
                 </CometCard>
                 
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
-                    <img src="/logoscharlas/Netflix_Logomark.png" alt="Netflix" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                    <img src="/logoscharlas/netflix_logo_icon_170919.webp" alt="Netflix" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
                   </div>
                 </CometCard>
                 
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
-                    <img src="/logoscharlas/Red_Hat-Logo.svg" alt="Red Hat" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                    <img src="/logoscharlas/Red_Hat-Logo.png" alt="Red Hat" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
                   </div>
                 </CometCard>
                 
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
-                    <img src="/logoscharlas/caylent-2.svg" alt="Caylent" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                    <img src="/logoscharlas/mdonalds.svg" alt="Mcdonalds" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
                   </div>
                 </CometCard>
                 
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
-                    <img src="/logoscharlas/github.svg" alt="GitHub" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                    <img src="/logoscharlas/github.svg" alt="GitHub" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
                   </div>
                 </CometCard>
               </div>
