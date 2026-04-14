@@ -11,6 +11,8 @@ import { COLORS, TYPOGRAPHY, LAYOUT } from "@/lib/constants/theme";
 import dynamic from 'next/dynamic';
 import { Terminal } from "@/components/ui/terminal";
 import { GalleryDemo } from "@/components/GalleryDemo";
+import { LinkPreview } from "@/components/ui/link-preview";
+import { CometCard } from "@/components/ui/comet-card";
 
 // Dynamic import with ssr: false for component that accesses document/window
 const ASCIIText = dynamic(
@@ -32,6 +34,58 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [selectedDay, setSelectedDay] = useState("23 Abril");
+
+  const agendaData = {
+    "23-E1": [
+      { time: "9:00 - 9:20", title: "Registro", speaker: null, org: "compufest[1]" },
+      { time: "9:20 - 9:30", title: "Bienvenida", speaker: "Fer Osorio + Daniel Paredes", org: "compufest[1]" },
+      { time: "9:30 - 10:10", title: "De la curiosidad al Código", speaker: "Luisa Jaimes", org: "Ixalli" },
+      { time: "10:10 - 10:50", title: "Querida, encogi el Cluster", speaker: "Alex Callejas", org: "Fedora MX" },
+      { time: "10:50 - 11:30", title: "Principios fundamentales: La Cultura del Testing", speaker: "Eric Islas", org: "PythonCDMX" },
+      { time: "11:30 - 12:10", title: "¿Cuánto puedo optimizar? De cotas teóricas a decisiones de ingeniería", speaker: "Karla Vargas", org: "Pu++" },
+      { time: "12:10 - 12:20", title: "Lightning Talk", speaker: null, org: "Interledger Foundation" },
+      { time: "12:20 - 13:00", title: "IA Aplicada en el Mundo Real: De la teoría de agentes a migrar una farmacéutica", speaker: "Hugo Ramirez", org: "PythonCDMX" },
+      { time: "13:00 - 13:10", title: "Lightning Talk", speaker: null, org: "DGTIC" },
+      { time: "13:00 - 13:40", title: "Cosas sobre el mundo laboral que no nos dicen en la escuela", speaker: "Andrés Hernández", org: "LIDSOL" },
+      { time: "13:40 - 14:20", title: "Domina tu Entrevista Técnica", speaker: "Manuel Alcántara", org: "UNAM" },
+      { time: "14:20 - 14:30", title: "Despedida", speaker: null, org: "compufest[1]" },
+    ],
+    "23-E2": [
+      { time: "10:00 - 11:00", title: "¿Cómo empezar en la nube?", speaker: "David Sol", org: "Ajolotes en la Nube" },
+      { time: "11:00 - 12:00", title: "El Umbral de los Autómatas Pensantes", speaker: "Iván Castañeda", org: "PythonCDMX" },
+      { time: "12:00 - 13:00", title: "Desarrolla tu primera pipeline de ML en producción", speaker: "Yhary Arias", org: null },
+      { time: "13:00 - 14:00", title: "Tu primer agente de IA en 45 minutos (sin saber de IA)", speaker: "Brenda Bravo", org: null },
+      { time: "14:00 - 15:00", title: "De Bare-Metal a Cloud Native: Arquitectura híbrida con KVM, libvirt y K3s", speaker: "Julio Vázquez", org: "Sudo FCiencias" },
+      { time: "15:00 - 16:00", title: "¡Deja de usar notebooks! Prepara tus modelos para funcionar en el mundo real", speaker: "Carlos Sánchez", org: null },
+    ],
+    "23-E3": [
+      { time: "10:00 - 10:40", title: "Desarrollando apps robustas con AWS", speaker: "John Kleinad", org: "AWS Cloud Club UNAM" },
+      { time: "10:40 - 11:20", title: "De Usuario a Dueño", speaker: "Diego Bravo", org: null },
+      { time: "11:20 - 12:00", title: "Open Source en el Monitoreo", speaker: "Victor Ledesma", org: "AxoPunk" },
+      { time: "12:00 - 12:40", title: "De la teoría a la blockchain: construyendo sobre Stellar", speaker: "Fernanda Tello +", org: "CriptoUNAM" },
+      { time: "12:40 - 13:20", title: "¿La nube está matando al Hardware?", speaker: "Alexa Joaquín", org: "AWS Cloud Club IPN" },
+      { time: "13:20 - 14:00", title: "Cualquier videojuego es un Rubik", speaker: "Gadiel Guillen (Akai-Okami)", org: "Godot Engine" },
+    ],
+    "24-E1": [
+      { time: "9:00 - 9:20", title: "Registro", speaker: null, org: "compufest[1]" },
+      { time: "9:20 - 9:30", title: "Bienvenida", speaker: null, org: "compufest[1]" },
+      { time: "9:30 - 10:10", title: "Anatomia de un Ataque en Memoria", speaker: "Lilith Diaz", org: "HFC" },
+      { time: "10:10 - 10:50", title: "Nube & Proyectos OSS", speaker: "Manuel Ortiz", org: "GitTogether CDMX" },
+      { time: "10:50 - 11:30", title: "Software Libre como Trampolín: de LIDSOL a GSoC a Internship", speaker: "Enrique Calderon", org: "LIDSOL" },
+      { time: "11:30 - 12:10", title: "Despierta tu ímpetu empresarial", speaker: "Emmanuel Zamora", org: "e-Study" },
+      { time: "12:10 - 12:50", title: "No te van a contratar por saber AI: te van a contratar por lo que construyas con ella", speaker: "Ana Cifuentes", org: "Women Diversity + Chidas Tech" },
+      { time: "12:50 - 13:10", title: "Pitches WeirdUI[1]", speaker: null, org: "compufest[1]" },
+      { time: "13:10 - 13:50", title: "Quibole con Kiro?", speaker: "Alex Espinoza + Ramses Mata", org: "AWS" },
+      { time: "13:50 - 14:20", title: "Resultados WeirdUI[1] / CTF", speaker: null, org: "compufest[1]" },
+      { time: "14:20 - 14:30", title: "Despedida", speaker: null, org: "compufest[1]" },
+    ],
+    "24-E2": [
+      { time: "10:00 - 11:00", title: "Over-Engineering: Cómo quemar crédito de AWS para validar tu comida", speaker: "Josafat Jimenez", org: "Guayaba Devs" },
+      { time: "11:00 - 12:00", title: "Analisis de vulnerabilidad a una cámara WIFI", speaker: "Jesus Barajas", org: "HFC" },
+      { time: "12:00 - 13:00", title: "Mapeo colaborativo de transporte público con herramientas libres", speaker: "Oscar Hernández", org: "Codeando Mexico" },
+    ],
+  };
 
   useEffect(() => {
     let debounceTimer: NodeJS.Timeout;
@@ -411,37 +465,210 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
         </div>
       ) : title === "Agenda" ? (
         <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
-          <Terminal
-            commands={[
-              "status --agenda",
-              "agenda --info",
-            ]}
-            outputs={{
-              0: [
-                "⚠️ SECCIÓN EN CONSTRUCCIÓN",
-                "Esta sección no está en funcionamiento en este momento.",
-                "",
-                "¡Pero pronto tendremos tu agenda completa!",
-              ],
-              1: [
-                "📅 AGENDA COMPUFEST 2026",
-                "",
-                "Contaremos con:",
-                "• Charlas con líderes de opinión en tech",
-                "• Talleres prácticos para aprender construyendo",
-                "• Conferencias en diferentes locaciones",
-                "• Hackathon: WeirdUI[1]",
-                "• Oportunidad de networking con profesionales",
-                "",
-                "✨ Lo mejor: ¡TODO COMPLETAMENTE GRATIS!",
-                "",
-                "Mantente atento a nuestras redes sociales",
-                "para conocer el cronograma completo.",
-              ],
-            }}
-            typingSpeed={30}
-            delayBetweenCommands={800}
-          />
+          <div className="mb-12 text-center">
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center"
+              style={{
+                fontFamily: "'Red Hat Display', sans-serif",
+                fontWeight: 700,
+                letterSpacing: "-1px",
+                color: "#26D968",
+                marginBottom: "1rem",
+              }}
+            >
+              Agenda del Evento
+            </h1>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#999", lineHeight: "1.6", marginBottom: "3rem" }}>
+              (Presiona el título en color verde de cada escenario para ver su ubicación en Google Maps o pide ayuda al staff para localizar el Aula)
+            </p>
+          </div>
+
+          {/* Days Tabs */}
+          <div className="flex gap-4 justify-center mb-8 flex-wrap">
+            {["23 Abril", "24 Abril"].map((day) => (
+              <button
+                key={day}
+                onClick={() => setSelectedDay(day)}
+                style={{
+                  fontFamily: "'Red Hat Display', sans-serif",
+                  fontSize: "1.1rem",
+                  fontWeight: selectedDay === day ? 700 : 500,
+                  color: selectedDay === day ? "#26D968" : "#999",
+                  borderBottom: selectedDay === day ? "2px solid #26D968" : "2px solid transparent",
+                  padding: "0.5rem 1rem",
+                  background: "transparent",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                {day}
+              </button>
+            ))}
+          </div>
+
+          {/* Agenda Grid */}
+          <div className="space-y-8">
+            {selectedDay === "23 Abril" && (
+              <>
+                {/* E1 */}
+                <div>
+                  <LinkPreview url="https://share.google/UuaRL1tdbkfIuOg9y" isStatic imageSrc="/abccelis.webp">
+                    <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario 1 - Auditorio Alberto Barajas Celis</h2>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["23-E1"].map((item: any, idx: number) => (
+                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* E2 */}
+                <div>
+                  <LinkPreview url="https://share.google/CohKlIQOGJB2PXQQa" isStatic imageSrc="/aulaGoogle.jpg">
+                    <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario 2 - Aula Google</h2>
+                      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#999", marginBottom: "1rem" }}>(Pide ayuda al staff para encontrar el aula exacta dentro del Edificio Yellizcalli)</p>
+                    </div>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["23-E2"].map((item: any, idx: number) => (
+                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* E3 */}
+                <div>
+                  <LinkPreview url="https://share.google/YkQZD6gvYOLPWYbu7" isStatic imageSrc="/LDP.jpg">
+                    <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario 3 - Laboratorio de Lenguajes de Programación</h2>
+                      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#999", marginBottom: "1rem" }}>(Pide ayuda al Staff para localizar el aula exacta, se encuentra en el piso 3 del Edificio Tlahuizcalpan)</p>
+                    </div>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["23-E3"].map((item: any, idx: number) => (
+                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {selectedDay === "24 Abril" && (
+              <>
+                {/* E1 */}
+                <div>
+                  <LinkPreview url="https://share.google/UuaRL1tdbkfIuOg9y" isStatic imageSrc="/abccelis.webp">
+                    <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario 1 - Auditorio Alberto Barajas Celis</h2>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["24-E1"].map((item: any, idx: number) => (
+                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* E2 */}
+                <div>
+                  <LinkPreview url="https://share.google/CohKlIQOGJB2PXQQa" isStatic imageSrc="/aulaGoogle.jpg">
+                    <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario 2 - Aula Google</h2>
+                      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#999", marginBottom: "1rem" }}>(Pide ayuda al staff para encontrar el aula exacta dentro del Edificio Yellizcalli)</p>
+                    </div>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["24-E2"].map((item: any, idx: number) => (
+                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center flex-col">
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1rem", color: "#ccc", lineHeight: "1.8" }}>
+              Contaremos con charlas y talleres de empleados que trabajan en
+            </p>
+            
+            {/* Comet Cards Grid */}
+            <div className="w-full mt-8 px-4 md:px-0 flex justify-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-7xl">
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Amazon_Web_Services-Logo.wine.svg" alt="AWS" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Google_2015_logo.svg.png" alt="Google" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Logo_de_Actinver.svg.png" alt="Actinver" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Mercado-Libre-Logo-2013.png" alt="Mercado Libre" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Netflix_Logomark.png" alt="Netflix" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Red_Hat-Logo.svg" alt="Red Hat" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/caylent-2.svg" alt="Caylent" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/github.svg" alt="GitHub" className="w-28 h-28 object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+              </div>
+            </div>
+          </div>
         </div>
       ) : title === "Nosotros" ? (
         <div className="w-full px-4 md:px-8 lg:px-16">
