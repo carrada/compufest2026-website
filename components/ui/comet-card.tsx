@@ -14,11 +14,13 @@ export const CometCard = ({
   translateDepth = 20,
   className,
   children,
+  disableGlare = false,
 }: {
   rotateDepth?: number;
   translateDepth?: number;
   className?: string;
   children: React.ReactNode;
+  disableGlare?: boolean;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -101,14 +103,16 @@ export const CometCard = ({
         className="relative rounded-2xl"
       >
         {children}
-        <motion.div
-          className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay"
-          style={{
-            background: glareBackground,
-            opacity: 0.6,
-          }}
-          transition={{ duration: 0.2 }}
-        />
+        {!disableGlare && (
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay"
+            style={{
+              background: glareBackground,
+              opacity: 0.6,
+            }}
+            transition={{ duration: 0.2 }}
+          />
+        )}
       </motion.div>
     </div>
   );
