@@ -489,6 +489,14 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 </div>
                 <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
                   <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    María Ximena Lezama Hernández
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
+                    Licenciada en Ciencias de la Computación, especialista en ciberseguridad certificada por ISC2, futura maestra en Gestión de Tecnologías de la Información.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
                     Manuel Soto Romero
                   </h3>
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
@@ -509,14 +517,6 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   </h3>
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
                     Maestro computólogo y Filósofo de la Computación. Científico Cognitivista, Líder UX en AgileEngine y Fundador del Grupo de Investigación de Filosofía de la Computación en México.
-                  </p>
-                </div>
-                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
-                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
-                    María Ximena Lezama Hernández
-                  </h3>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
-                    Licenciada en Ciencias de la Computación, especialista en ciberseguridad certificada por ISC2, futura maestra en Gestión de Tecnologías de la Información.
                   </p>
                 </div>
               </div>
