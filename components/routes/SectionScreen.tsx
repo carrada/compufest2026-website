@@ -503,6 +503,22 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     Fundador y mentor de Hackers Fight Club, especialista en ciberseguridad ofensiva y defensiva.
                   </p>
                 </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    Enrique F. Soto-Astorga
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
+                    Maestro computólogo y Filósofo de la Computación. Científico Cognitivista, Líder UX en AgileEngine y Fundador del Grupo de Investigación de Filosofía de la Computación en México.
+                  </p>
+                </div>
+                <div style={{ backgroundColor: "rgba(38, 217, 104, 0.1)", padding: cardPadding, borderRadius: "6px", border: "1px solid rgba(38, 217, 104, 0.2)" }}>
+                  <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.05rem", fontWeight: 600, color: COLORS.primary, marginBottom: "0.6rem", marginTop: 0 }}>
+                    María Ximena Lezama Hernández
+                  </h3>
+                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#bbb", lineHeight: "1.6", margin: 0, overflowWrap: "anywhere" }}>
+                    Licenciada en Ciencias de la Computación, especialista en ciberseguridad certificada por ISC2, futura maestra en Gestión de Tecnologías de la Información.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -554,59 +570,107 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
           </section>
         </div>
       ) : title === "Agenda" ? (
-        <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
-          <div className="mb-12 text-center">
+        <div className="w-full px-3 sm:px-4 md:px-8 lg:px-16 min-h-96">
+          <div className="mb-8 sm:mb-12 text-center">
             <h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center"
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center"
               style={{
                 fontFamily: "'Red Hat Display', sans-serif",
                 fontWeight: 700,
                 letterSpacing: "-1px",
                 color: "#26D968",
-                marginBottom: "1rem",
+                marginBottom: "0.75rem",
               }}
             >
               Agenda del Evento
             </h1>
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#999", lineHeight: "1.6", marginBottom: "3rem" }}>
-              (Presiona el título en color verde para ir al link de la transmisión en vivo)
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.9rem", color: "#999", lineHeight: "1.6", marginBottom: "2rem" }}>
+              (Presiona el título de cada Escenario en color verde para ir al link de la transmisión en vivo, Ejemplo: "Escenario #0 - En Línea")
             </p>
           </div>
 
           {/* Days Tabs */}
-          <div className="flex gap-2 sm:gap-4 justify-center mb-8 overflow-x-auto no-scrollbar">
-            {["20 Abril", "21 Abril", "22 Abril", "23 Abril", "24 Abril"].map((day) => (
-              <button
-                key={day}
-                onClick={() => setSelectedDay(day)}
-                style={{
-                  fontFamily: "'Red Hat Display', sans-serif",
-                  fontSize: isMobile ? "0.9rem" : "1.1rem",
-                  fontWeight: selectedDay === day ? 700 : 500,
-                  color: selectedDay === day ? "#26D968" : "#999",
-                  borderBottom: selectedDay === day ? "2px solid #26D968" : "2px solid transparent",
-                  padding: isMobile ? "0.4rem 0.75rem" : "0.5rem 1rem",
-                  background: "transparent",
-                  cursor: "pointer",
-                  transition: "color 0.3s ease, border-color 0.3s ease",
-                  whiteSpace: "nowrap",
-                  minWidth: "fit-content",
-                  flex: "0 0 auto",
-                }}
-              >
-                {day}
-              </button>
-            ))}
+          <div className="mb-6 sm:mb-8 px-1 md:px-2">
+            <div className="grid grid-cols-3 gap-1.5 w-full md:hidden">
+              {["20 Abril", "21 Abril", "22 Abril"].map((day) => (
+                <button
+                  key={day}
+                  onClick={() => setSelectedDay(day)}
+                  style={{
+                    fontFamily: "'Red Hat Display', sans-serif",
+                    fontSize: "0.72rem",
+                    fontWeight: selectedDay === day ? 700 : 500,
+                    color: selectedDay === day ? "#26D968" : "#999",
+                    borderBottom: selectedDay === day ? "2px solid #26D968" : "2px solid transparent",
+                    padding: "0.28rem 0.2rem",
+                    background: "transparent",
+                    cursor: "pointer",
+                    transition: "color 0.3s ease, border-color 0.3s ease",
+                    whiteSpace: "nowrap",
+                    minWidth: 0,
+                  }}
+                >
+                  {day}
+                </button>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-1.5 w-full mt-2 md:hidden">
+              {["23 Abril", "24 Abril"].map((day) => (
+                <button
+                  key={day}
+                  onClick={() => setSelectedDay(day)}
+                  style={{
+                    fontFamily: "'Red Hat Display', sans-serif",
+                    fontSize: "0.72rem",
+                    fontWeight: selectedDay === day ? 700 : 500,
+                    color: selectedDay === day ? "#26D968" : "#999",
+                    borderBottom: selectedDay === day ? "2px solid #26D968" : "2px solid transparent",
+                    padding: "0.28rem 0.2rem",
+                    background: "transparent",
+                    cursor: "pointer",
+                    transition: "color 0.3s ease, border-color 0.3s ease",
+                    whiteSpace: "nowrap",
+                    minWidth: 0,
+                  }}
+                >
+                  {day}
+                </button>
+              ))}
+            </div>
+            <div className="hidden md:flex gap-1 sm:gap-3 justify-center overflow-x-auto no-scrollbar px-2">
+              {["20 Abril", "21 Abril", "22 Abril", "23 Abril", "24 Abril"].map((day) => (
+                <button
+                  key={day}
+                  onClick={() => setSelectedDay(day)}
+                  style={{
+                    fontFamily: "'Red Hat Display', sans-serif",
+                    fontSize: "1.1rem",
+                    fontWeight: selectedDay === day ? 700 : 500,
+                    color: selectedDay === day ? "#26D968" : "#999",
+                    borderBottom: selectedDay === day ? "2px solid #26D968" : "2px solid transparent",
+                    padding: "0.5rem 1rem",
+                    background: "transparent",
+                    cursor: "pointer",
+                    transition: "color 0.3s ease, border-color 0.3s ease",
+                    whiteSpace: "nowrap",
+                    minWidth: "fit-content",
+                    flex: "0 0 auto",
+                  }}
+                >
+                  {day}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Agenda Grid */}
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-6 md:space-y-8">
             {selectedDay === "20 Abril" && (
               <div>
                 <LinkPreview url="https://youtube.com/live/uHDLR-iSCCY" isStatic imageSrc="/youtube-thumbnail.jpg">
-                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
+                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1.2rem" : "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: isMobile ? "0.5rem" : "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
                 </LinkPreview>
-                <div className="space-y-4">
+                <div className="space-y-2 sm:space-y-4">
                   {agendaData["20-Online"].map((item: any, idx: number) => {
                     const description = getTalkDescription(item.title);
                     return (
@@ -626,9 +690,9 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             {selectedDay === "21 Abril" && (
               <div>
                 <LinkPreview url="https://youtube.com/live/nvOXItnD_OI" isStatic imageSrc="/youtube-thumbnail.jpg">
-                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
+                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1.2rem" : "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: isMobile ? "0.5rem" : "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
                 </LinkPreview>
-                <div className="space-y-4">
+                <div className="space-y-2 sm:space-y-4">
                   {agendaData["21-Online"].map((item: any, idx: number) => {
                     const description = getTalkDescription(item.title);
                     return (
@@ -648,9 +712,9 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             {selectedDay === "22 Abril" && (
               <div>
                 <LinkPreview url="https://youtube.com/live/1XvX4L5aVwU" isStatic imageSrc="/youtube-thumbnail.jpg">
-                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
+                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1.2rem" : "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: isMobile ? "0.5rem" : "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
                 </LinkPreview>
-                <div className="space-y-4">
+                <div className="space-y-2 sm:space-y-4">
                   {agendaData["22-Online"].map((item: any, idx: number) => {
                     const description = getTalkDescription(item.title);
                     return (
@@ -672,9 +736,9 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 {/* E1 */}
                 <div>
                   <LinkPreview url="https://youtube.com/live/5c71IWPEBf8" isStatic imageSrc="/abccelis.webp">
-                    <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #1 - Auditorio Barajas Celis</h2>
+                    <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1.2rem" : "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: isMobile ? "0.5rem" : "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #1 - Auditorio Barajas Celis</h2>
                   </LinkPreview>
-                  <div className="space-y-4">
+                  <div className="space-y-2 sm:space-y-4">
                     {agendaData["23-E1"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
@@ -694,10 +758,10 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 <div>
                   <LinkPreview url="https://youtube.com/live/3S3OGkZAMcE" isStatic imageSrc="/aulaGoogle.jpg">
                     <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
-                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario #2 - Aula Google</h2>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1.2rem" : "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: isMobile ? "0.4rem" : "0.5rem" }}>Escenario #2 - Aula Google</h2>
                     </div>
                   </LinkPreview>
-                  <div className="space-y-4">
+                  <div className="space-y-2 sm:space-y-4">
                     {agendaData["23-E2"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
@@ -717,10 +781,10 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 <div>
                   <LinkPreview url="https://youtube.com/live/aylkt-TakIg" isStatic imageSrc="/LDP.jpg">
                     <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
-                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario #3 - Lab. Leng. Programación</h2>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1.2rem" : "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: isMobile ? "0.4rem" : "0.5rem" }}>Escenario #3 - Lab. Leng. Programación</h2>
                     </div>
                   </LinkPreview>
-                  <div className="space-y-4">
+                  <div className="space-y-2 sm:space-y-4">
                     {agendaData["23-E3"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
@@ -743,9 +807,9 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 {/* E1 */}
                 <div>
                   <LinkPreview url="https://youtube.com/live/jgEbvFdK5lM" isStatic imageSrc="/abccelis.webp">
-                    <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #1 - Auditorio Barajas Celis</h2>
+                    <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1.2rem" : "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: isMobile ? "0.5rem" : "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #1 - Auditorio Barajas Celis</h2>
                   </LinkPreview>
-                  <div className="space-y-4">
+                  <div className="space-y-2 sm:space-y-4">
                     {agendaData["24-E1"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
@@ -765,10 +829,10 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                 <div>
                   <LinkPreview url="https://youtube.com/live/gL4j1BmPNNY" isStatic imageSrc="/aulaGoogle.jpg">
                     <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
-                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario #2 - Aula Google</h2>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1.2rem" : "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: isMobile ? "0.4rem" : "0.5rem" }}>Escenario #2 - Aula Google</h2>
                     </div>
                   </LinkPreview>
-                  <div className="space-y-4">
+                  <div className="space-y-2 sm:space-y-4">
                     {agendaData["24-E2"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
@@ -787,14 +851,14 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             )}
           </div>
 
-          <div className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center flex-col">
-            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1rem", color: "#ccc", lineHeight: "1.8" }}>
+          <div className="w-full mt-10 sm:mt-12 md:mt-16 lg:mt-20 px-2 sm:px-4 md:px-0 flex items-center justify-center flex-col">
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.85rem" : "1rem", color: "#ccc", lineHeight: "1.8" }}>
               Contaremos con charlas y talleres de empleados que trabajan en
             </p>
             
             {/* Comet Cards Grid */}
-            <div className="w-full mt-8 px-4 md:px-0 flex justify-center">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-7xl">
+            <div className="w-full mt-6 sm:mt-8 px-2 sm:px-4 md:px-0 flex justify-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6 max-w-7xl">
                 <CometCard disableGlare className="w-full h-full">
                   <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
                     <img src="/logoscharlas/Amazon_Web_Services-Logo.wine.svg" alt="AWS" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
@@ -846,9 +910,9 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             </div>
 
             {/* Ponentes Title */}
-            <div className="w-full mt-20 px-4 md:px-0 flex flex-col items-center justify-center">
+            <div className="w-full mt-12 sm:mt-16 md:mt-20 px-2 sm:px-4 md:px-0 flex flex-col items-center justify-center">
               <h2
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center"
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center"
                 style={{
                   fontFamily: "'Red Hat Display', sans-serif",
                   fontWeight: 700,
@@ -858,14 +922,14 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
               >
                 Ponentes
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-400 mt-4 text-center" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mt-2 sm:mt-4 text-center px-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                 (Presiona la foto de cada ponente para ver su semblanza)
               </p>
             </div>
 
             {/* Ponentes Grid */}
-            <div className="w-full mt-16 px-3 sm:px-4 md:px-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+            <div className="w-full mt-10 sm:mt-12 md:mt-16 px-2 sm:px-4 md:px-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
                 {ponentes.map((ponente, idx) => (
                   <div key={idx} className="flex flex-col items-center">
                     <div className="w-full">
@@ -879,7 +943,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                               style={["Karla Vargas", "Fernanda Tello", "Ana Cifuentes"].includes(ponente.name) ? { objectPosition: "center top" } : {}}
                             />
                           ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-[#26D968] to-[#1a8a45] flex items-center justify-center">
+                            <div className="w-full h-full bg-linear-to-br from-[#26D968] to-[#1a8a45] flex items-center justify-center">
                               <div className="text-center">
                                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#fff" }}>
                                   Foto próximamente
@@ -890,7 +954,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                         }
                         secondContent={
                           ponente.semblanzaPersonal ? (
-                            <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center p-3">
+                            <div className="w-full h-full bg-linear-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center p-3">
                               <div className="text-center">
                                 <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.8rem", color: "#ccc", lineHeight: "1.5" }}>
                                   {ponente.semblanzaPersonal}
@@ -898,7 +962,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                               </div>
                             </div>
                           ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center">
+                            <div className="w-full h-full bg-linear-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center">
                               <div className="text-center p-4">
                                 <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", lineHeight: "1.6" }}>
                                   {ponente.talk}

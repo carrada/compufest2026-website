@@ -281,6 +281,9 @@ const CanvasTextDemo = memo(function CanvasTextDemo() {
             { id: 82, url: "https://www.instagram.com/technolatinas/", logo: "/logos def/82.svg" },
             { id: 83, url: "https://www.instagram.com/woman_diversity/", logo: "/logos def/83.svg" },
             { id: 84, url: "https://linktr.ee/0xCommunity?utm_source=linktree_profile_share&ltsid=de24dfa7-71e9-45b7-93bd-b716504a6fce", logo: "/logos def/84.svg" },
+            { id: "cryptounam", url: "https://www.instagram.com/cripto_unam/", logo: "/logos def/cryptounam.svg" },
+            { id: "morrastics", url: "https://www.instagram.com/morras_tics/", logo: "/logos def/Logo_MorrasTics-sin fondo.png" },
+            { id: "esblockchain", url: "https://www.instagram.com/3sblockchain_/", logo: "/logos def/EsBlockchain logo.png" },
           ].map(({ id, url, logo }) => (
             <a key={`allied-${id}`} href={url} target="_blank" rel="noopener noreferrer" className="w-full">
               <CometCard className="w-full h-full">
