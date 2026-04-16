@@ -142,6 +142,41 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
     return talk?.semblanzaCharla || null;
   };
 
+  // Helper function for responsive agenda item styles
+  const getAgendaItemStyle = (): CSSProperties => ({
+    borderLeft: isMobile ? "2px solid #26D968" : "3px solid #26D968",
+    paddingLeft: isMobile ? "1rem" : "1.5rem",
+    paddingTop: "0.5rem",
+    paddingBottom: "0.5rem",
+  });
+
+  // Helper function for responsive time text style
+  const getAgendaTimeStyle = (): CSSProperties => ({
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: isMobile ? "0.8rem" : "0.9rem",
+    color: "#26D968",
+    fontWeight: 600,
+  });
+
+  // Helper function for responsive title text style
+  const getAgendaTitleStyle = (): CSSProperties => ({
+    fontFamily: "'Red Hat Display', sans-serif",
+    fontSize: isMobile ? "0.95rem" : "1.1rem",
+    fontWeight: 600,
+    color: "#fff",
+    marginTop: "0.3rem",
+  });
+
+  // Helper function for responsive description text style
+  const getAgendaDescriptionStyle = (): CSSProperties => ({
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: isMobile ? "0.75rem" : "0.8rem",
+    color: "#aaa",
+    marginTop: "0.5rem",
+    fontStyle: "italic",
+    lineHeight: "1.5",
+  });
+
   useEffect(() => {
     let debounceTimer: NodeJS.Timeout;
 
@@ -572,12 +607,12 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   {agendaData["20-Online"].map((item: any, idx: number) => {
                     const description = getTalkDescription(item.title);
                     return (
-                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
-                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
-                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
-                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
-                        {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                      <div key={idx} style={getAgendaItemStyle()}>
+                        <div style={getAgendaTimeStyle()}>{item.time}</div>
+                        <div style={getAgendaTitleStyle()}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                        {description && <div style={getAgendaDescriptionStyle()}>{description}</div>}
                       </div>
                     );
                   })}
@@ -594,12 +629,12 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   {agendaData["21-Online"].map((item: any, idx: number) => {
                     const description = getTalkDescription(item.title);
                     return (
-                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
-                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
-                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
-                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
-                        {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                      <div key={idx} style={getAgendaItemStyle()}>
+                        <div style={getAgendaTimeStyle()}>{item.time}</div>
+                        <div style={getAgendaTitleStyle()}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                        {description && <div style={getAgendaDescriptionStyle()}>{description}</div>}
                       </div>
                     );
                   })}
@@ -616,12 +651,12 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                   {agendaData["22-Online"].map((item: any, idx: number) => {
                     const description = getTalkDescription(item.title);
                     return (
-                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
-                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
-                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
-                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
-                        {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                      <div key={idx} style={getAgendaItemStyle()}>
+                        <div style={getAgendaTimeStyle()}>{item.time}</div>
+                        <div style={getAgendaTitleStyle()}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                        {description && <div style={getAgendaDescriptionStyle()}>{description}</div>}
                       </div>
                     );
                   })}
@@ -640,12 +675,12 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     {agendaData["23-E1"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
-                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
-                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
-                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
-                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
-                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        <div key={idx} style={getAgendaItemStyle()}>
+                          <div style={getAgendaTimeStyle()}>{item.time}</div>
+                          <div style={getAgendaTitleStyle()}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={getAgendaDescriptionStyle()}>{description}</div>}
                         </div>
                       );
                     })}
@@ -663,12 +698,12 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     {agendaData["23-E2"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
-                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
-                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
-                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
-                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
-                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        <div key={idx} style={getAgendaItemStyle()}>
+                          <div style={getAgendaTimeStyle()}>{item.time}</div>
+                          <div style={getAgendaTitleStyle()}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={getAgendaDescriptionStyle()}>{description}</div>}
                         </div>
                       );
                     })}
@@ -686,12 +721,12 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     {agendaData["23-E3"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
-                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
-                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
-                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
-                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
-                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        <div key={idx} style={getAgendaItemStyle()}>
+                          <div style={getAgendaTimeStyle()}>{item.time}</div>
+                          <div style={getAgendaTitleStyle()}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={getAgendaDescriptionStyle()}>{description}</div>}
                         </div>
                       );
                     })}
@@ -711,12 +746,12 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     {agendaData["24-E1"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
-                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
-                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
-                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
-                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
-                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        <div key={idx} style={getAgendaItemStyle()}>
+                          <div style={getAgendaTimeStyle()}>{item.time}</div>
+                          <div style={getAgendaTitleStyle()}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={getAgendaDescriptionStyle()}>{description}</div>}
                         </div>
                       );
                     })}
@@ -734,12 +769,12 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                     {agendaData["24-E2"].map((item: any, idx: number) => {
                       const description = getTalkDescription(item.title);
                       return (
-                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
-                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
-                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
-                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
-                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        <div key={idx} style={getAgendaItemStyle()}>
+                          <div style={getAgendaTimeStyle()}>{item.time}</div>
+                          <div style={getAgendaTitleStyle()}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={getAgendaDescriptionStyle()}>{description}</div>}
                         </div>
                       );
                     })}
@@ -826,8 +861,8 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             </div>
 
             {/* Ponentes Grid */}
-            <div className="w-full mt-16 px-4 md:px-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="w-full mt-16 px-3 sm:px-4 md:px-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
                 {ponentes.map((ponente, idx) => (
                   <div key={idx} className="flex flex-col items-center">
                     <div className="w-full">
@@ -854,7 +889,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                           ponente.semblanzaPersonal ? (
                             <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center p-3">
                               <div className="text-center">
-                                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#ccc", lineHeight: "1.5" }}>
+                                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.8rem", color: "#ccc", lineHeight: "1.5" }}>
                                   {ponente.semblanzaPersonal}
                                 </p>
                               </div>
@@ -862,7 +897,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                           ) : (
                             <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center">
                               <div className="text-center p-4">
-                                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", lineHeight: "1.6" }}>
+                                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.75rem" : "0.85rem", color: "#ccc", lineHeight: "1.6" }}>
                                   {ponente.talk}
                                 </p>
                               </div>
@@ -875,11 +910,11 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                         once={false}
                       />
                     </div>
-                    <div className="mt-4 text-center w-full">
-                      <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#26D968", marginBottom: "0.5rem" }}>
+                    <div className="mt-3 sm:mt-4 text-center w-full">
+                      <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: isMobile ? "1rem" : "1.1rem", fontWeight: 600, color: "#26D968", marginBottom: "0.5rem" }}>
                         {ponente.name}
                       </h3>
-                      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", lineHeight: "1.5" }}>
+                      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.7rem" : "0.8rem", color: "#999", lineHeight: "1.5" }}>
                         <strong>{ponente.gender === "f" ? "La podrás ver" : "Lo podrás ver"} en:</strong>
                         <br />
                         {ponente.talk}
@@ -887,7 +922,7 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
                         <span style={{ color: "#ccc" }}>{ponente.date} • {ponente.stage}</span>
                       </p>
                       {ponente.semblanzaCharla && (
-                        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#888", lineHeight: "1.4", marginTop: "0.75rem", fontStyle: "italic" }}>
+                        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? "0.65rem" : "0.7rem", color: "#888", lineHeight: "1.4", marginTop: "0.75rem", fontStyle: "italic" }}>
                           {ponente.semblanzaCharla}
                         </p>
                       )}
