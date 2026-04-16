@@ -5,7 +5,7 @@ import { Rate } from "k6/metrics";
 const BASE_URL = (__ENV.BASE_URL || "http://localhost:3000").replace(/\/$/, "");
 const TEST_TYPE = __ENV.TEST_TYPE || "smoke";
 
-const ROUTES = ["/", "/faq", "/hackathon", "/charlas", "/talleres", "/nosotros"];
+const ROUTES = ["/", "/faq", "/hackathon", "/agenda", "/nosotros"];
 
 const OPTIONS_BY_TYPE = {
   smoke: {

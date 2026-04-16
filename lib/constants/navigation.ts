@@ -9,8 +9,7 @@ export const MENU_ITEMS: MenuItem[] = [
   { label: "Inicio", ariaLabel: "Ir al inicio", link: "/" },
   { label: "Registro", ariaLabel: "Ir al registro", link: "https://luma.com/nlyxj7sm", openInNewTab: true },
   { label: "WeirdUI", ariaLabel: "Ver la hackathon", link: "/hackathon" },
-  { label: "Charlas", ariaLabel: "Ver charlas", link: "/charlas" },
-  { label: "Talleres", ariaLabel: "Ver talleres", link: "/talleres" },
+  { label: "Agenda", ariaLabel: "Ver agenda", link: "/agenda" },
   { label: "Nosotros", ariaLabel: "Conoce al equipo", link: "/nosotros" },
   { label: "FAQ", ariaLabel: "Preguntas frecuentes", link: "/faq" },
 ];
@@ -31,14 +30,9 @@ export const SECTION_ROUTES: SectionRoute[] = [
     subtitle: "Reto creativo para construir interfaces fuera de lo común.",
   },
   {
-    path: "/charlas",
-    title: "Charlas",
-    subtitle: "Conferencias con speakers invitados de tecnología y diseño.",
-  },
-  {
-    path: "/talleres",
-    title: "Talleres",
-    subtitle: "Sesiones prácticas para aprender construyendo.",
+    path: "/agenda",
+    title: "Agenda",
+    subtitle: "Charlas, talleres y actividades de COMPUFEST 2026.",
   },
   {
     path: "/nosotros",

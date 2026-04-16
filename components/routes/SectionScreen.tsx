@@ -11,6 +11,9 @@ import { COLORS, TYPOGRAPHY, LAYOUT } from "@/lib/constants/theme";
 import dynamic from 'next/dynamic';
 import { Terminal } from "@/components/ui/terminal";
 import { GalleryDemo } from "@/components/GalleryDemo";
+import { LinkPreview } from "@/components/ui/link-preview";
+import { CometCard } from "@/components/ui/comet-card";
+import PixelTransition from "@/components/ui/PixelTransition";
 
 // Dynamic import with ssr: false for component that accesses document/window
 const ASCIIText = dynamic(
@@ -32,6 +35,112 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [selectedDay, setSelectedDay] = useState("20 Abril");
+
+  const agendaData = {
+    "20-Online": [
+      { time: "11:30 - 13:00", title: "Product Lifecycle con IA: Construye y lanza tu primer MVP, app o landing page", speaker: "Karen Valle", org: "KETHERLABS" },
+      { time: "13:00 - 14:30", title: "Fundamentos de programación de sistemas con Rust", speaker: "Gustavo de la Cruz", org: "RustMX" },
+    ],
+    "21-Online": [
+      { time: "12:00 - 13:30", title: "Python y el Diseño de Interfaces Gráficas Modernas", speaker: "Arato Aragón", org: null },
+    ],
+    "22-Online": [
+      { time: "8:00 - 8:30", title: "Introducción a Open Payments con Interledger", speaker: "Marian Villa", org: "Interledger Foundation" },
+      { time: "15:00 - 16:00", title: "De lo técnico al escenario: aprende a pichar como ganador", speaker: "Fernanda Osorio", org: "Ixalli" },
+    ],
+    "23-E1": [
+      { time: "9:00 - 9:30", title: "Registro y Bienvenida", speaker: null, org: null },
+      { time: "9:30 - 10:10", title: "De la curiosidad al código", speaker: "Luisa Jaimes", org: "Women Tech Makers" },
+      { time: "10:10 - 10:50", title: "Querida, encogí el clúster", speaker: "Alex Callejas", org: "Fedora México" },
+      { time: "10:50 - 11:30", title: "Principos fundamentales: La cultura del testing", speaker: "Erick Islas", org: "PythonCDMX" },
+      { time: "11:30 - 12:10", title: "¿Cuánto puedo optimizar? De cotas teóricas a decisiones de ingeniería", speaker: "Karla Vargas", org: null },
+      { time: "12:10 - 12:20", title: "Conociendo Interledger", speaker: "Jessica Thurlbourn", org: "Interledger Foundation" },
+      { time: "12:20 - 13:00", title: "IA aplicada al mundo real: De la teoría de agentes a migrar una farmacéutica", speaker: "Hugo Ramirez", org: "PythonCDMX" },
+      { time: "13:00 - 13:10", title: "Lightning Talk", speaker: null, org: "DGTIC" },
+      { time: "13:10 - 13:50", title: "Cosas sobre el mundo laboral que no nos dicen en la escuela", speaker: "Andrés Hernández", org: "LIDSOL" },
+      { time: "13:50 - 14:30", title: "Domina tu próxima entrevista técnica: lo que nadie te dice (y si importa)", speaker: "Manuel Alcántara", org: null },
+    ],
+    "23-E2": [
+      { time: "10:00 - 11:00", title: "¿Cómo empezar en la nube?", speaker: "David Sol", org: "AWS UG Ajolotes en la Nube" },
+      { time: "11:00 - 12:00", title: "El Umbral de los Autómatas Pensantes: Iniciación a los Laberintos de LangChain, LangGraph y DeepAgents", speaker: "Iván Castañeda", org: "PythonCDMX" },
+      { time: "12:00 - 13:00", title: "Desarrolla tu primera pipeline de ML en producción", speaker: "Yhary Arias", org: null },
+      { time: "13:00 - 14:00", title: "Tu primer agente de IA en 45 minutos (sin saber de IA)", speaker: "Brenda Bravo", org: null },
+      { time: "14:00 - 15:00", title: "De Bare-Metal a Cloud Native: Arquitectura híbrida con KVM, libvirt y K3s", speaker: "Julio Vázquez", org: "Sudo FCiencias" },
+      { time: "15:00 - 16:00", title: "¡Deja de usar notebooks! Prepara tus modelos para funcionar en el mundo real", speaker: "Carlos Sánchez", org: null },
+    ],
+    "23-E3": [
+      { time: "10:00 - 10:40", title: "Desarrollando apps robustas con AWS", speaker: "John Kleinad", org: "AWS Cloud Club UNAM" },
+      { time: "10:40 - 11:20", title: "De usuario a dueño: cómo tener control sobre tus servicios digitales y divertirte en el proceso", speaker: "Diego Bravo", org: null },
+      { time: "11:20 - 12:00", title: "Open Source en el Monitoreo", speaker: "Victor Ledesma", org: "Axopunk" },
+      { time: "12:00 - 12:40", title: "De la teoría a la blockchain: construyendo sobre Stellar", speaker: "Fernanda Tello + Gerardo Vela", org: "CriptoUNAM" },
+      { time: "12:40 - 13:20", title: "¿La nube está matando al Hardware?", speaker: "Alexa Joaquin", org: "AWS Cloud Club IPN" },
+      { time: "13:20 - 14:00", title: "Cualquier videojuego es un Rubik", speaker: "Gadiel Guillen", org: "Godot Engine" },
+    ],
+    "24-E1": [
+      { time: "9:00 - 9:30", title: "Registro y Bienvenida", speaker: null, org: null },
+      { time: "9:30 - 10:10", title: "Anatomía de un ataque en memoria", speaker: "Lilith Diaz", org: null },
+      { time: "10:10 - 10:50", title: "Nube & Proyectos OSS", speaker: "Manuel Ortiz", org: "GitTogether CDMX" },
+      { time: "10:50 - 11:30", title: "Software Libre como Trampolín: de LIDSOL a GSoC a Internship", speaker: "Enrique Calderon", org: "LIDSOL" },
+      { time: "11:30 - 12:10", title: "Despierta tu ímpetu empresarial", speaker: "Emmanuel Zamora", org: "e-Study" },
+      { time: "12:10 - 12:50", title: "No te van a contratar por saber AI: te van a contratar por lo que construyas con ella", speaker: "Ana Cifuentes", org: "Women Diversity + Chidas Tech" },
+      { time: "12:50 - 13:10", title: "Pitches Finalistas WeirdUI[1]", speaker: null, org: null },
+      { time: "13:10 - 13:50", title: "Intro a Spec Driven Development con Kiro", speaker: "Alex Espinosa + Ramses Mata", org: "AWS" },
+      { time: "13:50 - 14:20", title: "Resultados y Premiación WeirdUI[1]", speaker: null, org: null },
+      { time: "14:20 - 14:20", title: "Despedida", speaker: null, org: null },
+    ],
+    "24-E2": [
+      { time: "10:00 - 11:00", title: "Over-Engineering: Cómo quemar crédito de AWS para validar tu comida", speaker: "Josafat Jimenez", org: "Guayaba Devs" },
+      { time: "11:00 - 12:00", title: "Análisis de vulnerabilidad a una cámara WiFi", speaker: "Jesus Barajas", org: null },
+      { time: "12:00 - 13:00", title: "Mapeo colaborativo de transporte público con herramientas libres", speaker: "Oscar Hernández", org: "Codeando México" },
+    ],
+  };
+
+  const ponentes = [
+    { name: "Karen Valle", talk: "Product Lifecycle con IA: Construye y lanza tu primer MVP, app o landing page", date: "20 Abril", stage: "En Línea", photo: "/fotosponentes/karenvalle.jpeg", gender: "f", semblanzaPersonal: "MBA, fundadora KETHERLABS (automatización contable con IA). Certificaciones MIT.", semblanzaCharla: "Sesión diseñada para guiar a los participantes desde una idea inicial hasta un prototipo funcional, utilizando herramientas de IA y diseño de vanguardia. Cubriremos estrategia de producto, diseño de interfaz inteligente y desarrollo express, resultando en un flujo de trabajo replicable que reduce drásticamente tiempos y costos." },
+    { name: "Gustavo de la Cruz", talk: "Fundamentos de programación de sistemas con Rust", date: "20 Abril", stage: "En Línea", photo: "/fotosponentes/gustavodelacruz.jpeg", gender: "m", semblanzaPersonal: "Arquitecto empresarial con 20+ años. Consultor senior AWS. PMP, AWS, TOGAF, ITIL.", semblanzaCharla: "Temas de transformación organizacional, inteligencia artificial y futuro del trabajo, donde combina experiencia práctica con reflexión estratégica. Facilitador certificado en metodologías de innovación como Lego Serious Play." },
+    { name: "Arato Aragón", talk: "Python y el Diseño de Interfaces Gráficas Modernas", date: "21 Abril", stage: "En Línea", photo: null, gender: "m" },
+    { name: "Marian Villa", talk: "Introducción a Open Payments con Interledger", date: "22 Abril", stage: "En Línea", photo: "/fotosponentes/marianvilla.jpeg", gender: "f", semblanzaPersonal: "Full-stack developer, Google Developer Expert. Cofounder @pionerasdev. IBM Open Source Award 2020.", semblanzaCharla: "Exploración del funcionamiento de proyectos de Open Source Software dentro del ecosistema tecnológico y el impacto global que pueden alcanzar. Se explicará el alcance en cloud computing e innovación, y formas prácticas para comenzar a contribuir." },
+    { name: "Fernanda Osorio", talk: "De lo técnico al escenario: aprende a pichar como ganador", date: "22 Abril", stage: "En Línea", photo: "/fotosponentes/ferosorio.jpeg", gender: "f", semblanzaPersonal: "Estudiante CS UNAM, co-fundadora Mexiverse Hub (Web3). Organizadora Doors.OP.", semblanzaCharla: "Aprende a presentar tus ideas y proyectos técnicos de manera convincente en el escenario. De lo técnico al escenario: técnicas, storytelling y confianza para pichar como ganador en hackathones y presentaciones profesionales." },
+    { name: "Luisa Jaimes", talk: "De la curiosidad al código", date: "23 Abril", stage: "Escenario #1", photo: "/fotosponentes/FotoLuisaJaimes.jpg", gender: "f", semblanzaPersonal: "Senior Data Engineer, Maestría CS. Lidera ingeniería en Nyvia. Fundadora Talys, Women Techmakers.", semblanzaCharla: "Cómo pasar de la curiosidad por la tecnología a construir una carrera sólida en inteligencia artificial dentro del mundo corporativo. A través de su experiencia, habla sobre cómo crecer rápidamente, tomar decisiones estratégicas y desarrollar habilidades clave no enseñadas en escuela." },
+    { name: "Alex Callejas", talk: "Querida, encogí el clúster", date: "23 Abril", stage: "Escenario #1", photo: "/fotosponentes/alexcallejas.jpeg", gender: "m", semblanzaPersonal: "Content Architect en Red Hat, miembro del Proyecto Fedora con 25+ años en Unix/Linux. Autor certificado en administración Fedora. Experto en Ansible y SELinux, diseña laboratorios para certificaciones Red Hat.", semblanzaCharla: "Una travesía técnica sobre reducir Kubernetes con MicroShift. Ejecutar orquestación en 2GB de RAM con RHEL 10 sobre RHEL 9. Automación con Ansible confirmando miniaturización del clúster en Edge Computing." },
+    { name: "Erick Islas", talk: "Principos fundamentales: La cultura del testing", date: "23 Abril", stage: "Escenario #1", photo: "/fotosponentes/erickislas.jpeg", gender: "m", semblanzaPersonal: "Fullstack SDE Netflix. Pythonist 2013+, Java, TypeScript. Experiencia: finanzas, retail.", semblanzaCharla: "Principios fundamentales de la cultura del testing. Cómo seguir core principles de simplicity, scalability y maintainability para construir software de calidad. Un enfoque práctico a testing y code craftsmanship." },
+    { name: "Karla Vargas", talk: "¿Cuánto puedo optimizar? De cotas teóricas a decisiones de ingeniería", date: "23 Abril", stage: "Escenario #1", photo: "/fotosponentes/karlavargas.jpg", gender: "f", semblanzaPersonal: "Doctora IIMAS-UNAM. Especialista sistemas distribuidos. SDE II AWS, ex-Lyft.", semblanzaCharla: "La complejidad de los algoritmos nos da una cota teórica pero en la vida real ¿Realmente el algoritmo con mejor cota superior es el mejor? Muestra ejemplos de cómo no necesariamente es el caso, incluyendo el diseño de algoritmos pensando en la cota inferior." },
+    { name: "Jessica Thurlbourn", talk: "Conociendo Interledger", date: "23 Abril", stage: "Escenario #1", photo: "/fotosponentes/jessicathurlborn.jpeg", gender: "f", semblanzaPersonal: "Marketing & Communications Director, Interledger. 10+ años nonprofits tech. CDMX.", semblanzaCharla: "Exploración de Interledger, protocolos abiertos e interoperables para pagos digitales. Cómo la tecnología abierta y la infraestructura inclusiva pueden crear valor público duradero a escala. Traducción de iniciativas complejas en historias claras y creíbles." },
+    { name: "Hugo Ramirez", talk: "IA aplicada al mundo real: De la teoría de agentes a migrar una farmacéutica", date: "23 Abril", stage: "Escenario #1", photo: "/fotosponentes/hugoramirez.JPG", gender: "m", semblanzaPersonal: "Físico e informático. Tech desde 2013 Venezuela. Especialista deuda técnica.", semblanzaCharla: "¿Qué pasa cuando una farmacéutica tiene miles de reportes en SQL Server y necesita migrarlos a una plataforma moderna? Comparte experiencia construyendo un motor de migración impulsado por agentes de IA (LangChain, MCP, Claude) que aceleró 3x el proceso. Verá arquitectura real, lecciones y demo en vivo." },
+    { name: "Andrés Hernández", talk: "Cosas sobre el mundo laboral que no nos dicen en la escuela", date: "23 Abril", stage: "Escenario #1", photo: "/fotosponentes/Andres_Hernandez-square.jpg", gender: "m", semblanzaPersonal: "Ingeniero UNAM. Seguridad, networking, servidores. Instructor UNAM-CERT. Cursos Kubernetes.", semblanzaCharla: "Temas sobre el mundo laboral que muchas veces no queremos hablar: modalidades de contratación (nómina, esquema mixto, honorarios), cuestiones de pago, tarjetas bancarias, impuestos, entrevistas. Contenido derivado de experiencia personal para reflexionar sobre cambios laborales y decisiones profesionales." },
+    { name: "Manuel Alcántara", talk: "Domina tu próxima entrevista técnica: lo que nadie te dice (y si importa)", date: "23 Abril", stage: "Escenario #1", photo: "/fotosponentes/ManuelAlcantara.png", gender: "m", semblanzaPersonal: "Doctorado IIMAS. Profesor 13+ años. Coach ICPC finales. SDE Zillow.", semblanzaCharla: "Las entrevistas técnicas desmistiticadas desde el primer contacto con reclutadores hasta la entrevista en sí. A través de ejemplos reales, analízaremos qué buscan los entrevistadores, errores comunes y cómo destacar. Herramientas concretas y mayor claridad del proceso para enfrentar tu próxima entrevista con ventaja." },
+    { name: "David Sol", talk: "¿Cómo empezar en la nube?", date: "23 Abril", stage: "Escenario #2", photo: "/fotosponentes/DavidSolYouSquare1000 Clean.jpg", gender: "m", semblanzaPersonal: "Cloud Architect en Caylent. Fundador 'Ajolotes en la Nube' y PythonCDMX. AWS Community Builder.", semblanzaCharla: "La nube es pieza clave de tecnologías de información. ¿Cómo empezar? ¿Cuáles son los mejores recursos? Hay excelentes recursos gratuitos para aprender teoría y práctica, así como comunidades como AWS Cloud Club Ciencias. Hablamos sobre qué es la nube, cómo se usa y cómo aprender." },
+    { name: "Iván Castañeda", talk: "El Umbral de los Autómatas Pensantes: Iniciación a los Laberintos de LangChain, LangGraph y DeepAgents", date: "23 Abril", stage: "Escenario #2", photo: "/fotosponentes/ivancastañeda.png", gender: "m", semblanzaPersonal: "BackEnd Developer Python, 15 años. Embajador Notion, AWS Community Builder. Content creator.", semblanzaCharla: "Exploración del fascinante mundo de los agentes de IA usando frameworks y herramientas modernas. Desde conceptos fundamentales hasta arquitecturas complejas con LangChain y GraphQL. Un viaje por la mente de un pensador que cree que el verdadero poder no está en las máquinas, sino en quienes las hacen pensar." },
+    { name: "Yhary Arias", talk: "Desarrolla tu primera pipeline de ML en producción", date: "23 Abril", stage: "Escenario #2", photo: "/fotosponentes/yharyarias.JPG", gender: "f", semblanzaPersonal: "ML Engineer especialista en producción. Google Cloud. Mentora LATAM.", semblanzaCharla: "Entrenar un modelo es fácil. Hacer que funcione en producción, no tanto. Toma ese modelo que 'funciona perfecto en el notebook' y enféntalo al mundo real: datos incompletos, pipelines rotos, features inconsistentes. Construiremos un flujo completo de ML desde preparación hasta monitoring usando Google Cloud." },
+    { name: "Brenda Bravo", talk: "Tu primer agente de IA en 45 minutos (sin saber de IA)", date: "23 Abril", stage: "Escenario #2", photo: "/fotosponentes/foto_perfil_brendabravo.png", gender: "f", semblanzaPersonal: "Ingeniera UNAM, consultora integración empresarial. IBM, Banorte, Actinver. Creadora Inge.Brendy.", semblanzaCharla: "¿Alguna vez quisiste construir algo con IA pero sentiste que necesitabas un doctorado para empezar? En 45 minutos de contenido hands-on, construiremos un agente de IA funcional desde cero. Comprenderás qué es un agente, cómo piensa y tendrás herramientas para seguir explorando por tu cuenta." },
+    { name: "Julio Vázquez", talk: "De Bare-Metal a Cloud Native: Arquitectura híbrida con KVM, libvirt y K3s", date: "23 Abril", stage: "Escenario #2", photo: "/fotosponentes/juliovazquez.jpeg", gender: "m", semblanzaPersonal: "SDE McDonald's, GCP Associate Cloud Engineer. Defensor FLOSS.", semblanzaCharla: "Cómo transformar infraestructura en un clúster de Kubernetes y virtualizar entornos con KVM y libvirt. Un enfoque que permite aprovechar ventajas de virtualización y orquestación. Incluso levantaremos un servidor de Minecraft en K3s para experimentar en un entorno bare-metal fácilmente replicable en Cloud." },
+    { name: "Carlos Sánchez", talk: "¡Deja de usar notebooks! Prepara tus modelos para funcionar en el mundo real", date: "23 Abril", stage: "Escenario #2", photo: "/fotosponentes/carlossanchez.jpeg", gender: "m", semblanzaPersonal: "ML Engineer Mercado Libre. MLOps, pipelines. Profesor Coderhouse.", semblanzaCharla: "Cómo tomar ese modelo que solo funciona en Jupyter y desplegarlo correctamente en producción. Desde pipelines de datos hasta monitoreo continuo, exploraremos las herramientas y prácticas necesarias para que tus modelos funcionen confiablemente en el mundo real." },
+    { name: "John Kleinad", talk: "Desarrollando apps robustos con AWS", date: "23 Abril", stage: "Escenario #3", photo: "/fotosponentes/johnkleinad.png", gender: "m", semblanzaPersonal: "Arquitecto Experiencias Digitales. Experto: AWS, Next.js, React, TypeScript, GraphQL.", semblanzaCharla: "Desarrollo de aplicaciones robustas en AWS. Aprenderemos arquitecturas escalables, buenas prácticas de seguridad y cómo desplegar aplicaciones que puedan soportar tráfico en producción. Combinaremos teoría con ejemplos prácticos de aplicaciones reales construidas en la nube." },
+    { name: "Diego Bravo", talk: "De usuario a dueño: cómo tener control sobre tus servicios digitales y divertirte en el proceso", date: "23 Abril", stage: "Escenario #3", photo: "/fotosponentes/diegobravo.jpeg", gender: "m", semblanzaPersonal: "Estudiante 6to sem CS. Intereses: teoría, desarrollo, ciberseguridad.", semblanzaCharla: "Análisis de cómo los usuarios pueden tener mayor control sobre sus servicios digitales. Exploración de herramientas open source, privacidad y seguridad digital. Una invitación a ser dueño de tu tecnología en lugar de solo consumidor." },
+    { name: "Victor Ledesma", talk: "Open Source en el Monitoreo", date: "23 Abril", stage: "Escenario #3", photo: "/fotosponentes/victorledesma.jpeg", gender: "m", semblanzaPersonal: "Ingeniero en Sistemas, APL Harvard 2024. Community Leader AxoPunk, Zabbix.", semblanzaCharla: "Exploración del ecosistema de herramientas open source para monitoreo y observabilidad de sistemas. C ómo implementar soluciones escalables y confiables sin depender de software propietario. Casos de uso reales y mejores prácticas en monitoreo de infraestructura." },
+    { name: "Fernanda Tello", talk: "De la teoría a la blockchain: construyendo sobre Stellar", date: "23 Abril", stage: "Escenario #3", photo: "/fotosponentes/Fer Tello.jpeg", gender: "f", semblanzaPersonal: "Economista, 8+ años finanzas, 5 blockchain. Fundadora CriptoUNAM. México Lead BAF.", semblanzaCharla: "De la teoría económica a la práctica blockchain. Cómo la tecnología Stellar está revolucionando pagos e inclusión financiera. Exploración de casos de uso reales, arquitectura de la red y cómo construir aplicaciones financieras descentralizadas." },
+    { name: "Gerardo Vela", talk: "De la teoría a la blockchain: construyendo sobre Stellar", date: "23 Abril", stage: "Escenario #3", photo: "/fotosponentes/gerardovela.jpeg", gender: "m", semblanzaPersonal: "Economista UNAM, Full-Stack Web3. Fundador CriptoUNAM. 3er ETH Global Argentina 2025.", semblanzaCharla: "De la teoría económica a la práctica blockchain. Cómo la tecnología Stellar está revolucionando pagos e inclusión financiera. Exploración de casos de uso reales, arquitectura de la red y cómo construir aplicaciones financieras descentralizadas usando tecnologías de vanguardia." },
+    { name: "Alexa Joaquin", talk: "¿La nube está matando al Hardware?", date: "23 Abril", stage: "Escenario #3", photo: "/fotosponentes/alexajoaquin.jpg", gender: "f", semblanzaPersonal: "Técnica Sistemas Digitales, estudiante Data Science ESCOM IPN. AWS Cloud Club. Docente robótica.", semblanzaCharla: "Exploración sobre si la nube está matando al hardware. Durante décadas, el hardware fue el corazón de la computación, pero con la expansión cloud las empresas dependen de servicios remotos. El auge de IA genera demanda masiva de cómputo especializado. ¿Será este el final del hardware? Analizaremos cómputo paralelo, IA y sus nuevas áreas profesionales." },
+    { name: "Gadiel Guillen", talk: "Cualquier videojuego es un Rubik", date: "23 Abril", stage: "Escenario #3", photo: "/fotosponentes/gadielguillen.jpg", gender: "m", semblanzaPersonal: "Data Analyst YXKN, FullStack Blumy, SDE CONACYT. Apasionado game dev con Godot.", semblanzaCharla: "¿Un cubo Rubik puede enseñarte a hacer videojuegos? Resulta que sí. Exploraremos colisionadores, estados, nodos, vectores, eventos y triggers usando un cubo Rubik funcional construido en Godot, todo en tiempo real. Sin tanta teoría abstracta, probando que el gamedev es mucho más accesible de lo que te han hecho creer." },
+    { name: "Lilith Diaz", talk: "Anatomía de un ataque en memoria", date: "24 Abril", stage: "Escenario #1", photo: "/fotosponentes/lilithdiaz.jpg", gender: "f", semblanzaPersonal: "Estudiante CS UNAM, pentester eJPT. Primera LATAM Positive Hack Camp 2025. Analista Websec.", semblanzaCharla: "La mayoría de desarrolladores escriben código sin pensar en qué pasa por debajo. Exploramos la anatomía de un proceso en memoria y construimos intuición para entender un buffer overflow, byte a byte. Usando GDB, veremos cómo se sobreescribe un return address y cómo desviar la ejecución de un programa a voluntad." },
+    { name: "Manuel Ortiz", talk: "Nube & Proyectos OSS", date: "24 Abril", stage: "Escenario #1", photo: "/fotosponentes/ManuelOrtiz_Picture.jpg", gender: "m", semblanzaPersonal: "Microsoft MVP, GitHub Community Leader. ESCOM IPN. Líder GitTogether CDMX.", semblanzaCharla: "Cómo funcionan los proyectos de Open Source Software dentro del ecosistema tecnológico y el impacto global que pueden alcanzar. Explicaremos el alcance en cloud computing e innovación, y compartiremos formas prácticas en que cualquier persona puede comenzar a contribuir a comunidades abiertas." },
+    { name: "Enrique Calderon", talk: "Software Libre como Trampolín: de LIDSOL a GSoC a Internship", date: "24 Abril", stage: "Escenario #1", photo: "/fotosponentes/enriquecalderon.jpeg", gender: "m", semblanzaPersonal: "Ingeniero UNAM, LIDSoL. GSoC Apache Beam. Backend Intern Lyft CDMX.", semblanzaCharla: "Comparte su experiencia desde educación y cómo la participación en comunidades y proyectos de software libre proporcionó oportunidad de llegar a la industria. Desde formación de contactos hasta participación en proyectos de organizaciones grandes, preparando un currículum que abre puertas a entrevistas y trabajos." },
+    { name: "Emmanuel Zamora", talk: "Despierta tu ímpetu empresarial", date: "24 Abril", stage: "Escenario #1", photo: "/fotosponentes/emmanuelzamora.jpeg", gender: "m", semblanzaPersonal: "Ingeniero en Sistemas, abogado en formación. 12+ años tech. Fundador e-Study.", semblanzaCharla: "Inspiración y herramientas para despertar tu espíritu empresarial. Desde identificar oportunidades hasta construir un MVP, exploraremos cómo transformar ideas en negocios sostenibles usando tecnología. Lecciones de experiencia real en ecosistemas de emprendimiento y escalamiento." },
+    { name: "Ana Cifuentes", talk: "No te van a contratar por saber AI: te van a contratar por lo que construyas con ella", date: "24 Abril", stage: "Escenario #1", photo: "/fotosponentes/anacifuentes.JPG", gender: "f", semblanzaPersonal: "TAM Google, Cloud Support, DevOps. Fundadora CHIDASTECH. Organizadora AWS & KCD.", semblanzaCharla: "Todos aprenden IA hoy, pero saber usar ChatGPT ya no te diferencia. Lo que realmente importa es tu capacidad de construir soluciones reales con AI. Aprende cómo pasar de ser consumidor de tecnología a crear proyectos con impacto, incluso desde la universidad. No necesitas ser experto, necesitas cambiar tu enfoque." },
+    { name: "Alex Espinosa", talk: "Intro a Spec Driven Development con Kiro", date: "24 Abril", stage: "Escenario #1", photo: "/fotosponentes/axel-espinosa-perfil.jpeg", gender: "m", semblanzaPersonal: "Developer Advocate AWS. Consultoría, startups, finanzas. Content creator.", semblanzaCharla: "¿Quieres construir un juego sin sufrir? En este workshop crearás uno desde cero con IA usando Kiro. Aprenderás Spec-Driven Development: le dices a la IA qué quieres y ella te ayuda a construirlo. Verás cómo Kiro convierte tus ideas en código funcional sin importar tu nivel. Trae laptop e ideas, nosotros ponemos la IA." },
+    { name: "Ramses Mata", talk: "Intro a Spec Driven Development con Kiro", date: "24 Abril", stage: "Escenario #1", photo: "/fotosponentes/ramses-mata-perfil.jpg", gender: "m", semblanzaPersonal: "Developer Advocate AWS. Cloud, dev, educación comunitaria. Mentor LATAM.", semblanzaCharla: "¿Quieres construir un juego sin sufrir? En este workshop crearás uno desde cero con IA usando Kiro. Aprenderás Spec-Driven Development: le dices a la IA qué quieres y ella te ayuda a construirlo. Verás cómo Kiro convierte tus ideas en código funcional sin importar tu nivel. Trae laptop e ideas, nosotros ponemos la IA." },
+    { name: "Josafat Jimenez", talk: "Over-Engineering: Cómo quemar crédito de AWS para validar tu comida", date: "24 Abril", stage: "Escenario #2", photo: "/fotosponentes/josafatjimenez.jpeg", gender: "m", semblanzaPersonal: "Full Stack DevOps. Next.js, Django, Node.js, TypeScript. HackRush organizer, mentor.", semblanzaCharla: "¿Para qué hacer las cosas simples cuando puedes usar la nube? Aprende a conectar Telegram con AWS S3, visión artificial (Rekognition) y síntesis de voz neuronal (Polly) usando n8n, solo para responder la pregunta más importante de la humanidad: ¿Es esto un hot dog?" },
+    { name: "Jesus Barajas", talk: "Análisis de vulnerabilidad a una cámara WiFi", date: "24 Abril", stage: "Escenario #2", photo: "/fotosponentes/jesusbarajas.jpg", gender: "m", semblanzaPersonal: "Egresado CS, 6 años ciberseguridad. Líder SOC. Especialista vulnerabilidades automotriz.", semblanzaCharla: "Basada en su tesis de licenciatura, exploración de un ejercicio de análisis de vulnerabilidades siguiendo metodología SANS. Identificación de fallos en sistema de IoT que simula red doméstica. Temas de hacking ético y vulnerabilidades en entornos reales, destacando cómo Ciencias de la Computación sirve como base para ciberseguridad." },
+    { name: "Oscar Hernández", talk: "Mapeo colaborativo de transporte público con herramientas libres", date: "24 Abril", stage: "Escenario #2", photo: "/fotosponentes/oscarhernandez.png", gender: "m", semblanzaPersonal: "Especialista Tecnología Cívica, Codeando México. Arquitecto software, infraestructura digital pública.", semblanzaCharla: "Introducción al ecosistema de tecnología cívica y datos abiertos aplicados a movilidad. Ciclo de vida de datos abiertos: desde captura en calle hasta integración en estándares globales (GTFS). Cómo el mapeo colaborativo genera infraestructura digital pública de forma soberana. Oportunidad para unirse a comunidad de mapeo colaborativo." },
+  ];
+
+  // Helper function to get talk description based on talk title
+  const getTalkDescription = (talkTitle: string | null) => {
+    if (!talkTitle) return null;
+    const talk = ponentes.find(p => p.talk === talkTitle);
+    return talk?.semblanzaCharla || null;
+  };
 
   useEffect(() => {
     let debounceTimer: NodeJS.Timeout;
@@ -409,72 +518,385 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
             </p>
           </section>
         </div>
-      ) : title === "Charlas" ? (
+      ) : title === "Agenda" ? (
         <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
-          <Terminal
-            commands={[
-              "status --charlas",
-              "charlas --info",
-            ]}
-            outputs={{
-              0: [
-                "⚠️ SECCIÓN EN CONSTRUCCIÓN",
-                "Esta sección no está en funcionamiento en este momento.",
-                "",
-                "¡Pero pronto tendremos charlas increíbles!",
-              ],
-              1: [
-                "📢 CHARLAS COMPUFEST 2026",
-                "",
-                "Contaremos con:",
-                "• Líderes de opinión en la industria tech",
-                "• Conferencias en diferentes locaciones",
-                "• Oportunidad de networking con profesionales",
-                "  con años de experiencia en la industria",
-                "",
-                "✨ Lo mejor: ¡TODO COMPLETAMENTE GRATIS!",
-                "",
-                "Mantente atento a nuestras redes sociales",
-                "para conocer a los speakers y horarios.",
-              ],
-            }}
-            typingSpeed={30}
-            delayBetweenCommands={800}
-          />
-        </div>
-      ) : title === "Talleres" ? (
-        <div className="w-full px-4 md:px-8 lg:px-16 min-h-96">
-          <Terminal
-            commands={[
-              "status --talleres",
-              "talleres --info",
-            ]}
-            outputs={{
-              0: [
-                "⚠️ SECCIÓN EN CONSTRUCCIÓN",
-                "Esta sección no está en funcionamiento en este momento.",
-                "",
-                "¡Pero pronto tendremos talleres increíbles!",
-              ],
-              1: [
-                "🎓 TALLERES COMPUFEST 2026",
-                "",
-                "Talleres en locaciones exclusivas en la facultad",
-                "",
-                "Aprenderás:",
-                "• Habilidades laborales para el mercado tech",
-                "• Experiencia práctica en proyectos reales",
-                "• Conocimiento directo de profesionales",
-                "",
-                "Perfecto si quieres meterte al mercado tech",
-                "en un futuro. ¡Totalmente GRATIS!",
-                "",
-                "Síguenos en redes sociales para más detalles.",
-              ],
-            }}
-            typingSpeed={30}
-            delayBetweenCommands={800}
-          />
+          <div className="mb-12 text-center">
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center"
+              style={{
+                fontFamily: "'Red Hat Display', sans-serif",
+                fontWeight: 700,
+                letterSpacing: "-1px",
+                color: "#26D968",
+                marginBottom: "1rem",
+              }}
+            >
+              Agenda del Evento
+            </h1>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#999", lineHeight: "1.6", marginBottom: "3rem" }}>
+              (Presiona el título en color verde para ir al link de la transmisión en vivo)
+            </p>
+          </div>
+
+          {/* Days Tabs */}
+          <div className="flex gap-4 justify-center mb-8 flex-wrap">
+            {["20 Abril", "21 Abril", "22 Abril", "23 Abril", "24 Abril"].map((day) => (
+              <button
+                key={day}
+                onClick={() => setSelectedDay(day)}
+                style={{
+                  fontFamily: "'Red Hat Display', sans-serif",
+                  fontSize: "1.1rem",
+                  fontWeight: selectedDay === day ? 700 : 500,
+                  color: selectedDay === day ? "#26D968" : "#999",
+                  borderBottom: selectedDay === day ? "2px solid #26D968" : "2px solid transparent",
+                  padding: "0.5rem 1rem",
+                  background: "transparent",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                {day}
+              </button>
+            ))}
+          </div>
+
+          {/* Agenda Grid */}
+          <div className="space-y-8">
+            {selectedDay === "20 Abril" && (
+              <div>
+                <LinkPreview url="https://youtube.com/live/uHDLR-iSCCY" isStatic imageSrc="/youtube-thumbnail.jpg">
+                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
+                </LinkPreview>
+                <div className="space-y-4">
+                  {agendaData["20-Online"].map((item: any, idx: number) => {
+                    const description = getTalkDescription(item.title);
+                    return (
+                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                        {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {selectedDay === "21 Abril" && (
+              <div>
+                <LinkPreview url="https://youtube.com/live/nvOXItnD_OI" isStatic imageSrc="/youtube-thumbnail.jpg">
+                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
+                </LinkPreview>
+                <div className="space-y-4">
+                  {agendaData["21-Online"].map((item: any, idx: number) => {
+                    const description = getTalkDescription(item.title);
+                    return (
+                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                        {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {selectedDay === "22 Abril" && (
+              <div>
+                <LinkPreview url="https://youtube.com/live/1XvX4L5aVwU" isStatic imageSrc="/youtube-thumbnail.jpg">
+                  <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #0 - En Línea</h2>
+                </LinkPreview>
+                <div className="space-y-4">
+                  {agendaData["22-Online"].map((item: any, idx: number) => {
+                    const description = getTalkDescription(item.title);
+                    return (
+                      <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                        <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                        {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                        {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                        {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {selectedDay === "23 Abril" && (
+              <>
+                {/* E1 */}
+                <div>
+                  <LinkPreview url="https://youtube.com/live/5c71IWPEBf8" isStatic imageSrc="/abccelis.webp">
+                    <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #1 - Auditorio Barajas Celis</h2>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["23-E1"].map((item: any, idx: number) => {
+                      const description = getTalkDescription(item.title);
+                      return (
+                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* E2 */}
+                <div>
+                  <LinkPreview url="https://youtube.com/live/3S3OGkZAMcE" isStatic imageSrc="/aulaGoogle.jpg">
+                    <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario #2 - Aula Google</h2>
+                    </div>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["23-E2"].map((item: any, idx: number) => {
+                      const description = getTalkDescription(item.title);
+                      return (
+                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* E3 */}
+                <div>
+                  <LinkPreview url="https://youtube.com/live/aylkt-TakIg" isStatic imageSrc="/LDP.jpg">
+                    <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario #3 - Lab. Leng. Programación</h2>
+                    </div>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["23-E3"].map((item: any, idx: number) => {
+                      const description = getTalkDescription(item.title);
+                      return (
+                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {selectedDay === "24 Abril" && (
+              <>
+                {/* E1 */}
+                <div>
+                  <LinkPreview url="https://youtube.com/live/jgEbvFdK5lM" isStatic imageSrc="/abccelis.webp">
+                    <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "1rem", cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "#26D968")}>Escenario #1 - Auditorio Barajas Celis</h2>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["24-E1"].map((item: any, idx: number) => {
+                      const description = getTalkDescription(item.title);
+                      return (
+                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* E2 */}
+                <div>
+                  <LinkPreview url="https://youtube.com/live/gL4j1BmPNNY" isStatic imageSrc="/aulaGoogle.jpg">
+                    <div style={{ cursor: "pointer", transition: "color 0.3s ease" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#1f9e4d")} onMouseLeave={(e) => (e.currentTarget.style.color = "inherit")}>
+                      <h2 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.8rem", fontWeight: 700, color: "#26D968", marginBottom: "0.5rem" }}>Escenario #2 - Aula Google</h2>
+                    </div>
+                  </LinkPreview>
+                  <div className="space-y-4">
+                    {agendaData["24-E2"].map((item: any, idx: number) => {
+                      const description = getTalkDescription(item.title);
+                      return (
+                        <div key={idx} style={{ borderLeft: "3px solid #26D968", paddingLeft: "1.5rem", paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.9rem", color: "#26D968", fontWeight: 600 }}>{item.time}</div>
+                          <div style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#fff", marginTop: "0.3rem" }}>{item.title}</div>
+                          {item.speaker && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", marginTop: "0.3rem" }}>{item.speaker}</div>}
+                          {item.org && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", marginTop: "0.2rem" }}>{item.org}</div>}
+                          {description && <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#aaa", marginTop: "0.5rem", fontStyle: "italic", lineHeight: "1.5" }}>{description}</div>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="w-full mt-12 md:mt-16 lg:mt-20 px-4 md:px-0 flex items-center justify-center flex-col">
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1rem", color: "#ccc", lineHeight: "1.8" }}>
+              Contaremos con charlas y talleres de empleados que trabajan en
+            </p>
+            
+            {/* Comet Cards Grid */}
+            <div className="w-full mt-8 px-4 md:px-0 flex justify-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-7xl">
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Amazon_Web_Services-Logo.wine.svg" alt="AWS" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Google_Favicon_2025.svg.png" alt="Google" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/microsoft-logo.webp" alt="Microsoft" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Mercado-Libre-Logo-2013.png" alt="Mercado Libre" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/netflix_logo_icon_170919.webp" alt="Netflix" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/Red_Hat-Logo.png" alt="Red Hat" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/mdonalds.svg" alt="Mcdonalds" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+                
+                <CometCard disableGlare className="w-full h-full">
+                  <div className="p-6 rounded-xl h-40 flex items-center justify-center" style={{ backgroundColor: "#0E1115" }}>
+                    <img src="/logoscharlas/github.svg" alt="GitHub" className="w-28 h-28 object-contain hover:opacity-80 transition-opacity" />
+                  </div>
+                </CometCard>
+              </div>
+            </div>
+
+            {/* Ponentes Title */}
+            <div className="w-full mt-20 px-4 md:px-0 flex flex-col items-center justify-center">
+              <h2
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-center"
+                style={{
+                  fontFamily: "'Red Hat Display', sans-serif",
+                  fontWeight: 700,
+                  letterSpacing: "-1px",
+                  color: "#26D968",
+                }}
+              >
+                Ponentes
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg text-gray-400 mt-4 text-center" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                (Presiona la foto de cada ponente para ver su semblanza)
+              </p>
+            </div>
+
+            {/* Ponentes Grid */}
+            <div className="w-full mt-16 px-4 md:px-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {ponentes.map((ponente, idx) => (
+                  <div key={idx} className="flex flex-col items-center">
+                    <div className="w-full">
+                      <PixelTransition
+                        firstContent={
+                          ponente.photo ? (
+                            <img 
+                              src={ponente.photo} 
+                              alt={ponente.name} 
+                              className="w-full h-full object-cover"
+                              style={["Karla Vargas", "Fernanda Tello", "Ana Cifuentes"].includes(ponente.name) ? { objectPosition: "center top" } : {}}
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-gradient-to-br from-[#26D968] to-[#1a8a45] flex items-center justify-center">
+                              <div className="text-center">
+                                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#fff" }}>
+                                  Foto próximamente
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        }
+                        secondContent={
+                          ponente.semblanzaPersonal ? (
+                            <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center p-3">
+                              <div className="text-center">
+                                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#ccc", lineHeight: "1.5" }}>
+                                  {ponente.semblanzaPersonal}
+                                </p>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center">
+                              <div className="text-center p-4">
+                                <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem", color: "#ccc", lineHeight: "1.6" }}>
+                                  {ponente.talk}
+                                </p>
+                              </div>
+                            </div>
+                          )
+                        }
+                        gridSize={8}
+                        pixelColor="#26D968"
+                        animationStepDuration={0.4}
+                        once={false}
+                      />
+                    </div>
+                    <div className="mt-4 text-center w-full">
+                      <h3 style={{ fontFamily: "'Red Hat Display', sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "#26D968", marginBottom: "0.5rem" }}>
+                        {ponente.name}
+                      </h3>
+                      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: "#999", lineHeight: "1.5" }}>
+                        <strong>{ponente.gender === "f" ? "La podrás ver" : "Lo podrás ver"} en:</strong>
+                        <br />
+                        {ponente.talk}
+                        <br />
+                        <span style={{ color: "#ccc" }}>{ponente.date} • {ponente.stage}</span>
+                      </p>
+                      {ponente.semblanzaCharla && (
+                        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#888", lineHeight: "1.4", marginTop: "0.75rem", fontStyle: "italic" }}>
+                          {ponente.semblanzaCharla}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       ) : title === "Nosotros" ? (
         <div className="w-full px-4 md:px-8 lg:px-16">

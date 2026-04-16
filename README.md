@@ -6,7 +6,7 @@ Sitio web oficial de **compufest[1]** - Evento académico de tecnología de la F
 
 compufest[1] es un evento que incluye:
 - **WeirdUI[1]**: Hackathon completamente en línea (20-22 de Abril)
-- **Charlas y Talleres**: Conferencias presenciales en la Facultad de Ciencias (23-24 de Abril)
+- **Agenda**: Charlas, talleres y actividades (23-24 de Abril)
 - **Comunidad tech**: Espacio para desarrolladores, diseñadores y entusiastas de la tecnología
 
 ## Características
@@ -104,8 +104,7 @@ Para levantar analytics self-hosted con Umami, revisa [UMAMI_SETUP.md](./UMAMI_S
 - `/` - Página de inicio con contador regresivo
 - `/faq` - Preguntas frecuentes sobre compufest[1]
 - `/hackathon` - Información de WeirdUI[1]
-- `/charlas` - Charlas y conferencistas (en construcción)
-- `/talleres` - Talleres disponibles (en construcción)
+- `/agenda` - Charlas, talleres y agenda de actividades (en construcción)
 - `/nosotros` - Información sobre los organizadores
 
 ## Contacto
