@@ -74,3 +74,12 @@ export interface TeamMember {
   joined_at: string;
   profile?: Profile;
 }
+
+export interface TeamCreationCode {
+  code: string;
+  note: string | null;
+  used_by: string | null;
+  used_at: string | null;
+  team_id: string | null;
+  created_at: string;
+}

@@ -63,3 +63,19 @@ build.log
 *.tsbuildinfo
 next-env.d.ts
 .env*.local
+
+# database backups & exports (never commit production data)
+*.sql.bak
+*.dump
+*.dump.gz
+*.backup
+supabase-backups/
+backups/
+compufest-equipos.csv
+
+# Supabase CLI artifacts (defense in depth, supabase/.gitignore already covers most)
+.supabase/
+
+# Claude Code / agent session metadata
+.claude/
+.claude-mem/

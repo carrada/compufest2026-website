@@ -12,6 +12,7 @@ import { SectionScreen } from "@/components/routes/SectionScreen";
 import { FAQRoute } from "@/components/routes/FAQRoute";
 import { DashboardRoute } from "@/components/routes/DashboardRoute";
 import { InviteRoute } from "@/components/routes/InviteRoute";
+import { CreateTeamWithCodeRoute } from "@/components/routes/CreateTeamWithCodeRoute";
 import type { SectionRoute } from "@/lib/types";
 
 interface RoutesRendererProps {
@@ -24,6 +25,7 @@ export function RoutesRenderer({ sectionRoutes }: RoutesRendererProps) {
       <Route path="/" element={<HomeRoute key="/" />} />
       <Route path="/faq" element={<FAQRoute key="/faq" />} />
       <Route path="/dashboard" element={<DashboardRoute />} />
+      <Route path="/dashboard/crear-equipo" element={<CreateTeamWithCodeRoute />} />
       <Route path="/invite/:code" element={<InviteRoute />} />
       {sectionRoutes.map((route) => {
         // Skip FAQ route as it's handled separately
