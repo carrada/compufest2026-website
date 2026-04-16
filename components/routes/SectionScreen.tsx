@@ -574,21 +574,24 @@ export function SectionScreen({ title, subtitle }: SectionScreenProps) {
           </div>
 
           {/* Days Tabs */}
-          <div className="flex gap-4 justify-center mb-8 flex-wrap">
+          <div className="flex gap-2 sm:gap-4 justify-center mb-8 overflow-x-auto no-scrollbar">
             {["20 Abril", "21 Abril", "22 Abril", "23 Abril", "24 Abril"].map((day) => (
               <button
                 key={day}
                 onClick={() => setSelectedDay(day)}
                 style={{
                   fontFamily: "'Red Hat Display', sans-serif",
-                  fontSize: "1.1rem",
+                  fontSize: isMobile ? "0.9rem" : "1.1rem",
                   fontWeight: selectedDay === day ? 700 : 500,
                   color: selectedDay === day ? "#26D968" : "#999",
                   borderBottom: selectedDay === day ? "2px solid #26D968" : "2px solid transparent",
-                  padding: "0.5rem 1rem",
+                  padding: isMobile ? "0.4rem 0.75rem" : "0.5rem 1rem",
                   background: "transparent",
                   cursor: "pointer",
-                  transition: "all 0.3s ease",
+                  transition: "color 0.3s ease, border-color 0.3s ease",
+                  whiteSpace: "nowrap",
+                  minWidth: "fit-content",
+                  flex: "0 0 auto",
                 }}
               >
                 {day}
