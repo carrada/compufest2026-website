@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   title: "compufest[1]",
   description: "El evento estudiantil de computación y programación más grande de la UNAM. 20-24 de Abril 2026.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/Isologo.svg",
   },
   openGraph: {
     title: "compufest[1]",
