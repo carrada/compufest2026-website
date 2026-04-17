@@ -586,68 +586,58 @@ const ASCIIText: FC<ASCIITextProps> = ({
 
     const setup = async (): Promise<void> => {
       if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const { width, height } = rect;
-
-      if (width === 0 || height === 0) {
-        observer = new IntersectionObserver(
-          async ([entry]) => {
-            if (cancelled) return;
-            if (entry.isIntersecting && entry.boundingClientRect.width > 0 && entry.boundingClientRect.height > 0) {
-              const { width: w, height: h } = entry.boundingClientRect;
-              if (observer) {
-                observer.disconnect();
-                observer = null;
+      
+      // Use ResizeObserver immediately to get accurate dimensions
+      ro = new ResizeObserver(async (entries: ResizeObserverEntry[]): Promise<void> => {
+        if (cancelled || !entries[0] || !containerRef.current) return;
+        
+        const { width: w, height: h } = entries[0].contentRect;
+        
+        if (w > 0 && h > 0) {
+          if (!asciiRef.current) {
+            // Create and initialize only once with valid dimensions
+            ro?.disconnect();
+            asciiRef.current = await createAndInit(containerRef.current, w, h);
+            if (!cancelled && asciiRef.current) {
+              asciiRef.current.load();
+              
+              // Set up visibility observer after initialization
+              observer = new IntersectionObserver(
+                ([entry]) => {
+                  if (!asciiRef.current) return;
+                  if (entry.isIntersecting) {
+                    asciiRef.current.resume();
+                  } else {
+                    asciiRef.current.pause();
+                  }
+                },
+                { threshold: 0.01 }
+              );
+              if (observer && containerRef.current) {
+                observer.observe(containerRef.current);
               }
-
-              if (!cancelled && containerRef.current) {
-                asciiRef.current = await createAndInit(containerRef.current, w, h);
-                if (!cancelled && asciiRef.current) {
-                  asciiRef.current.load();
+              
+              // Re-attach ResizeObserver for resize handling only
+              ro = new ResizeObserver((entries: ResizeObserverEntry[]): void => {
+                if (!entries[0] || !asciiRef.current) return;
+                const { width: resizeW, height: resizeH } = entries[0].contentRect;
+                if (resizeW > 0 && resizeH > 0) {
+                  asciiRef.current!.setSize(resizeW, resizeH);
                 }
+              });
+              if (ro && containerRef.current) {
+                ro.observe(containerRef.current);
               }
             }
-          },
-          { threshold: 0.1 }
-        );
-        if (observer && containerRef.current) {
-          observer.observe(containerRef.current);
-        }
-        return;
-      }
-
-      if (containerRef.current) {
-        asciiRef.current = await createAndInit(containerRef.current, width, height);
-        if (!cancelled && asciiRef.current) {
-          asciiRef.current.load();
-
-          // Visibility observer to pause/resume animation when off-screen
-          observer = new IntersectionObserver(
-            ([entry]) => {
-              if (!asciiRef.current) return;
-              if (entry.isIntersecting) {
-                asciiRef.current.resume();
-              } else {
-                asciiRef.current.pause();
-              }
-            },
-            { threshold: 0.01 }
-          );
-          if (observer && containerRef.current) {
-            observer.observe(containerRef.current);
-          }
-
-          ro = new ResizeObserver((entries: ResizeObserverEntry[]): void => {
-            if (!entries[0] || !asciiRef.current) return;
-            const { width: w, height: h } = entries[0].contentRect;
-            if (w > 0 && h > 0) {
-              asciiRef.current!.setSize(w, h);
-            }
-          });
-          if (ro && containerRef.current) {
-            ro.observe(containerRef.current);
+          } else if (asciiRef.current) {
+            // Update size if component already exists
+            asciiRef.current.setSize(w, h);
           }
         }
+      });
+      
+      if (ro && containerRef.current) {
+        ro.observe(containerRef.current);
       }
     };
 
@@ -675,13 +665,12 @@ const ASCIIText: FC<ASCIITextProps> = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        transform: typeof window !== 'undefined' && window.innerWidth < 640 ? 'scale(0.5)' : (typeof window !== 'undefined' && window.innerWidth < 768) ? 'scale(0.75)' : 'scale(1)',
-        transition: 'transform 0.3s ease',
         overflow: 'hidden'
       }}
     >
       {/* Left hand SVG - Desktop only */}
       <div
+        className="ascii-text-hand ascii-text-hand-left"
         style={{
           position: 'absolute',
           left: '20px',
@@ -689,7 +678,6 @@ const ASCIIText: FC<ASCIITextProps> = ({
           transform: 'translateY(-50%)',
           width: '580px',
           height: '580px',
-          display: typeof window !== 'undefined' && window.innerWidth < 768 ? 'none' : 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 10
@@ -708,6 +696,7 @@ const ASCIIText: FC<ASCIITextProps> = ({
 
       {/* Right hand SVG - Desktop only */}
       <div
+        className="ascii-text-hand ascii-text-hand-right"
         style={{
           position: 'absolute',
           right: '20px',
@@ -715,7 +704,6 @@ const ASCIIText: FC<ASCIITextProps> = ({
           transform: 'translateY(-50%)',
           width: '580px',
           height: '580px',
-          display: typeof window !== 'undefined' && window.innerWidth < 768 ? 'none' : 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 10
@@ -733,6 +721,33 @@ const ASCIIText: FC<ASCIITextProps> = ({
       </div>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+        .ascii-text-container {
+          transform: scale(1);
+          transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 767px) {
+          .ascii-text-container {
+            transform: scale(0.75);
+          }
+          .ascii-text-hand {
+            display: none !important;
+          }
+        }
+
+        @media (max-width: 639px) {
+          .ascii-text-container {
+            transform: scale(0.5);
+          }
+          .ascii-text-hand {
+            display: none !important;
+          }
+        }
+
+        .ascii-text-hand {
+          display: flex;
+        }
 
         .ascii-text-container canvas {
           position: absolute;
